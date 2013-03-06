@@ -5,7 +5,6 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include "ParticleManager.h"
-#include <QTime>
 
 class glwidget : public QGLWidget
 {
@@ -27,12 +26,11 @@ protected:
     int mouse_state;
     int mouse_x, mouse_y;
 
-    QTime currentTime;
-
     ParticleManager* ParticleMgr;
 signals:
 
 public slots:
+    void addBar(int particles);
     void setNumberOfParticles(int value);
     
 };

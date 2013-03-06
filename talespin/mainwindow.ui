@@ -33,9 +33,58 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <spacer name="verticalSpacer">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Add Bar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox">
+        <property name="minimum">
+         <number>100</number>
+        </property>
+        <property name="maximum">
+         <number>20000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>Red</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Green</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Blue</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Preferred</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -44,6 +93,13 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Bar Width</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QSlider" name="horizontalSlider">
@@ -77,11 +133,17 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Full Screen</string>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
-       </widget>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
@@ -107,15 +169,11 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>true</bool>
-   </attribute>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="statusTip">
+    <string/>
+   </property>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -126,6 +184,7 @@
    <container>1</container>
    <slots>
     <slot>setNumberOfParticles(int)</slot>
+    <slot>addBar()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -138,12 +197,28 @@
    <slot>setNumberOfParticles(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>344</x>
-     <y>558</y>
+     <x>93</x>
+     <y>214</y>
     </hint>
     <hint type="destinationlabel">
      <x>785</x>
      <y>489</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>panelGL</receiver>
+   <slot>addBar()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>42</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>141</x>
+     <y>130</y>
     </hint>
    </hints>
   </connection>

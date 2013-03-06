@@ -11,7 +11,6 @@ void glwidget::initializeGL()
 {
     scene_zoom = -100;
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
-    currentTime.start();
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -47,18 +46,12 @@ void glwidget::resizeGL(int width, int height)
 }
 void glwidget::paintGL()
 {
-    if( currentTime.elapsed() > 3 )
-    {
-        glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
-        glLoadIdentity();
-        glTranslatef(0,0,scene_zoom);
+    glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
+    glLoadIdentity();
+    glTranslatef(0,0,scene_zoom);
 
-        ParticleMgr->updateContainers();
-        ParticleMgr->drawContainers();
-
-        currentTime.restart();
-
-    }
+    ParticleMgr->updateContainers();
+    ParticleMgr->drawContainers();
 
     QWidget::update();
 }
@@ -103,6 +96,11 @@ void glwidget::keyPressEvent(QKeyEvent *k)
 
 }
 
+void glwidget::addBar(int particles)
+{
+    ParticleMgr->AddParticleContainer(particles, 5.0f, glm::vec3(-10.0f,10.0f,0.0f), glm::vec4(1.0f,0.5f,1.0f,1.0f));
+    updateGL();
+}
 
 void glwidget::setNumberOfParticles(int value)
 {
