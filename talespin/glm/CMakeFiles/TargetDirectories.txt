@@ -1,0 +1,3 @@
+/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/ALL_BUILD.dir
+/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/ZERO_CHECK.dir
+/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/glm.dir
