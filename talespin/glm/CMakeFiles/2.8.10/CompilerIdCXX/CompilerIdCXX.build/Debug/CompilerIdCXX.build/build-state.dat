@@ -1,0 +1,68 @@
+TCompilerIdCXX
+v5
+r1
+cCheck dependencies
+cCompileC ./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX" normal i386
+cPhaseScriptExecution "Run Script" "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh"
+
+N/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX
+t2
+s0
+
+N/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o
+t2
+s0
+
+N/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CompilerIdCXX.LinkFileList
+c00000000511811D200000000000000C1
+t1360531922
+s193
+
+N/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+c00000000511811D2000000000000002A
+t1360531922
+s42
+
+N/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cpp
+c00000000511811D20000000000002E22
+t1360531922
+s11810
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesc251925249c8b641^6c06a45249c8b641^---0#1#0#--18"Check dependencies36"007517DC-19F2-4449-ADE1-B6E812918252-
+
+CCompileC ./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s382224722.643316
+e382224722.673063
+r1
+xCompileC
+x./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o
+x/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection134"Compile /Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cppe6e9a45249c8b641^904bac5249c8b641^---0#0#0#-19%DVTDocumentLocation2@148"file://localhost/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens%20Hja%CC%88ltar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cpp0000000000000000^2887"CompileC ./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o CMakeCXXCompilerId.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX"    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-return-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wno-unused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-shorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -fasm-blocks -Wdeprecated-declarations -Winvalid-offsetof -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion "-I/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/CompilerIdCXX.hmap" "-I/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/DerivedSources/i386" "-I/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/DerivedSources" "-F/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX" -MMD -MT dependencies -MF "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.d" --serialize-diagnostics "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.dia" -c "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/CMakeCXXCompilerId.cpp" -o "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CMakeCXXCompilerId.o"36"4741BEDD-6331-4D01-B1AB-A5A2C4601701-
+
+CLd "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX" normal i386
+s382224722.679786
+e382224722.713499
+r1
+xLd
+x/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX
+xnormal
+xi386
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection124"Link /Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX4f22ae5249c8b641^37a7b65249c8b641^---0#0#0#--806"Ld ./CompilerIdCXX normal i386    cd "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 "-L/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX" "-F/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX" -filelist "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Objects-normal/i386/CompilerIdCXX.LinkFileList" -o "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX"36"D569F021-5F87-4943-906D-7A06BB90B2A7-
+
+CPhaseScriptExecution "Run Script" "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh"
+s382224722.721718
+e382224722.757462
+r1
+xPhaseScriptExecution
+xRun Script
+x/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh
+oGCC_VERSION=com.apple.compilers.llvm.clang.1_0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection36"Run custom shell script 'Run Script'f48cb95249c8b641^6ce9c15249c8b641^-47"GCC_VERSION=com.apple.compilers.llvm.clang.1_01(21%IDEActivityLogMessage2@47"GCC_VERSION=com.apple.compilers.llvm.clang.1_0-382224722#0#47#-0#-----0#0#0#--438"PhaseScriptExecution "Run Script" ./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh    cd "/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX"    /bin/sh -c "\"/Users/Amaru/Desktop/Aktuellt_skolarbete/Luftens Hjältar/talespin/glm/CMakeFiles/2.8.10/CompilerIdCXX/./CompilerIdCXX.build/Debug/CompilerIdCXX.build/Script-2C8FEB8E15DC1A1A00E56A5D.sh\""36"2B93571D-857B-4DC1-BA2F-7782000FFF8E-
+

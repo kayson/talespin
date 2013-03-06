@@ -2,12 +2,14 @@
 #include "QtOpenGL/QGLWidget"
 
 ParticleContainer::ParticleContainer(const int numParticles, const float radius, const glm::vec3& position, const glm::vec4 color)
-    : _position(position)
+    : _radius(radius)
+    , _position(position)
     , _color(color)
-	, _radius(radius)
-    , _particleVector(numParticles)
 {
-    std::generate(_particleVector.begin(),_particleVector.end(),[]{return new Particle();});
+    for(int i = 0; i <numParticles;i++)
+    {
+        _particleVector.push_back(new Particle());
+    }
     fillContainer();
 }
 
@@ -67,7 +69,6 @@ void ParticleContainer::targeted()
 {
 	for(ParticleVector::iterator i = _particleVector.begin(); i != _particleVector.end(); ++i)
     {
-        Particle& particle = **i;
 		_radius += 15.0f;
 		_color += glm::vec4(1.0f,1.0f,1.0f,1.0f);
 	}
@@ -77,7 +78,6 @@ void ParticleContainer::untarget()
 {
 	for(ParticleVector::iterator i = _particleVector.begin(); i != _particleVector.end(); ++i)
     {
-        Particle& particle = **i;
 		_radius -= 15.0f;
 		_color -= glm::vec4(1.0f,1.0f,1.0f,1.0f);
 	}

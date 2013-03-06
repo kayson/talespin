@@ -22,8 +22,8 @@ private:
     ~ParticleContainer();
     friend class ParticleManager;
     
+    float _radius;
     glm::vec3 _position;
-	float _radius;
     glm::vec4 _color;
 
     typedef std::vector<Particle*> ParticleVector;
