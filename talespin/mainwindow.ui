@@ -206,21 +206,5 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>panelGL</receiver>
-   <slot>addBar()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>42</x>
-     <y>118</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>141</x>
-     <y>130</y>
-    </hint>
-   </hints>
-  </connection>
  </connections>
 </ui>

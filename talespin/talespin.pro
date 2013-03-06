@@ -24,6 +24,6 @@ HEADERS  += mainwindow.h \
     ParticleContainer.h \
     Particle.h
 
-INCLUDEPATH += ../glm
+INCLUDEPATH += ./glm
 
 FORMS    += mainwindow.ui
