@@ -1,59 +1,69 @@
 #include "glwidget.h"
+
+#if defined __APPLE__
+#include "GLUT/glut.h"
+#elif defined _WIN32 || defined _WIN64 || __unix__
 #include "GL/glut.h"
+#endif
+
 
 glwidget::glwidget(QWidget *parent) :
     QGLWidget(parent)
 {
+    scene_zoom = -100;
+    mouse_state = -1;
 
+    ParticleMgr = new ParticleManager();
+    ParticleMgr->radius = 1.0f;
+    ParticleMgr->columns = 1;
+
+    ParticleMgr->clearAllContainers();
+    ParticleMgr->AddParticleContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
+    ParticleMgr->AddParticleContainer(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
+    ParticleMgr->AddParticleContainer(4060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->update();
+}
+
+glwidget::~glwidget()
+{
+    makeCurrent();
+    ParticleMgr->clearAllContainers();
 }
 
 void glwidget::initializeGL()
 {
-    scene_zoom = -100;
+
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_LINE_SMOOTH);
-    glEnable( GL_POINT_SMOOTH );
+    glEnable( GL_POINT_SMOOTH ); 
 
-    glPointSize( 3.0 );
-
-    mouse_state = -1;
-
-    ParticleMgr = new ParticleManager();
-
-    ParticleMgr->clearAllContainers();
-    ParticleMgr->AddParticleContainer(1000, 5.0f, glm::vec3(-10.0f,10.0f,0.0f), glm::vec4(1.0f,0.5f,1.0f,1.0f));
-    ParticleMgr->AddParticleContainer(1250, 5.0f, glm::vec3(0.0f,10.0f,0.0f), glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    ParticleMgr->AddParticleContainer(10060, 5.0f, glm::vec3(10.0f,10.0f,0.0f), glm::vec4(0.0f,1.0f,0.5f,1.0f));
-    ParticleMgr->bars(5);
 }
 
 void glwidget::resizeGL(int width, int height)
 {
     glViewport( 0, 0, width, height );
 
-      glMatrixMode( GL_PROJECTION );
-      glLoadIdentity();
-        gluPerspective(90.f, // FOV
-                       (GLfloat) width / (GLfloat) height, // Aspect Ratio
-                       1.0f, // Z-Clipping Near
-                       1000.0f); // Z-Clipping Far
-      glMatrixMode( GL_MODELVIEW );
-      glLoadIdentity();
+    glMatrixMode( GL_PROJECTION );
+    glLoadIdentity();
+    gluPerspective(90.f, // FOV
+                    (GLfloat) width / (GLfloat) height, // Aspect Ratio
+                    1.0f, // Z-Clipping Near
+                    1000.0f); // Z-Clipping Far
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
 
 }
 void glwidget::paintGL()
 {
     glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
-    glTranslatef(0,0,scene_zoom);
-
+    glTranslatef(-150,-90,scene_zoom);
     ParticleMgr->updateContainers();
     ParticleMgr->drawContainers();
 
-    QWidget::update();
+    update();
 }
 
 void glwidget::mousePressEvent ( QMouseEvent * event )
@@ -81,29 +91,16 @@ void glwidget::mouseMoveEvent ( QMouseEvent * event )
   }
 }
 
-void glwidget::keyPressEvent(QKeyEvent *k)
+void glwidget::particleSize(int value)
 {
-    switch (k->key())
-    {
-        case Qt::Key_Escape:
-            close();
-            break;
-
-        case Qt::Key_1:
-            std::cout<<"hej"<<std::endl;
-            break;
-    }
-
-}
-
-void glwidget::addBar(int particles)
-{
-    ParticleMgr->AddParticleContainer(particles, 5.0f, glm::vec3(-10.0f,10.0f,0.0f), glm::vec4(1.0f,0.5f,1.0f,1.0f));
-    updateGL();
+   ParticleMgr->radius = value;
+   ParticleMgr->update();
+   updateGL();
 }
 
 void glwidget::setNumberOfParticles(int value)
 {
-    ParticleMgr->bars(value);
+    ParticleMgr->columns = value;
+    ParticleMgr->update();
     updateGL();
 }

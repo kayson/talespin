@@ -30,13 +30,13 @@ void ParticleManager::drawContainers()
     for(ParticleCtrVector::iterator i = _particleContainer.begin(); i != _particleContainer.end(); ++i)
     {
         ParticleContainer& container = **i;
-        container.drawParticles();
+        container.drawParticles(radius);
     }
 }
 
-ParticleContainer* ParticleManager::AddParticleContainer(const int maxNumParticles, const float radius, const glm::vec3& position, const glm::vec4 color)
+ParticleContainer* ParticleManager::AddParticleContainer(const int maxNumParticles, const glm::vec4 color)
 {
-    ParticleContainer* newContainer = new ParticleContainer(maxNumParticles, radius, position, color);
+    ParticleContainer* newContainer = new ParticleContainer(maxNumParticles, color);
     _particleContainer.push_back(newContainer);
     return newContainer;
 }
@@ -64,7 +64,7 @@ void ParticleManager::clearAllContainers()
 
 ParticleContainer* ParticleManager::getContainer(const int n)
 {
-	if(_particleContainer.size() > n)
+    if(_particleContainer.size() > n)
 		return _particleContainer.at(n);
 	else
 		return false;
@@ -80,14 +80,16 @@ bool ParticleManager::removeContainer(const int n)
 
 }
 
-void ParticleManager::bars(const int columns)
+void ParticleManager::update()
 {
-	int n = 0;
-	for(ParticleCtrVector::iterator i = _particleContainer.begin(); i != _particleContainer.end(); ++i,++n)
+    float n = 0;
+
+    for(ParticleCtrVector::iterator i = _particleContainer.begin(); i != _particleContainer.end(); ++i,n+=2)
     {
         ParticleContainer& container = **i;
 		int c = 1;
-		int r = 1;
+        int r = 1;
+
 		for(std::vector<Particle*>::iterator j = container._particleVector.begin(); j != container._particleVector.end(); ++j,++c)
 		{
 			if(c > columns) 
@@ -96,7 +98,7 @@ void ParticleManager::bars(const int columns)
 				r++;
 			}
 			Particle& particle = **j;
-			particle._targetPosition = glm::vec3(0 + c + n*columns, 0 + r, 0.0f);
+            particle._targetPosition = glm::vec3(0 + c + n*columns, 0 + r, 0.0f);
 		}
     }
 }

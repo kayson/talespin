@@ -12,11 +12,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = 0);
     ~MainWindow();
     
 private:
     Ui::MainWindow *ui;
+
+protected:
+    void keyPressEvent( QKeyEvent *event );
+
+public slots:
+    void addBar();
 };
 
 #endif // MAINWINDOW_H

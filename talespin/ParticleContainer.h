@@ -10,20 +10,17 @@ class ParticleContainer
 {
 public:   
 	void timeUpdateParticles();
-	void drawParticles();
+    void drawParticles(float radius);
 
 	bool colorCheck(glm::vec4 col);
-	void targeted();
-	void untarget();
+
 
 private:
     void fillContainer();
-    ParticleContainer(const int numParticles, const float radius, const glm::vec3& position, const glm::vec4 color);
+    ParticleContainer(const int numParticles,  const glm::vec4 color);
     ~ParticleContainer();
     friend class ParticleManager;
     
-    float _radius;
-    glm::vec3 _position;
     glm::vec4 _color;
 
     typedef std::vector<Particle*> ParticleVector;

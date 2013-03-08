@@ -11,6 +11,9 @@ public:
 	~ParticleManager();
 
 	int getContainerIndex(const glm::vec4 col);
+    float radius;
+    int columns;
+
     void updateContainers();
     void drawContainers();
 
@@ -18,10 +21,10 @@ public:
 
     ParticleContainer* getContainer(const int n);
 
-    ParticleContainer* AddParticleContainer(const int maxNumParticles, const float radius, const glm::vec3& position, const glm::vec4 color);
+    ParticleContainer* AddParticleContainer(const int maxNumParticles, const glm::vec4 color);
     bool removeContainer(const int n);
 
-	void bars(const int columns);
+    void update();
 
 private:
     typedef std::vector<ParticleContainer*> ParticleCtrVector;

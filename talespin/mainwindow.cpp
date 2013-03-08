@@ -12,3 +12,29 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key())
+    {
+        case Qt::Key_Escape:
+            close();
+            break;
+    }
+
+}
+
+void MainWindow::addBar()
+{
+    float num = ui->spinBox->value();
+    QString col = ui->comboBox->currentText();
+    if(col == "Red")
+        ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(1.0f,0.0f,0.0f,1.0f));
+    else if(col == "Green")
+        ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(0.0f,1.0f,0.0f,1.0f));
+    else if(col == "Blue")
+        ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(0.0f,0.0f,1.0f,1.0f));
+
+    ui->panelGL->ParticleMgr->update();
+}

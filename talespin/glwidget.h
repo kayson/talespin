@@ -10,8 +10,10 @@ class glwidget : public QGLWidget
 {
     Q_OBJECT
 public:
-    explicit glwidget(QWidget *parent = 0);
+    glwidget(QWidget *parent = 0);
+    ~glwidget();
 
+    ParticleManager* ParticleMgr;
 protected:
     void initializeGL();
     void resizeGL(int width, int height);
@@ -20,17 +22,17 @@ protected:
     void mousePressEvent ( QMouseEvent * event );
     void mouseReleaseEvent ( QMouseEvent * event );
     void mouseMoveEvent ( QMouseEvent * event );
-    void keyPressEvent( QKeyEvent *k );
+
+
 
     int scene_zoom;
     int mouse_state;
     int mouse_x, mouse_y;
 
-    ParticleManager* ParticleMgr;
 signals:
 
 public slots:
-    void addBar(int particles);
+    void particleSize(int value);
     void setNumberOfParticles(int value);
     
 };
