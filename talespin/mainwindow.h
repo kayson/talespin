@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtSql/QtSql>
 
 namespace Ui {
 class MainWindow;
@@ -15,13 +16,13 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-
 private:
     Ui::MainWindow *ui;
     bool fullscreen;
 
 protected:
     void keyPressEvent( QKeyEvent *event );
+    QSqlDatabase db;
 
 public slots:
     void addBar();

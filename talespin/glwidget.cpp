@@ -6,9 +6,13 @@
 #include "GL/glut.h"
 #endif
 
+#ifndef GL_MULTISAMPLE
+#define GL_MULTISAMPLE  0x809D
+#endif
 
-glwidget::glwidget(QWidget *parent) :
-    QGLWidget(parent)
+
+glwidget::glwidget(QWidget *parent)
+    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
     scene_zoom = -100;
     scene_zoom_dx = 0;
@@ -41,7 +45,7 @@ void glwidget::initializeGL()
 {
 
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
-
+    glEnable(GL_MULTISAMPLE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_POINT_SMOOTH );
@@ -63,8 +67,9 @@ void glwidget::resizeGL(int width, int height)
 
 }
 
-void glwidget::paintGL()
+void glwidget::paintEvent(QPaintEvent *event)
 {
+
     scene_pan_x -= mouse_pan_dx / 1000.0f;
     scene_pan_y += mouse_pan_dy / 1000.0f;
     mouse_pan_dx *= camera_friction;
@@ -79,6 +84,12 @@ void glwidget::paintGL()
     if( scene_zoom < -300 ){ scene_zoom = -300; }
     if( scene_zoom > -10 ){ scene_zoom = -10; }
 
+    makeCurrent();
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+
+
     glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
@@ -86,14 +97,18 @@ void glwidget::paintGL()
     ParticleMgr->drawContainers();
     update();
 
-//    QPainter painter(this);
-//    painter.setRenderHint(QPainter::Antialiasing);
-//    painter.setRenderHint(QPainter::HighQualityAntialiasing);
-//    foreach (Draw *draw, objects)
-//    {
-//         draw->drawObject(&painter); //ritar ut objekten
-//    }
-//    painter.end();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
+
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+    foreach (Draw *draw, objects)
+    {
+         draw->drawObject(&painter); //ritar ut objekten
+    }
+    painter.end();
+
 }
 
 void glwidget::showEvent(QShowEvent *event)

@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 #include <QtGui>
-#include <QtSql/QtSql>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,9 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     fullscreen = false;
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    db = QSqlDatabase::addDatabase("QODBC");
 
-    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
+    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=");
 
     if (!db.open())
     {
@@ -24,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         QSqlQuery query(db);
         query.setForwardOnly(true);
-        query.prepare("SELECT ArticleName FROM View_utb_Articles");
+        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE EXISTS ( SELECT ArticleName FROM View_utb_transactions )");
 
         if(query.exec())
         {
@@ -58,21 +57,21 @@ void MainWindow::addBar()
     float num = ui->spinBox->value();
     QString col = ui->comboBox->currentText();
 
-//    Qstring article = ui->comboBox_2->currentText();
+    if(db.open())
+    {
+        QString article = ui->comboBox_2->currentText();
+        qDebug() << article;
 
-//    QSqlQuery query(db);
-//    query.setForwardOnly(true);
-//    query.prepare("SELECT ArticleID FROM View_utb_Articles WHERE ArticleName = :article");
-//    query.exec()
-//    query.prepare("SELECT count(*) FROM View_utb_transactions WHERE ");
+        QSqlQuery query(db);
 
-//    if(query.exec())
-//    {
-//        while(query.next())
-//        {
-//            ui->comboBox_2->addItem(query.value(0).toString());
-//        }
-//    }
+        query.setForwardOnly(true);
+
+        query.prepare("SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article");
+        query.bindValue(":article", article);
+        query.exec();
+        query.next();
+        num = query.value(0).toInt();
+    }
 
     if(col == "Red")
         ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(1.0f,0.0f,0.0f,1.0f));
