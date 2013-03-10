@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include "ParticleManager.h"
+#include "draw.h"
 
 class glwidget : public QGLWidget
 {
@@ -17,17 +18,21 @@ public:
 protected:
     void initializeGL();
     void resizeGL(int width, int height);
-    void paintGL();
+    void paintEvent(QPaintEvent *event);
+
+    void showEvent(QShowEvent *event);
 
     void mousePressEvent ( QMouseEvent * event );
     void mouseReleaseEvent ( QMouseEvent * event );
     void mouseMoveEvent ( QMouseEvent * event );
 
-
-
     int scene_zoom;
     int mouse_state;
     int mouse_x, mouse_y;
+
+private:
+void createObjects(int number);
+QList<Draw*> objects;
 
 signals:
 

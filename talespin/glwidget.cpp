@@ -20,7 +20,7 @@ glwidget::glwidget(QWidget *parent) :
     ParticleMgr->clearAllContainers();
     ParticleMgr->AddParticleContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
     ParticleMgr->AddParticleContainer(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    ParticleMgr->AddParticleContainer(4060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->AddParticleContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
     ParticleMgr->update();
 }
 
@@ -55,15 +55,37 @@ void glwidget::resizeGL(int width, int height)
     glLoadIdentity();
 
 }
-void glwidget::paintGL()
+
+void glwidget::paintEvent(QPaintEvent *event)
 {
     glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(-150,-90,scene_zoom);
     ParticleMgr->updateContainers();
     ParticleMgr->drawContainers();
-
     update();
+
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    foreach (Draw *draw, objects)
+    {
+         draw->drawObject(&painter); //ritar ut objekten
+    }
+    painter.end();
+}
+
+void glwidget::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event);
+    createObjects(1);
+}
+
+void glwidget::createObjects(int number)
+{
+    for (int i = 0; i < number; ++i) {
+        QPointF position(10,20);
+        objects.append(new Draw(position));
+    }
 }
 
 void glwidget::mousePressEvent ( QMouseEvent * event )

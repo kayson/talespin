@@ -38,7 +38,7 @@ void ParticleContainer::timeUpdateParticles()
         {
              particle._velocity += ( ( particle._targetPosition -  particle._position) * 0.1f) / glm::distance( particle._targetPosition,  particle._position);
         }
-        particle._velocity *= 0.4f;
+        particle._velocity *= 0.9f;
     }   
 }
 
