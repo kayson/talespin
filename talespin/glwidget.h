@@ -19,6 +19,7 @@ protected:
     void initializeGL();
     void resizeGL(int width, int height);
     void paintEvent(QPaintEvent *event);
+    //void paintGL();
 
     void showEvent(QShowEvent *event);
 
