@@ -13,6 +13,7 @@ public:
 	int getContainerIndex(const glm::vec4 col);
     float radius;
     int columns;
+    int spacing;
 
     void updateContainers();
     void drawContainers();

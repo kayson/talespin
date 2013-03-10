@@ -22,10 +22,11 @@ protected:
     void mousePressEvent ( QMouseEvent * event );
     void mouseReleaseEvent ( QMouseEvent * event );
     void mouseMoveEvent ( QMouseEvent * event );
+    void wheelEvent( QWheelEvent * event );
 
 
-
-    int scene_zoom;
+    float scene_zoom, scene_zoom_dx, mouse_pan_dx, mouse_pan_dy, scene_pan_x, scene_pan_y;
+    float camera_friction;
     int mouse_state;
     int mouse_x, mouse_y;
 
@@ -34,7 +35,7 @@ signals:
 public slots:
     void particleSize(int value);
     void setNumberOfParticles(int value);
-    
+    void setSpacing(int value);
 };
 
 #endif // GLWIDGET_H

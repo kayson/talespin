@@ -17,12 +17,14 @@ public:
     
 private:
     Ui::MainWindow *ui;
+    bool fullscreen;
 
 protected:
     void keyPressEvent( QKeyEvent *event );
 
 public slots:
     void addBar();
+    void fullScreen();
 };
 
 #endif // MAINWINDOW_H

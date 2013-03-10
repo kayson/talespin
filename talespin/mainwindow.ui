@@ -68,7 +68,7 @@
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -217,6 +217,23 @@
          </widget>
         </item>
         <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Bar Spacing</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="horizontalSlider_3">
+          <property name="maximum">
+           <number>50</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -231,10 +248,6 @@
         </item>
        </layout>
       </widget>
-      <zorder>label_2</zorder>
-      <zorder>verticalSpacer</zorder>
-      <zorder></zorder>
-      <zorder>panelGL</zorder>
      </widget>
     </item>
     <item>
@@ -263,6 +276,31 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <widget class="QToolButton" name="toolButton">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>110</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+       <property name="autoRaise">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -279,6 +317,7 @@
     <slot>setNumberOfParticles(int)</slot>
     <slot>addBar()</slot>
     <slot>particleSize(int)</slot>
+    <slot>setSpacing(int)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -286,13 +325,13 @@
  <connections>
   <connection>
    <sender>horizontalSlider</sender>
-   <signal>sliderMoved(int)</signal>
+   <signal>valueChanged(int)</signal>
    <receiver>panelGL</receiver>
    <slot>setNumberOfParticles(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>93</x>
-     <y>214</y>
+     <y>193</y>
     </hint>
     <hint type="destinationlabel">
      <x>785</x>
@@ -307,8 +346,8 @@
    <slot>particleSize(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>45</x>
-     <y>250</y>
+     <x>55</x>
+     <y>237</y>
     </hint>
     <hint type="destinationlabel">
      <x>168</x>
@@ -323,8 +362,8 @@
    <slot>addBar()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>112</y>
+     <x>51</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
      <x>42</x>
@@ -332,8 +371,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>horizontalSlider_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>panelGL</receiver>
+   <slot>setSpacing(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>67</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>186</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>fullScreen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>391</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1257</x>
+     <y>619</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addBar()</slot>
+  <slot>fullScreen()</slot>
  </slots>
 </ui>

@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    fullscreen = false;
 }
 
 MainWindow::~MainWindow()
@@ -37,4 +38,22 @@ void MainWindow::addBar()
         ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(0.0f,0.0f,1.0f,1.0f));
 
     ui->panelGL->ParticleMgr->update();
+}
+
+void MainWindow::fullScreen()
+{
+    if(fullscreen)
+    {
+        showNormal();
+        ui->widget->show();
+        ui->horizontalLayout->setMargin(9);
+        fullscreen = false;
+    }
+    else
+    {
+        showFullScreen();
+        ui->widget->hide();
+        ui->horizontalLayout->setMargin(1);
+        fullscreen = true;
+    }
 }

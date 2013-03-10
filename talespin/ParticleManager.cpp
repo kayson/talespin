@@ -84,7 +84,7 @@ void ParticleManager::update()
 {
     float n = 0;
 
-    for(ParticleCtrVector::iterator i = _particleContainer.begin(); i != _particleContainer.end(); ++i,n+=2)
+    for(ParticleCtrVector::iterator i = _particleContainer.begin(); i != _particleContainer.end(); ++i,n++)
     {
         ParticleContainer& container = **i;
 		int c = 1;
@@ -98,7 +98,7 @@ void ParticleManager::update()
 				r++;
 			}
 			Particle& particle = **j;
-            particle._targetPosition = glm::vec3(0 + c + n*columns, 0 + r, 0.0f);
+            particle._targetPosition = glm::vec3(c + n*columns + n*spacing + 15, r, 0.0f);
 		}
     }
 }

@@ -11,11 +11,18 @@ glwidget::glwidget(QWidget *parent) :
     QGLWidget(parent)
 {
     scene_zoom = -100;
+    scene_zoom_dx = 0;
+    scene_pan_x = -150;
+    scene_pan_y = -90;
+    mouse_pan_dx = 0;
+    mouse_pan_dy = 0;
     mouse_state = -1;
+    camera_friction = 0.998f;
 
     ParticleMgr = new ParticleManager();
     ParticleMgr->radius = 1.0f;
     ParticleMgr->columns = 1;
+    ParticleMgr->spacing = 0;
 
     ParticleMgr->clearAllContainers();
     ParticleMgr->AddParticleContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
@@ -57,9 +64,23 @@ void glwidget::resizeGL(int width, int height)
 }
 void glwidget::paintGL()
 {
+    scene_pan_x -= mouse_pan_dx / 1000.0f;
+    scene_pan_y += mouse_pan_dy / 1000.0f;
+    mouse_pan_dx *= camera_friction;
+    mouse_pan_dy *= camera_friction;
+
+    qreal sc = powf(1.1, scene_zoom_dx);
+    scene_zoom_dx *= camera_friction;
+    scene_zoom /= sc;
+
+    if( scene_pan_x > -200 * (scene_zoom / -100) ){ scene_pan_x = -200 * (scene_zoom / -100) ; }
+    if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
+    if( scene_zoom < -300 ){ scene_zoom = -300; }
+    if( scene_zoom > -10 ){ scene_zoom = -10; }
+
     glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
-    glTranslatef(-150,-90,scene_zoom);
+    glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
     ParticleMgr->updateContainers();
     ParticleMgr->drawContainers();
 
@@ -80,15 +101,39 @@ void glwidget::mouseReleaseEvent ( QMouseEvent * event )
 
 void glwidget::mouseMoveEvent ( QMouseEvent * event )
 {
+
   switch(mouse_state){
   case 1:
-    scene_zoom *= 1 - .01f*( event->y() - mouse_y );
-    if( scene_zoom < -200 ){ scene_zoom = -200; }
-    if( scene_zoom > -1 ){ scene_zoom = -1; }
+    int dx_limit = 200 * ( scene_zoom / -200 );
+    mouse_pan_dx += (mouse_x - event->x());
+    mouse_pan_dy += (mouse_y - event->y());
+    mouse_x = event->x();
     mouse_y = event->y();
-    QWidget::update(0,0,width(),height());
+    if(mouse_pan_dx > dx_limit)
+        mouse_pan_dx = dx_limit;
+    if(mouse_pan_dy > dx_limit)
+        mouse_pan_dy = dx_limit;
+    if(mouse_pan_dx < -dx_limit)
+        mouse_pan_dx = -dx_limit;
+    if(mouse_pan_dy < -dx_limit)
+        mouse_pan_dy = -dx_limit;
+
     break;
   }
+}
+
+void glwidget::wheelEvent( QWheelEvent * event )
+{
+    int numSteps = event->delta() / 120;
+    if (numSteps == 0)
+    {
+        event->ignore();
+        return;
+    }
+
+    scene_zoom_dx += numSteps * 0.005f;
+
+    event->accept();
 }
 
 void glwidget::particleSize(int value)
@@ -101,6 +146,13 @@ void glwidget::particleSize(int value)
 void glwidget::setNumberOfParticles(int value)
 {
     ParticleMgr->columns = value;
+    ParticleMgr->update();
+    updateGL();
+}
+
+void glwidget::setSpacing(int value)
+{
+    ParticleMgr->spacing = value;
     ParticleMgr->update();
     updateGL();
 }
