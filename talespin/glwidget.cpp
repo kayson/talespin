@@ -21,13 +21,13 @@ glwidget::glwidget(QWidget *parent) :
 
     ParticleMgr = new ParticleManager();
     ParticleMgr->radius = 1.0f;
-    ParticleMgr->columns = 1;
+    ParticleMgr->columns = 10;
     ParticleMgr->spacing = 0;
 
     ParticleMgr->clearAllContainers();
     ParticleMgr->AddParticleContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
     ParticleMgr->AddParticleContainer(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    ParticleMgr->AddParticleContainer(4060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->AddParticleContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
     ParticleMgr->update();
 }
 
@@ -44,7 +44,7 @@ void glwidget::initializeGL()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable( GL_POINT_SMOOTH ); 
+    glEnable( GL_POINT_SMOOTH );
 
 }
 
@@ -62,6 +62,7 @@ void glwidget::resizeGL(int width, int height)
     glLoadIdentity();
 
 }
+
 void glwidget::paintGL()
 {
     scene_pan_x -= mouse_pan_dx / 1000.0f;
@@ -73,7 +74,7 @@ void glwidget::paintGL()
     scene_zoom_dx *= camera_friction;
     scene_zoom /= sc;
 
-    if( scene_pan_x > -200 * (scene_zoom / -100) ){ scene_pan_x = -200 * (scene_zoom / -100) ; }
+    if( scene_pan_x > -190 * (scene_zoom / -100) ){ scene_pan_x = -190 * (scene_zoom / -100) ; }
     if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
     if( scene_zoom < -300 ){ scene_zoom = -300; }
     if( scene_zoom > -10 ){ scene_zoom = -10; }
@@ -83,8 +84,30 @@ void glwidget::paintGL()
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
     ParticleMgr->updateContainers();
     ParticleMgr->drawContainers();
-
     update();
+
+//    QPainter painter(this);
+//    painter.setRenderHint(QPainter::Antialiasing);
+//    painter.setRenderHint(QPainter::HighQualityAntialiasing);
+//    foreach (Draw *draw, objects)
+//    {
+//         draw->drawObject(&painter); //ritar ut objekten
+//    }
+//    painter.end();
+}
+
+void glwidget::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event);
+    createObjects(1);
+}
+
+void glwidget::createObjects(int number)
+{
+    for (int i = 0; i < number; ++i) {
+        QPointF position(10,20);
+        objects.append(new Draw(position));
+    }
 }
 
 void glwidget::mousePressEvent ( QMouseEvent * event )

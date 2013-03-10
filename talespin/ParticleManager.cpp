@@ -92,13 +92,13 @@ void ParticleManager::update()
 
 		for(std::vector<Particle*>::iterator j = container._particleVector.begin(); j != container._particleVector.end(); ++j,++c)
 		{
-			if(c > columns) 
+            if(c > columns)
 			{
 				c = 1;
 				r++;
 			}
 			Particle& particle = **j;
-            particle._targetPosition = glm::vec3(c + n*columns + n*spacing + 15, r, 0.0f);
+            particle._targetPosition = glm::vec3(c + n*columns + n*spacing*2 , r, 0.0f);
 		}
     }
 }

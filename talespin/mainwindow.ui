@@ -73,8 +73,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>86</width>
-         <height>563</height>
+         <width>91</width>
+         <height>601</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -125,6 +125,9 @@
            </property>
           </item>
          </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_2"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton">
@@ -206,7 +209,7 @@
            <number>1</number>
           </property>
           <property name="maximum">
-           <number>65</number>
+           <number>20</number>
           </property>
           <property name="singleStep">
            <number>1</number>
@@ -248,6 +251,8 @@
         </item>
        </layout>
       </widget>
+      <zorder>layoutWidget</zorder>
+      <zorder>panelGL</zorder>
      </widget>
     </item>
     <item>
@@ -279,8 +284,8 @@
       <widget class="QToolButton" name="toolButton">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>110</y>
+         <x>1090</x>
+         <y>470</y>
          <width>41</width>
          <height>41</height>
         </rect>

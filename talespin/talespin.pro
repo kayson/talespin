@@ -16,13 +16,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
     ParticleManager.cpp \
-    ParticleContainer.cpp
+    ParticleContainer.cpp \
+    draw.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
     ParticleManager.h \
     ParticleContainer.h \
-    Particle.h
+    Particle.h \
+    draw.h
 
 INCLUDEPATH += ./glm
 
