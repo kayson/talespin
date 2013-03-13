@@ -9,7 +9,7 @@
 glwidget::glwidget(QWidget *parent)
     : QGLWidget(parent)
 {
-    timer.start(1, this);
+    timer.start(1000/60, this);
 
     scene_zoom = -100;
     scene_zoom_dx = 0;
@@ -46,7 +46,6 @@ void glwidget::timerEvent(QTimerEvent *event)
 
 void glwidget::initializeGL()
 {
-
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -72,8 +71,8 @@ void glwidget::resizeGL(int width, int height)
 void glwidget::paintGL()
 {
 
-    scene_pan_x -= mouse_pan_dx / 1000.0f;
-    scene_pan_y += mouse_pan_dy / 1000.0f;
+    scene_pan_x -= mouse_pan_dx / 50.0f;
+    scene_pan_y += mouse_pan_dy / 50.0f;
     mouse_pan_dx *= camera_friction;
     mouse_pan_dy *= camera_friction;
 
@@ -111,7 +110,7 @@ void glwidget::mouseMoveEvent ( QMouseEvent * event )
 
   switch(mouse_state){
   case 1:
-    int dx_limit = 200 * ( scene_zoom / -100 );
+    int dx_limit = 200 * ( scene_zoom / -200 );
     mouse_pan_dx += (mouse_x - event->x());
     mouse_pan_dy += (mouse_y - event->y());
     mouse_x = event->x();
@@ -138,7 +137,7 @@ void glwidget::wheelEvent( QWheelEvent * event )
         return;
     }
 
-    scene_zoom_dx += numSteps * 0.005f;
+    scene_zoom_dx += numSteps * 0.01f;
 
     event->accept();
 }
