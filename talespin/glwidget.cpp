@@ -18,7 +18,7 @@ glwidget::glwidget(QWidget *parent)
     mouse_pan_dx = 0;
     mouse_pan_dy = 0;
     mouse_state = -1;
-    camera_friction = 0.998f;
+    camera_friction = 0.92f;
 
     ParticleMgr = new ParticleManager();
     ParticleMgr->radius = 1.0f;
@@ -71,8 +71,8 @@ void glwidget::resizeGL(int width, int height)
 void glwidget::paintGL()
 {
 
-    scene_pan_x -= mouse_pan_dx / 50.0f;
-    scene_pan_y += mouse_pan_dy / 50.0f;
+    scene_pan_x -= mouse_pan_dx / 40.0f;
+    scene_pan_y += mouse_pan_dy / 40.0f;
     mouse_pan_dx *= camera_friction;
     mouse_pan_dy *= camera_friction;
 
@@ -137,7 +137,7 @@ void glwidget::wheelEvent( QWheelEvent * event )
         return;
     }
 
-    scene_zoom_dx += numSteps * 0.01f;
+    scene_zoom_dx += numSteps * 0.08f;
 
     event->accept();
 }
