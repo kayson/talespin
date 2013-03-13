@@ -7,7 +7,7 @@
 #endif
 
 glwidget::glwidget(QWidget *parent)
-    : QGLWidget(parent)
+    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
     timer.start(1000/60, this);
     addText();
@@ -31,6 +31,7 @@ glwidget::glwidget(QWidget *parent)
     ParticleMgr->AddParticleContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
     ParticleMgr->update();
 }
+
 
 glwidget::~glwidget()
 {
@@ -68,9 +69,32 @@ void glwidget::resizeGL(int width, int height)
 
 }
 
-void glwidget::paintGL()
-{
+//void glwidget::paintGL()
+//{
+//    scene_pan_x -= mouse_pan_dx / 40.0f;
+//    scene_pan_y += mouse_pan_dy / 40.0f;
+//    mouse_pan_dx *= camera_friction;
+//    mouse_pan_dy *= camera_friction;
 
+//    qreal sc = powf(1.1, scene_zoom_dx);
+//    scene_zoom_dx *= camera_friction;
+//    scene_zoom /= sc;
+
+//    if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
+//    if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
+//    if( scene_zoom < -300 ){ scene_zoom = -300; }
+//    if( scene_zoom > -10 ){ scene_zoom = -10; }
+
+//    glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
+//    glLoadIdentity();
+//    glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
+
+//    ParticleMgr->drawContainers();
+
+//}
+
+void glwidget::paintEvent(QPaintEvent *event)
+{
     scene_pan_x -= mouse_pan_dx / 40.0f;
     scene_pan_y += mouse_pan_dy / 40.0f;
     mouse_pan_dx *= camera_friction;
@@ -90,6 +114,14 @@ void glwidget::paintGL()
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
 
     ParticleMgr->drawContainers();
+
+
+     QPainter painter(this);
+     Draw *draw;
+     painter.setRenderHint(QPainter::Antialiasing, true);
+     painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
+     draw->drawObject(&painter); //ritar ut objekt
+     painter.end();
 
 }
 

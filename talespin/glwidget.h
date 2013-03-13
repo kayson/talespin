@@ -19,13 +19,14 @@ protected:
     void initializeGL();
     void resizeGL(int width, int height);
 
-    void paintGL();
+   // void paintGL();
 
     void timerEvent(QTimerEvent *event);
     void mousePressEvent ( QMouseEvent * event );
     void mouseReleaseEvent ( QMouseEvent * event );
     void mouseMoveEvent ( QMouseEvent * event );
     void wheelEvent( QWheelEvent * event );
+    void paintEvent(QPaintEvent *event);
 
     QBasicTimer timer;
     float scene_zoom, scene_zoom_dx, mouse_pan_dx, mouse_pan_dy, scene_pan_x, scene_pan_y;
