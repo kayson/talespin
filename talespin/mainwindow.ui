@@ -55,7 +55,7 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>100</width>
+        <width>200</width>
         <height>0</height>
        </size>
       </property>
@@ -73,7 +73,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>91</width>
+         <width>191</width>
          <height>601</height>
         </rect>
        </property>
@@ -133,6 +133,13 @@
          <widget class="QPushButton" name="pushButton">
           <property name="text">
            <string>Add</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Clear Bars</string>
           </property>
          </widget>
         </item>
@@ -251,8 +258,6 @@
         </item>
        </layout>
       </widget>
-      <zorder>layoutWidget</zorder>
-      <zorder>panelGL</zorder>
      </widget>
     </item>
     <item>
@@ -323,6 +328,7 @@
     <slot>addBar()</slot>
     <slot>particleSize(int)</slot>
     <slot>setSpacing(int)</slot>
+    <slot>clearMgr()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -335,8 +341,8 @@
    <slot>setNumberOfParticles(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>93</x>
-     <y>193</y>
+     <x>103</x>
+     <y>248</y>
     </hint>
     <hint type="destinationlabel">
      <x>785</x>
@@ -351,12 +357,12 @@
    <slot>particleSize(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>55</x>
-     <y>237</y>
+     <x>65</x>
+     <y>292</y>
     </hint>
     <hint type="destinationlabel">
-     <x>168</x>
-     <y>259</y>
+     <x>383</x>
+     <y>268</y>
     </hint>
    </hints>
   </connection>
@@ -367,8 +373,8 @@
    <slot>addBar()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>51</x>
-     <y>103</y>
+     <x>61</x>
+     <y>129</y>
     </hint>
     <hint type="destinationlabel">
      <x>42</x>
@@ -383,12 +389,12 @@
    <slot>setSpacing(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>67</x>
-     <y>275</y>
+     <x>77</x>
+     <y>336</y>
     </hint>
     <hint type="destinationlabel">
-     <x>186</x>
-     <y>274</y>
+     <x>401</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
@@ -399,12 +405,28 @@
    <slot>fullScreen()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>391</x>
-     <y>131</y>
+     <x>1305</x>
+     <y>479</y>
     </hint>
     <hint type="destinationlabel">
      <x>1257</x>
      <y>619</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>panelGL</receiver>
+   <slot>clearMgr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>145</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>285</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>

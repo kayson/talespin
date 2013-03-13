@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     db = QSqlDatabase::addDatabase("QODBC");
 
-    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=");
+    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
 
     if (!db.open())
     {

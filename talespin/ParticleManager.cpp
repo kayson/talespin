@@ -98,7 +98,7 @@ void ParticleManager::update()
 				r++;
 			}
 			Particle& particle = **j;
-            particle._targetPosition = glm::vec3(c + n*columns + n*spacing*2 , r, 0.0f);
+            particle._targetPosition = glm::vec3(c + n*columns + n*spacing , r, 0.0f);
 		}
     }
 }

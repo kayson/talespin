@@ -6,14 +6,11 @@
 #include "GL/glut.h"
 #endif
 
-#ifndef GL_MULTISAMPLE
-#define GL_MULTISAMPLE  0x809D
-#endif
-
-
 glwidget::glwidget(QWidget *parent)
-    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+    : QGLWidget(parent)
 {
+    timer.start(1, this);
+
     scene_zoom = -100;
     scene_zoom_dx = 0;
     scene_pan_x = -150;
@@ -41,11 +38,16 @@ glwidget::~glwidget()
     ParticleMgr->clearAllContainers();
 }
 
+void glwidget::timerEvent(QTimerEvent *event)
+{
+    ParticleMgr->updateContainers();
+    update();
+}
+
 void glwidget::initializeGL()
 {
 
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
-    glEnable(GL_MULTISAMPLE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_POINT_SMOOTH );
@@ -67,7 +69,7 @@ void glwidget::resizeGL(int width, int height)
 
 }
 
-void glwidget::paintEvent(QPaintEvent *event)
+void glwidget::paintGL()
 {
 
     scene_pan_x -= mouse_pan_dx / 1000.0f;
@@ -79,50 +81,17 @@ void glwidget::paintEvent(QPaintEvent *event)
     scene_zoom_dx *= camera_friction;
     scene_zoom /= sc;
 
-    if( scene_pan_x > -190 * (scene_zoom / -100) ){ scene_pan_x = -190 * (scene_zoom / -100) ; }
+    if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
     if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
     if( scene_zoom < -300 ){ scene_zoom = -300; }
     if( scene_zoom > -10 ){ scene_zoom = -10; }
 
-    makeCurrent();
-
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-
-
     glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
-    ParticleMgr->updateContainers();
+
     ParticleMgr->drawContainers();
-    update();
 
-    glMatrixMode(GL_MODELVIEW);
-    glPopMatrix();
-
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
-    foreach (Draw *draw, objects)
-    {
-         draw->drawObject(&painter); //ritar ut objekten
-    }
-    painter.end();
-
-}
-
-void glwidget::showEvent(QShowEvent *event)
-{
-    Q_UNUSED(event);
-    createObjects(1);
-}
-
-void glwidget::createObjects(int number)
-{
-    for (int i = 0; i < number; ++i) {
-        QPointF position(10,20);
-        objects.append(new Draw(position));
-    }
 }
 
 void glwidget::mousePressEvent ( QMouseEvent * event )
@@ -142,7 +111,7 @@ void glwidget::mouseMoveEvent ( QMouseEvent * event )
 
   switch(mouse_state){
   case 1:
-    int dx_limit = 200 * ( scene_zoom / -200 );
+    int dx_limit = 200 * ( scene_zoom / -100 );
     mouse_pan_dx += (mouse_x - event->x());
     mouse_pan_dy += (mouse_y - event->y());
     mouse_x = event->x();
@@ -192,5 +161,11 @@ void glwidget::setSpacing(int value)
 {
     ParticleMgr->spacing = value;
     ParticleMgr->update();
+    updateGL();
+}
+
+void glwidget::clearMgr()
+{
+    ParticleMgr->clearAllContainers();
     updateGL();
 }
