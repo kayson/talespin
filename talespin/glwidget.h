@@ -19,7 +19,7 @@ protected:
     void initializeGL();
     void resizeGL(int width, int height);
 
-   // void paintGL();
+   //void paintGL();
 
     void timerEvent(QTimerEvent *event);
     void mousePressEvent ( QMouseEvent * event );

@@ -1,5 +1,5 @@
 #include "glwidget.h"
-
+#include "draw.h"
 #if defined __APPLE__
 #include "GLUT/glut.h"
 #elif defined _WIN32 || defined _WIN64 || __unix__
@@ -10,7 +10,7 @@ glwidget::glwidget(QWidget *parent)
     : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
 {
     timer.start(1000/60, this);
-    addText();
+
     scene_zoom = -100;
     scene_zoom_dx = 0;
     scene_pan_x = -150;
@@ -95,6 +95,11 @@ void glwidget::resizeGL(int width, int height)
 
 void glwidget::paintEvent(QPaintEvent *event)
 {
+    glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_POINT_SMOOTH );
+
     scene_pan_x -= mouse_pan_dx / 40.0f;
     scene_pan_y += mouse_pan_dy / 40.0f;
     mouse_pan_dx *= camera_friction;
@@ -115,11 +120,8 @@ void glwidget::paintEvent(QPaintEvent *event)
 
     ParticleMgr->drawContainers();
 
-
      QPainter painter(this);
      Draw *draw;
-     painter.setRenderHint(QPainter::Antialiasing, true);
-     painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
      draw->drawObject(&painter); //ritar ut objekt
      painter.end();
 

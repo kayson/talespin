@@ -13,13 +13,19 @@ void Draw::updateBrush()
 
 void Draw::drawObject(QPainter *painter)
 {
-    QString text = "Tjenare Mannen!";
-
     painter->save();
-    //painter->translate(position.x(), position.y());
-    //painter->setBrush(brush);
-    painter->fillRect(QRect(0, 0, 150, 50),QColor(0, 0, 0, 50));
-    painter->setPen(Qt::white);
-    painter->drawText(0, 0, 255, 255, NULL, text);
+
+//    painter->fillRect(10,10,50,50,QColor(255,128,255,255));
+//    painter->drawText(10, 10, 50, 50, NULL, QString("1000"));
+
+//    painter->fillRect(10,80,50,50,QColor(255,128,0,255));
+//    painter->drawText(10, 80, 50, 50, NULL, QString("1250"));
+
+//    painter->fillRect(10,150,50,50,QColor(0,255,128,255));
+//    painter->drawText(10, 150, 50, 50, NULL, QString("1060"));
+
+//    painter->setPen(QColor(255,255,255,255));
+//    painter->drawLine(0,50,1337,50);
+
     painter->restore();
 }
