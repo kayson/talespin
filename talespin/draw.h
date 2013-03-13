@@ -7,7 +7,7 @@ class Draw
 {
 public:
     Draw(const QPointF &position);
-    void drawObject(QPainter *painter);
+    static void drawObject(QPainter *painter);
     void updateBrush();
 
 private:

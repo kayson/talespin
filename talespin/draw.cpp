@@ -16,7 +16,7 @@ void Draw::drawObject(QPainter *painter)
     QString text = "Tjenare Mannen!";
 
     painter->save();
-    painter->translate(position.x(), position.y());
+    //painter->translate(position.x(), position.y());
     //painter->setBrush(brush);
     painter->fillRect(QRect(0, 0, 150, 50),QColor(0, 0, 0, 50));
     painter->setPen(Qt::white);

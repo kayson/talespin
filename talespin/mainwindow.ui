@@ -324,6 +324,7 @@
    <header>glwidget.h</header>
    <container>1</container>
    <slots>
+    <signal>addText()</signal>
     <slot>setNumberOfParticles(int)</slot>
     <slot>addBar()</slot>
     <slot>particleSize(int)</slot>
@@ -434,5 +435,6 @@
  <slots>
   <slot>addBar()</slot>
   <slot>fullScreen()</slot>
+  <slot>addText()</slot>
  </slots>
 </ui>

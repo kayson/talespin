@@ -10,7 +10,7 @@ glwidget::glwidget(QWidget *parent)
     : QGLWidget(parent)
 {
     timer.start(1000/60, this);
-
+    addText();
     scene_zoom = -100;
     scene_zoom_dx = 0;
     scene_pan_x = -150;
@@ -168,3 +168,4 @@ void glwidget::clearMgr()
     ParticleMgr->clearAllContainers();
     updateGL();
 }
+

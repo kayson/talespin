@@ -6,7 +6,6 @@
 #include <QKeyEvent>
 #include <QTimer>
 #include "ParticleManager.h"
-#include "draw.h"
 
 class glwidget : public QGLWidget
 {
