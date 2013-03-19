@@ -19,6 +19,8 @@ public:
 private:
     Ui::MainWindow *ui;
     bool fullscreen;
+    void saveSettings();
+    void loadSettings();
 
 protected:
     void keyPressEvent( QKeyEvent *event );

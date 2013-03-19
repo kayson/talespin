@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QSettings>
 #include <QtGui>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,36 +11,63 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     fullscreen = false;
 
-//    db = QSqlDatabase::addDatabase("QODBC");
+    db = QSqlDatabase::addDatabase("QODBC");
 
-//    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
+    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
 
-//    if (!db.open())
-//    {
-//        QMessageBox::critical(0, QObject::tr("Database Error"),
-//        db.lastError().text());
-//    }
-//    else
-//    {
-//        QSqlQuery query(db);
-//        query.setForwardOnly(true);
-//        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE EXISTS ( SELECT ArticleName FROM View_utb_transactions )");
+    if (!db.open())
+    {
+        QMessageBox::critical(0, QObject::tr("Database Error"),
+        db.lastError().text());
+    }
+    else
+    {
+        QSqlQuery query(db);
+        query.setForwardOnly(true);
+        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE EXISTS ( SELECT ArticleName FROM View_utb_transactions )");
 
-//        if(query.exec())
-//        {
-//            while(query.next())
-//            {
-//                ui->comboBox_2->addItem(query.value(0).toString());
-//            }
-//        }
-//    }
+        if(query.exec())
+        {
+            while(query.next())
+            {
+                ui->comboBox_2->addItem(query.value(0).toString());
+            }
+        }
+    }
+
+    loadSettings();
 }
 
 MainWindow::~MainWindow()
 {
+    saveSettings();
     delete ui;
 }
 
+void MainWindow::saveSettings()
+{
+    QSettings settings("Visualiseringscenter C", "ViC");
+
+    settings.setValue("windowPos", pos());
+    settings.setValue("windowSize", size());
+
+    settings.setValue("barWidth", ui->horizontalSlider->value());
+    settings.setValue("particleRadius", ui->horizontalSlider_2->value());
+    settings.setValue("barSpace", ui->horizontalSlider_3->value());
+}
+
+void MainWindow::loadSettings()
+{
+    QSettings settings("Visualiseringscenter C", "ViC");
+
+    resize(settings.value("windowSize", QSize(1537, 677)).toSize());
+    move(settings.value("windowPos", QPoint(200, 200)).toPoint());
+
+    ui->horizontalSlider->setValue(settings.value("barWidth", 10).toInt());
+    ui->horizontalSlider_2->setValue(settings.value("particleRadius", 1.0f).toFloat());
+    ui->horizontalSlider_3->setValue(settings.value("barSpace", 0).toInt());
+
+}
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -74,13 +102,13 @@ void MainWindow::addBar()
     }
 
     if(col == "Red")
-        ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(1.0f,0.0f,0.0f,1.0f));
+        ui->panelGL->Bars->addBar(num, glm::vec4(1.0f,0.0f,0.0f,1.0f));
     else if(col == "Green")
-        ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(0.0f,1.0f,0.0f,1.0f));
+        ui->panelGL->Bars->addBar(num, glm::vec4(0.0f,1.0f,0.0f,1.0f));
     else if(col == "Blue")
-        ui->panelGL->ParticleMgr->AddParticleContainer(num, glm::vec4(0.0f,0.0f,1.0f,1.0f));
+        ui->panelGL->Bars->addBar(num, glm::vec4(0.0f,0.0f,1.0f,1.0f));
 
-    ui->panelGL->ParticleMgr->update();
+    ui->panelGL->Bars->update();
 }
 
 void MainWindow::fullScreen()

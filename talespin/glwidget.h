@@ -5,7 +5,10 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QTimer>
-#include "ParticleManager.h"
+
+#include "BarChart.h"
+#include "Circles.h"
+#include "VisualizationManager.h"
 
 class glwidget : public QGLWidget
 {
@@ -14,7 +17,9 @@ public:
     glwidget(QWidget *parent = 0);
     ~glwidget();
 
-    ParticleManager* ParticleMgr;
+    VisualizationManager* visMgr;
+    BarChart* Bars;
+    Circles* Circs;
 protected:
     void initializeGL();
     void resizeGL(int width, int height);
@@ -27,6 +32,9 @@ protected:
     void mouseMoveEvent ( QMouseEvent * event );
     void wheelEvent( QWheelEvent * event );
     void paintEvent(QPaintEvent *event);
+
+    void saveSettings();
+    void loadSettings();
 
     QBasicTimer timer;
     float scene_zoom, scene_zoom_dx, mouse_pan_dx, mouse_pan_dy, scene_pan_x, scene_pan_y;

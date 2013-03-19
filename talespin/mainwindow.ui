@@ -34,6 +34,9 @@
   <property name="windowFilePath">
    <string/>
   </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="mouseTracking">
     <bool>false</bool>
@@ -342,8 +345,8 @@
    <slot>setNumberOfParticles(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>103</x>
-     <y>248</y>
+     <x>113</x>
+     <y>271</y>
     </hint>
     <hint type="destinationlabel">
      <x>785</x>
@@ -358,8 +361,8 @@
    <slot>particleSize(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>65</x>
-     <y>292</y>
+     <x>75</x>
+     <y>315</y>
     </hint>
     <hint type="destinationlabel">
      <x>383</x>
@@ -390,8 +393,8 @@
    <slot>setSpacing(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>77</x>
-     <y>336</y>
+     <x>87</x>
+     <y>359</y>
     </hint>
     <hint type="destinationlabel">
      <x>401</x>

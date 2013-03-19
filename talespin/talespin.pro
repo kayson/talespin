@@ -15,16 +15,24 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
-    ParticleManager.cpp \
-    ParticleContainer.cpp \
-    draw.cpp
+    draw.cpp \
+    BarChart.cpp \
+    VisualizationManager.cpp \
+    Visualization.cpp \
+    Bar.cpp \
+    Circles.cpp \
+    Circle.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
-    ParticleManager.h \
-    ParticleContainer.h \
     Particle.h \
-    draw.h
+    draw.h \
+    BarChart.h \
+    VisualizationManager.h \
+    Visualization.h \
+    Bar.h \
+    Circles.h \
+    Circle.h
 
 INCLUDEPATH += ./glm
 
