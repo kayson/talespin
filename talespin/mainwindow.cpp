@@ -40,13 +40,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
         case Qt::Key_Escape:
             close();
+            break;
+
+        case Qt::Key_Alt:
+          // ui->panelGL->drawGrid();
+          // ui->panelGL->updateGL();
             break;
     }
 

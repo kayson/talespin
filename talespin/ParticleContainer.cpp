@@ -48,17 +48,15 @@ void ParticleContainer::drawParticles(float radius)
     glBegin(GL_POINTS);
     for(ParticleVector::iterator i = _particleVector.begin(); i != _particleVector.end(); ++i)
     {
-        Particle& particle = **i;        
+        Particle& particle = **i;
         glColor4fv( &_color[0] );
         glVertex3fv( &particle._position[0] );
     }
-	glEnd();
+    glEnd();
+
 }
 
-bool ParticleContainer::colorCheck(glm::vec4 col)
+glm::vec4 ParticleContainer::getColor()
 {
-	if(col == _color)
-		return true;
-	else
-		return false;
+    return _color;
 }

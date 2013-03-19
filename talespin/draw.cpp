@@ -24,8 +24,12 @@ void Draw::drawObject(QPainter *painter)
 //    painter->fillRect(10,150,50,50,QColor(0,255,128,255));
 //    painter->drawText(10, 150, 50, 50, NULL, QString("1060"));
 
-//    painter->setPen(QColor(255,255,255,255));
-//    painter->drawLine(0,50,1337,50);
+
+
+    QPointF position (0,570);
+    painter->translate(position.x(), position.y());
+    painter->setPen(QColor(255,255,255,255));
+    painter->drawLine(0,0,1000,0);
 
     painter->restore();
 }

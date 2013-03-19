@@ -1,5 +1,7 @@
 #include "glwidget.h"
 #include "draw.h"
+#include <FTGL/ftgl.h>
+
 #if defined __APPLE__
 #include "GLUT/glut.h"
 #elif defined _WIN32 || defined _WIN64 || __unix__
@@ -26,9 +28,9 @@ glwidget::glwidget(QWidget *parent)
     ParticleMgr->spacing = 0;
 
     ParticleMgr->clearAllContainers();
-    ParticleMgr->AddParticleContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
-    ParticleMgr->AddParticleContainer(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    ParticleMgr->AddParticleContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->AddParticleContainer(1200, glm::vec4(1.0f,0.5f,1.0f,1.0f));
+    ParticleMgr->AddParticleContainer(1450, glm::vec4(1.0f,0.5f,0.0f,1.0f));
+    ParticleMgr->AddParticleContainer(1000, glm::vec4(0.0f,1.0f,0.5f,1.0f));
     ParticleMgr->update();
 }
 
@@ -69,30 +71,6 @@ void glwidget::resizeGL(int width, int height)
 
 }
 
-//void glwidget::paintGL()
-//{
-//    scene_pan_x -= mouse_pan_dx / 40.0f;
-//    scene_pan_y += mouse_pan_dy / 40.0f;
-//    mouse_pan_dx *= camera_friction;
-//    mouse_pan_dy *= camera_friction;
-
-//    qreal sc = powf(1.1, scene_zoom_dx);
-//    scene_zoom_dx *= camera_friction;
-//    scene_zoom /= sc;
-
-//    if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
-//    if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
-//    if( scene_zoom < -300 ){ scene_zoom = -300; }
-//    if( scene_zoom > -10 ){ scene_zoom = -10; }
-
-//    glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
-//    glLoadIdentity();
-//    glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
-
-//    ParticleMgr->drawContainers();
-
-//}
-
 void glwidget::paintEvent(QPaintEvent *event)
 {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
@@ -117,13 +95,16 @@ void glwidget::paintEvent(QPaintEvent *event)
     glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
-
+    drawBarText();
+    drawGrid();
     ParticleMgr->drawContainers();
 
-     QPainter painter(this);
-     Draw *draw;
-     draw->drawObject(&painter); //ritar ut objekt
-     painter.end();
+//     QPainter painter(this);
+//     Draw *draw;
+//     draw->drawObject(&painter); //ritar ut objekt
+//     painter.end();
+
+    updateGL();
 
 }
 
@@ -202,4 +183,55 @@ void glwidget::clearMgr()
     ParticleMgr->clearAllContainers();
     updateGL();
 }
+
+void glwidget::drawBarText()
+{
+    FTGLPixmapFont font("/Library/Fonts/Microsoft/Arial.ttf");
+    for(int i=0;i != ParticleMgr->containerSize();i++)
+    {
+        font.FaceSize(15);
+
+        glColor4f(ParticleMgr->getColorIndex(i)[0],ParticleMgr->getColorIndex(i)[1],ParticleMgr->getColorIndex(i)[2],ParticleMgr->getColorIndex(i)[3]);
+        glRasterPos3f(30.0f + (ParticleMgr->columns * i)+(ParticleMgr->spacing *i),ParticleMgr->max +5.0f,0.0f);
+        font.Render("1000");
+    }
+}
+
+void glwidget::drawGrid()
+{
+    FTGLPixmapFont font("/Library/Fonts/Microsoft/Arial.ttf");
+
+    // Lines
+    glLineWidth(2);
+    glColor4f(1.0,1.0,1.0,0.5);
+    glBegin(GL_LINES);
+    for(int i=1;i < 10;i++)
+    {
+        glVertex3f(20
+                  ,ParticleMgr->intervall*i
+                  ,0);
+
+        glVertex3f(30 + ParticleMgr->columns*ParticleMgr->containerSize()+(ParticleMgr->spacing * (ParticleMgr->containerSize() -1) )
+                  ,ParticleMgr->intervall*i
+                  ,0);
+    }
+
+    glVertex3f(20,0,0); glVertex3f(30 + ParticleMgr->columns*ParticleMgr->containerSize()+(ParticleMgr->spacing * (ParticleMgr->containerSize() -1)),0,0);
+    glVertex3f(20,0,0); glVertex3f(20,ParticleMgr->max,0);
+    glEnd();
+
+    for(int i=1;i < 10;i++)
+    {
+        font.FaceSize(15);
+        glColor4f(1.0,1.0,1.0,0.5);
+        glRasterPos3f(0.0f,ParticleMgr->intervall*i,0.0f);
+
+        char numberstring[(((sizeof i*100) * CHAR_BIT) + 2)/3 + 2];
+        sprintf(numberstring, "%d", i*100);
+
+        font.Render(numberstring);
+    }
+}
+
+
 

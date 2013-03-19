@@ -26,6 +26,8 @@ HEADERS  += mainwindow.h \
     Particle.h \
     draw.h
 
-INCLUDEPATH += ./glm
+INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype2
+
+LIBS += -lftgl -lfreetype
 
 FORMS    += mainwindow.ui

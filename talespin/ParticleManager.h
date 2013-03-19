@@ -10,9 +10,11 @@ public:
 	ParticleManager();
 	~ParticleManager();
 
-	int getContainerIndex(const glm::vec4 col);
+    glm::vec4 getColorIndex(const int i);
     float radius;
+    float num;
     int columns;
+    float intervall,max;
     int spacing;
 
     void updateContainers();
@@ -25,6 +27,7 @@ public:
     ParticleContainer* AddParticleContainer(const int maxNumParticles, const glm::vec4 color);
     bool removeContainer(const int n);
 
+    int containerSize();
     void update();
 
 private:

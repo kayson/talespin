@@ -12,7 +12,7 @@ public:
 	void timeUpdateParticles();
     void drawParticles(float radius);
 
-	bool colorCheck(glm::vec4 col);
+    glm::vec4 getColor();
 
 
 private:
