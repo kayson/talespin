@@ -1,0 +1,11 @@
+prefix=/usr/local/Cellar/ftgl/2.1.3-rc5
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: FTGL
+Description: OpenGL frontend to Freetype 2
+Version: 2.1.3~rc5
+Libs: -L${libdir} -lftgl
+Libs.private: -Xlinker -framework -Xlinker OpenGL -lm
+Cflags: -I${includedir} -I${includedir}/FTGL
