@@ -10,6 +10,10 @@
 #include "Circles.h"
 #include "VisualizationManager.h"
 
+#include <string>
+#include <iostream>
+
+
 class glwidget : public QGLWidget
 {
     Q_OBJECT
@@ -23,15 +27,16 @@ public:
 protected:
     void initializeGL();
     void resizeGL(int width, int height);
-
-   //void paintGL();
+    void paintGL();
 
     void timerEvent(QTimerEvent *event);
     void mousePressEvent ( QMouseEvent * event );
     void mouseReleaseEvent ( QMouseEvent * event );
     void mouseMoveEvent ( QMouseEvent * event );
     void wheelEvent( QWheelEvent * event );
-    void paintEvent(QPaintEvent *event);
+
+    void drawGrid();
+    void drawBarText();
 
     void saveSettings();
     void loadSettings();

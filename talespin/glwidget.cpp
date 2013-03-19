@@ -1,5 +1,7 @@
 #include "glwidget.h"
 #include "draw.h"
+//#include <FTGL/ftgl.h>
+
 #if defined __APPLE__
 #include "GLUT/glut.h"
 #elif defined _WIN32 || defined _WIN64 || __unix__
@@ -11,7 +13,7 @@
 
 
 glwidget::glwidget(QWidget *parent)
-    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+    : QGLWidget(parent)
 {
     timer.start(1000/60, this);
 
@@ -33,7 +35,7 @@ glwidget::glwidget(QWidget *parent)
     Bars->update();
 
     Circs = new Circles();
-    Circs->addCircle(100, glm::vec4(0.5f,1.0f,0.5f,0.5f));
+    Circs->addCircle(100, glm::vec4(0.5f,1.0f,0.5f,1.0f));
 
     visMgr = new VisualizationManager();
     visMgr->add(Bars);
@@ -54,7 +56,6 @@ void glwidget::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
 
-    //ParticleMgr->updateBars();
     visMgr->timeUpdate();
     update();
 }
@@ -83,37 +84,8 @@ void glwidget::resizeGL(int width, int height)
 
 }
 
-//void glwidget::paintGL()
-//{
-//    scene_pan_x -= mouse_pan_dx / 40.0f;
-//    scene_pan_y += mouse_pan_dy / 40.0f;
-//    mouse_pan_dx *= camera_friction;
-//    mouse_pan_dy *= camera_friction;
-
-//    qreal sc = powf(1.1, scene_zoom_dx);
-//    scene_zoom_dx *= camera_friction;
-//    scene_zoom /= sc;
-
-//    if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
-//    if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
-//    if( scene_zoom < -300 ){ scene_zoom = -300; }
-//    if( scene_zoom > -10 ){ scene_zoom = -10; }
-
-//    glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
-//    glLoadIdentity();
-//    glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
-
-//    ParticleMgr->drawContainers();
-
-//}
-
-void glwidget::paintEvent(QPaintEvent *event)
+void glwidget::paintGL()
 {
-    Q_UNUSED(event);
-
-    glClearColor( 0.0f, 0.0f, 0.0f, 1.0f);
-    glEnable(GL_BLEND);
-
     scene_pan_x -= mouse_pan_dx / 40.0f;
     scene_pan_y += mouse_pan_dy / 40.0f;
     mouse_pan_dx *= camera_friction;
@@ -132,12 +104,9 @@ void glwidget::paintEvent(QPaintEvent *event)
     glLoadIdentity();
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
 
+    //drawBarText();
+    //drawGrid();
     visMgr->draw();
-
-    QPainter painter(this);
-    Draw *draw;
-    draw->drawObject(&painter); //ritar ut objekt
-    painter.end();
 
 }
 
@@ -238,4 +207,56 @@ void glwidget::clearMgr()
     Bars->clearBars();
     updateGL();
 }
+
+//void glwidget::drawBarText()
+//{
+//    FTGLPixmapFont font("C:\Windows\Fonts\Arial.ttf");
+//    for(int i=0;i != Bars->numBars();i++)
+//    {
+//        font.FaceSize(15);
+
+//        glColor4fv(&Bars->getColorIndex(i)[0]);
+//        glRasterPos3f(30.0f + (Bars->columns * i)+(Bars->spacing *i),Bars->max +5.0f,0.0f);
+//        font.Render("1000");
+//    }
+//}
+
+//void glwidget::drawGrid()
+//{
+//    FTGLPixmapFont font("C:\Windows\Fonts\Arial.ttf");
+
+//    // Lines
+//    glLineWidth(2);
+//    glColor4f(1.0,1.0,1.0,0.5);
+//    glBegin(GL_LINES);
+//    for(int i=1;i < 10;i++)
+//    {
+//        glVertex3f(20
+//                  ,Bars->intervall*i
+//                  ,0);
+
+//        glVertex3f(30 + Bars->columns*Bars->numBars()+(Bars->spacing * (Bars->numBars() -1) )
+//                  ,Bars->intervall*i
+//                  ,0);
+//    }
+
+//    glVertex3f(20,0,0);
+//    glVertex3f(30 + Bars->columns*Bars->numBars()+(Bars->spacing * (Bars->numBars() -1)),0,0);
+//    glVertex3f(20,0,0); glVertex3f(20,Bars->max,0);
+//    glEnd();
+
+//    for(int i=1;i < 10;i++)
+//    {
+//        font.FaceSize(15);
+//        glColor4f(1.0,1.0,1.0,0.5);
+//        glRasterPos3f(0.0f,100*i,0.0f);
+
+//        char numberstring[(((sizeof i*100) * CHAR_BIT) + 2)/3 + 2];
+//        sprintf(numberstring, "%d", i*100);
+
+//        font.Render(numberstring);
+//    }
+//}
+
+
 

@@ -42,6 +42,16 @@ Bar* BarChart::addBar(const int maxNumParticles, const glm::vec4 color)
     return newContainer;
 }
 
+glm::vec4 BarChart::getColorIndex(const int i)
+{
+    Bar* container = getBar(i);
+    return container->getColor();
+}
+
+int BarChart::numBars()
+{
+    return _barContainer.size();
+}
 
 void BarChart::clearBars()
 {

@@ -12,6 +12,8 @@ public:
 	void timeUpdateParticles();
     void drawParticles(float radius);
 
+    glm::vec4 getColor();
+
 private:
     void fillBar();
     Bar(const int numParticles,  const glm::vec4 color);

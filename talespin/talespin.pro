@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
-    draw.cpp \
     BarChart.cpp \
     VisualizationManager.cpp \
     Visualization.cpp \
@@ -26,7 +25,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     glwidget.h \
     Particle.h \
-    draw.h \
     BarChart.h \
     VisualizationManager.h \
     Visualization.h \
@@ -34,6 +32,8 @@ HEADERS  += mainwindow.h \
     Circles.h \
     Circle.h
 
-INCLUDEPATH += ./glm
+INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype2
+
+#LIBS += -lftgl -lfreetype
 
 FORMS    += mainwindow.ui

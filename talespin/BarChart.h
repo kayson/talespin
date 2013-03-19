@@ -19,7 +19,9 @@ public:
     void timeUpdate();
     void drawBars();
     void clearBars();
+    int numBars();
 
+    glm::vec4 getColorIndex(const int i);
     Bar* getBar(const int n);
     Bar* addBar(const int maxNumParticles, const glm::vec4 color);
     bool removeBar(const int n);
