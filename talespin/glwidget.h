@@ -6,9 +6,7 @@
 #include <QKeyEvent>
 #include <QTimer>
 
-#include "BarChart.h"
-#include "Circles.h"
-#include "VisualizationManager.h"
+#include "ParticleManager.h"
 
 #include <string>
 #include <iostream>
@@ -21,9 +19,8 @@ public:
     glwidget(QWidget *parent = 0);
     ~glwidget();
 
-    VisualizationManager* visMgr;
-    BarChart* Bars;
-    Circles* Circs;
+    ParticleManager* ParticleMgr;
+
 protected:
     void initializeGL();
     void resizeGL(int width, int height);

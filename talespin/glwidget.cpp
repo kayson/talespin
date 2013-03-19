@@ -1,5 +1,5 @@
 #include "glwidget.h"
-#include "draw.h"
+
 //#include <FTGL/ftgl.h>
 
 #if defined __APPLE__
@@ -9,7 +9,7 @@
 #endif
 
 #include <QSettings>
-#include "BarChart.h"
+#include "ParticleManager.h"
 
 
 glwidget::glwidget(QWidget *parent)
@@ -23,23 +23,17 @@ glwidget::glwidget(QWidget *parent)
     mouse_state = -1;
     camera_friction = 0.92f;
 
-    Bars = new BarChart();
-    Bars->columns = 10;
-    Bars->radius = 1.0f;
-    Bars->spacing = 0;
+    ParticleMgr = new ParticleManager();
+    ParticleMgr->columns = 10;
+    ParticleMgr->radius = 1.0f;
+    ParticleMgr->spacing = 0;
 
-    Bars->clearBars();
-    Bars->addBar(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
-    Bars->addBar(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    Bars->addBar(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
-    Bars->update();
+    ParticleMgr->clearBars();
+    ParticleMgr->addBar(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
+    ParticleMgr->addBar(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
+    ParticleMgr->addBar(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->update();
 
-    Circs = new Circles();
-    Circs->addCircle(100, glm::vec4(0.5f,1.0f,0.5f,1.0f));
-
-    visMgr = new VisualizationManager();
-    visMgr->add(Bars);
-    visMgr->add(Circs);
 
     loadSettings();
 }
@@ -49,14 +43,14 @@ glwidget::~glwidget()
     makeCurrent();
 
     saveSettings();
-    //ParticleMgr->clearBars();
+    ParticleMgr->clearBars();
 }
 
 void glwidget::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
 
-    visMgr->timeUpdate();
+    ParticleMgr->timeUpdate();
     update();
 }
 
@@ -106,7 +100,7 @@ void glwidget::paintGL()
 
     //drawBarText();
     //drawGrid();
-    visMgr->draw();
+    ParticleMgr->draw();
 
 }
 
@@ -183,28 +177,28 @@ void glwidget::loadSettings()
 
 void glwidget::particleSize(int value)
 {
-    Bars->radius = value;
-    Bars->update();
+    ParticleMgr->radius = value;
+    ParticleMgr->update();
     updateGL();
 }
 
 void glwidget::setNumberOfParticles(int value)
 {
-    Bars->columns = value;
-    Bars->update();
+    ParticleMgr->columns = value;
+    ParticleMgr->update();
     updateGL();
 }
 
 void glwidget::setSpacing(int value)
 {
-    Bars->spacing = value;
-    Bars->update();
+    ParticleMgr->spacing = value;
+    ParticleMgr->update();
     updateGL();
 }
 
 void glwidget::clearMgr()
 {
-    Bars->clearBars();
+    ParticleMgr->clearBars();
     updateGL();
 }
 

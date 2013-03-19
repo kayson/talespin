@@ -15,22 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
-    BarChart.cpp \
-    VisualizationManager.cpp \
-    Visualization.cpp \
-    Bar.cpp \
-    Circles.cpp \
-    Circle.cpp
+    ParticleManager.cpp \
+    ParticleContainer.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
     Particle.h \
-    BarChart.h \
-    VisualizationManager.h \
-    Visualization.h \
-    Bar.h \
-    Circles.h \
-    Circle.h
+    ParticleManager.h \
+    ParticleContainer.h
 
 INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype2
 

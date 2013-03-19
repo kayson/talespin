@@ -14,7 +14,7 @@ private:
     glm::vec3 _position;
 	glm::vec3 _velocity;
     
-    friend class Bar;
+    friend class ParticleContainer;
 };
 
 #endif
