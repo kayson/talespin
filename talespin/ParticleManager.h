@@ -16,14 +16,14 @@ public:
 
     void draw();
     void timeUpdate();
-    void drawBars();
-    void clearBars();
-    int numBars();
+    void drawContainers();
+    void clearContainers();
+    int numContainers();
 
     glm::vec4 getColorIndex(const int i);
-    ParticleContainer* getBar(const int n);
-    ParticleContainer* addBar(const int maxNumParticles, const glm::vec4 color);
-    bool removeBar(const int n);
+    ParticleContainer* getContainer(const int n);
+    ParticleContainer* addContainer(const int maxNumParticles, const glm::vec4 color);
+    bool removeContainer(const int n);
 
     void update();
 

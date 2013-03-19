@@ -28,10 +28,10 @@ glwidget::glwidget(QWidget *parent)
     ParticleMgr->radius = 1.0f;
     ParticleMgr->spacing = 0;
 
-    ParticleMgr->clearBars();
-    ParticleMgr->addBar(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
-    ParticleMgr->addBar(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    ParticleMgr->addBar(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->clearContainers();
+    ParticleMgr->addContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
+    ParticleMgr->addContainer(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
+    ParticleMgr->addContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
     ParticleMgr->update();
 
 
@@ -43,7 +43,7 @@ glwidget::~glwidget()
     makeCurrent();
 
     saveSettings();
-    ParticleMgr->clearBars();
+    ParticleMgr->clearContainers();
 }
 
 void glwidget::timerEvent(QTimerEvent *event)
@@ -198,7 +198,7 @@ void glwidget::setSpacing(int value)
 
 void glwidget::clearMgr()
 {
-    ParticleMgr->clearBars();
+    ParticleMgr->clearContainers();
     updateGL();
 }
 

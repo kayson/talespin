@@ -107,11 +107,11 @@ void MainWindow::addBar()
     }
 
     if(col == "Red")
-        ui->panelGL->ParticleMgr->addBar(num, glm::vec4(1.0f,0.0f,0.0f,1.0f));
+        ui->panelGL->ParticleMgr->addContainer(num, glm::vec4(1.0f,0.0f,0.0f,1.0f));
     else if(col == "Green")
-        ui->panelGL->ParticleMgr->addBar(num, glm::vec4(0.0f,1.0f,0.0f,1.0f));
+        ui->panelGL->ParticleMgr->addContainer(num, glm::vec4(0.0f,1.0f,0.0f,1.0f));
     else if(col == "Blue")
-        ui->panelGL->ParticleMgr->addBar(num, glm::vec4(0.0f,0.0f,1.0f,1.0f));
+        ui->panelGL->ParticleMgr->addContainer(num, glm::vec4(0.0f,0.0f,1.0f,1.0f));
 
     ui->panelGL->ParticleMgr->update();
 }

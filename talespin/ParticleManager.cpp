@@ -35,7 +35,7 @@ void ParticleManager::draw()
     }
 }
 
-ParticleContainer* ParticleManager::addBar(const int maxNumParticles, const glm::vec4 color)
+ParticleContainer* ParticleManager::addContainer(const int maxNumParticles, const glm::vec4 color)
 {
     ParticleContainer* newContainer = new ParticleContainer(maxNumParticles, color);
     _containerVec.push_back(newContainer);
@@ -44,21 +44,21 @@ ParticleContainer* ParticleManager::addBar(const int maxNumParticles, const glm:
 
 glm::vec4 ParticleManager::getColorIndex(const int i)
 {
-    ParticleContainer* container = getBar(i);
+    ParticleContainer* container = getContainer(i);
     return container->getColor();
 }
 
-int ParticleManager::numBars()
+int ParticleManager::numContainers()
 {
     return _containerVec.size();
 }
 
-void ParticleManager::clearBars()
+void ParticleManager::clearContainers()
 {
     _containerVec.clear();
 }
 
-ParticleContainer* ParticleManager::getBar(const int n)
+ParticleContainer* ParticleManager::getContainer(const int n)
 {
     if(_containerVec.size() > n)
         return _containerVec.at(n);
@@ -66,7 +66,7 @@ ParticleContainer* ParticleManager::getBar(const int n)
 		return false;
 }
 
-bool ParticleManager::removeBar(const int n)
+bool ParticleManager::removeContainer(const int n)
 {
     if(_containerVec.size() < n)
 		return false;
