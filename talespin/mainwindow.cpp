@@ -11,31 +11,31 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     fullscreen = false;
 
-    db = QSqlDatabase::addDatabase("QODBC");
+//    db = QSqlDatabase::addDatabase("QODBC");
 
-    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
+//    db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
 
-    if (!db.open())
-    {
-        QMessageBox::critical(0, QObject::tr("Database Error"),
-        db.lastError().text());
-    }
-    else
-    {
-        QSqlQuery query(db);
-        query.setForwardOnly(true);
-        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE EXISTS ( SELECT ArticleName FROM View_utb_transactions )");
+//    if (!db.open())
+//    {
+//        QMessageBox::critical(0, QObject::tr("Database Error"),
+//        db.lastError().text());
+//    }
+//    else
+//    {
+//        QSqlQuery query(db);
+//        query.setForwardOnly(true);
+//        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE EXISTS ( SELECT ArticleName FROM View_utb_transactions )");
 
-        if(query.exec())
-        {
-            while(query.next())
-            {
-                ui->comboBox_2->addItem(query.value(0).toString());
-            }
-        }
-    }
+//        if(query.exec())
+//        {
+//            while(query.next())
+//            {
+//                ui->comboBox_2->addItem(query.value(0).toString());
+//            }
+//        }
+//    }
 
-    loadSettings();
+//    loadSettings();
 }
 
 MainWindow::~MainWindow()
@@ -78,12 +78,17 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             break;
 
         case Qt::Key_Alt:
-          // ui->panelGL->drawGrid();
-          // ui->panelGL->updateGL();
+            ui->panelGL->_drawGrid->hide = false;
             break;
+
+        case Qt::Key_Shift:
+            ui->panelGL->_drawGrid->hide = true;
+
+        break;
     }
 
 }
+
 
 void MainWindow::addBar()
 {

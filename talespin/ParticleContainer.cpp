@@ -3,6 +3,7 @@
 
 ParticleContainer::ParticleContainer(const int numParticles, const glm::vec4 color)
     : _color(color)
+    , _numParticles(numParticles)
 {
     for(int i = 0; i <numParticles;i++)
     {
@@ -61,5 +62,10 @@ void ParticleContainer::drawParticles(float radius)
 glm::vec4 ParticleContainer::getColor()
 {
     return _color;
+}
+
+float ParticleContainer::getNumParticles()
+{
+    return _numParticles;
 }
 

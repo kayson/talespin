@@ -53,6 +53,20 @@ int ParticleManager::numContainers()
     return _containerVec.size();
 }
 
+int ParticleManager::getMaxSize()
+{
+    float max = 0;
+    for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
+    {
+        ParticleContainer& container = **i;
+        if(container.getNumParticles() > max)
+        {
+            max = container.getNumParticles();
+        }
+    }
+    return max;
+}
+
 void ParticleManager::clearContainers()
 {
     _containerVec.clear();
@@ -94,7 +108,7 @@ void ParticleManager::update()
 				r++;
 			}
 			Particle& particle = **j;
-            particle._targetPosition.at(0) = glm::vec3(c + n*columns + n*spacing , r, 0.0f);
+            particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + n*spacing , r, 0.0f);
 		}
     }
 }

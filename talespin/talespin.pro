@@ -16,16 +16,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
     ParticleManager.cpp \
-    ParticleContainer.cpp
+    ParticleContainer.cpp \
+    drawgrid.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
     Particle.h \
     ParticleManager.h \
-    ParticleContainer.h
+    ParticleContainer.h \
+    drawgrid.h
 
 INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype2
 
-#LIBS += -lftgl -lfreetype
+LIBS += -lftgl -lfreetype
 
 FORMS    += mainwindow.ui

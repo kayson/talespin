@@ -7,6 +7,7 @@
 #include <QTimer>
 
 #include "ParticleManager.h"
+#include "drawgrid.h"
 
 #include <string>
 #include <iostream>
@@ -20,6 +21,7 @@ public:
     ~glwidget();
 
     ParticleManager* ParticleMgr;
+    drawGrid* _drawGrid;
 
 protected:
     void initializeGL();
@@ -31,9 +33,6 @@ protected:
     void mouseReleaseEvent ( QMouseEvent * event );
     void mouseMoveEvent ( QMouseEvent * event );
     void wheelEvent( QWheelEvent * event );
-
-    void drawGrid();
-    void drawBarText();
 
     void saveSettings();
     void loadSettings();
@@ -53,6 +52,7 @@ public slots:
     void setNumberOfParticles(int value);
     void setSpacing(int value);
     void clearMgr();
+    void showGrid(bool hide);
 };
 
 #endif // GLWIDGET_H

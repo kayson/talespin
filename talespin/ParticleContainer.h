@@ -13,6 +13,7 @@ public:
     void drawParticles(float radius);
 
     glm::vec4 getColor();
+    float getNumParticles();
 
 private:
     void fillParticleContainer();
@@ -21,6 +22,7 @@ private:
     friend class ParticleManager;
     
     glm::vec4 _color;
+    float _numParticles;
 
     typedef std::vector<Particle*> ParticleCtrVec;
     ParticleCtrVec _particleVec;

@@ -19,6 +19,7 @@ public:
     void drawContainers();
     void clearContainers();
     int numContainers();
+    int getMaxSize();
 
     glm::vec4 getColorIndex(const int i);
     ParticleContainer* getContainer(const int n);
