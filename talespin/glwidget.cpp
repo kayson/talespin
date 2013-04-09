@@ -10,7 +10,7 @@
 
 #include <QSettings>
 #include "ParticleManager.h"
-
+#include "drawgrid.h"
 
 glwidget::glwidget(QWidget *parent)
     : QGLWidget(parent)
@@ -35,6 +35,7 @@ glwidget::glwidget(QWidget *parent)
     ParticleMgr->addContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
     ParticleMgr->update();
 
+    _drawGrid = new drawGrid();
 
     loadSettings();
 }
@@ -99,9 +100,8 @@ void glwidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
-
-    //drawBarText();
-    //drawGrid();
+    _drawGrid->drawBarText(ParticleMgr);
+    _drawGrid->drawBarGrid(ParticleMgr);
     ParticleMgr->draw();
 
 }
@@ -181,6 +181,11 @@ void glwidget::loadSettings()
 
 }
 
+void glwidget::showGrid(bool hide)
+{
+    _drawGrid->hide = hide;
+}
+
 void glwidget::particleSize(int value)
 {
     ParticleMgr->radius = value;
@@ -208,55 +213,7 @@ void glwidget::clearMgr()
     updateGL();
 }
 
-//void glwidget::drawBarText()
-//{
-//    FTGLPixmapFont font("C:\Windows\Fonts\Arial.ttf");
-//    for(int i=0;i != Bars->numBars();i++)
-//    {
-//        font.FaceSize(15);
 
-//        glColor4fv(&Bars->getColorIndex(i)[0]);
-//        glRasterPos3f(30.0f + (Bars->columns * i)+(Bars->spacing *i),Bars->max +5.0f,0.0f);
-//        font.Render("1000");
-//    }
-//}
-
-//void glwidget::drawGrid()
-//{
-//    FTGLPixmapFont font("C:\Windows\Fonts\Arial.ttf");
-
-//    // Lines
-//    glLineWidth(2);
-//    glColor4f(1.0,1.0,1.0,0.5);
-//    glBegin(GL_LINES);
-//    for(int i=1;i < 10;i++)
-//    {
-//        glVertex3f(20
-//                  ,Bars->intervall*i
-//                  ,0);
-
-//        glVertex3f(30 + Bars->columns*Bars->numBars()+(Bars->spacing * (Bars->numBars() -1) )
-//                  ,Bars->intervall*i
-//                  ,0);
-//    }
-
-//    glVertex3f(20,0,0);
-//    glVertex3f(30 + Bars->columns*Bars->numBars()+(Bars->spacing * (Bars->numBars() -1)),0,0);
-//    glVertex3f(20,0,0); glVertex3f(20,Bars->max,0);
-//    glEnd();
-
-//    for(int i=1;i < 10;i++)
-//    {
-//        font.FaceSize(15);
-//        glColor4f(1.0,1.0,1.0,0.5);
-//        glRasterPos3f(0.0f,100*i,0.0f);
-
-//        char numberstring[(((sizeof i*100) * CHAR_BIT) + 2)/3 + 2];
-//        sprintf(numberstring, "%d", i*100);
-
-//        font.Render(numberstring);
-//    }
-//}
 
 
 
