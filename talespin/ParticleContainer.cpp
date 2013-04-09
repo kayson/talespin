@@ -44,17 +44,34 @@ void ParticleContainer::timeUpdateParticles()
     }   
 }
 
-void ParticleContainer::drawParticles(float radius)
+void ParticleContainer::drawParticles(float radius, VisualizationType type)
 {	
-    glPointSize(radius);
-    glBegin(GL_POINTS);
-    for(ParticleCtrVec::iterator i = _particleVec.begin(); i != _particleVec.end(); ++i)
+    if( type == BARCHART )
     {
-        Particle& particle = **i;
-        glColor4fv( &_color[0] );
-        glVertex3fv( &particle._position[0] );
+        glPointSize(radius);
+        glBegin(GL_POINTS);
+        for(ParticleCtrVec::iterator i = _particleVec.begin(); i != _particleVec.end(); ++i)
+        {
+            Particle& particle = **i;
+            glColor4fv( &_color[0] );
+            glVertex3fv( &particle._position[0] );
+        }
+        glEnd();
     }
-    glEnd();
+    else if( type == CIRCLES )
+    {
+        int mid = _particleVec.size() / 2;
+        Particle* particle = _particleVec.at(mid);
+        float rad = radius * _particleVec.size() / 500;
+        glm::vec3 pos = particle->_position;
+        glColor4fv( &_color[0] );
+        glBegin(GL_QUADS);
+        glVertex3f( pos[0], pos[1], 0.0f );
+        glVertex3f( pos[0] + rad, pos[1], 0.0f );
+        glVertex3f( pos[0] + rad, pos[1] + rad, 0.0f );
+        glVertex3f( pos[0], pos[1] + rad, 0.0f );
+        glEnd();
+    }
 
 }
 

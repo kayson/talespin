@@ -14,9 +14,10 @@ public:
     int columns;
     int spacing;
 
+    VisualizationType visType;
+
     void draw();
     void timeUpdate();
-    void drawContainers();
     void clearContainers();
     int numContainers();
 

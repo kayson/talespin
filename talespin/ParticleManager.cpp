@@ -31,7 +31,7 @@ void ParticleManager::draw()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
-        container.drawParticles(radius);
+        container.drawParticles(radius, visType);
     }
 }
 

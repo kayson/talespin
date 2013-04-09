@@ -24,6 +24,7 @@ glwidget::glwidget(QWidget *parent)
     camera_friction = 0.92f;
 
     ParticleMgr = new ParticleManager();
+    ParticleMgr->visType = BARCHART;
     ParticleMgr->columns = 10;
     ParticleMgr->radius = 1.0f;
     ParticleMgr->spacing = 0;
@@ -60,6 +61,7 @@ void glwidget::initializeGL()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_POINT_SMOOTH );
+    glDisable(GL_DEPTH_TEST);
 
 }
 
@@ -109,6 +111,8 @@ void glwidget::mousePressEvent ( QMouseEvent * event )
   mouse_state = event->button();
   mouse_x = event->x();
   mouse_y = event->y();
+
+  ParticleMgr->visType = CIRCLES;
 }
 
 void glwidget::mouseReleaseEvent ( QMouseEvent * event )
@@ -116,6 +120,8 @@ void glwidget::mouseReleaseEvent ( QMouseEvent * event )
   Q_UNUSED(event);
 
   mouse_state = -1;
+
+  ParticleMgr->visType = BARCHART;
 }
 
 void glwidget::mouseMoveEvent ( QMouseEvent * event )
