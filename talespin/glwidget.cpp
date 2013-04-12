@@ -1,6 +1,6 @@
 #include "glwidget.h"
 
-//#include <FTGL/ftgl.h>
+#include <FTGL/ftgl.h>
 
 #if defined __APPLE__
 #include "GLUT/glut.h"
@@ -30,9 +30,9 @@ glwidget::glwidget(QWidget *parent)
     ParticleMgr->spacing = 0;
 
     ParticleMgr->clearContainers();
-    ParticleMgr->addContainer(1000, glm::vec4(1.0f,0.5f,1.0f,1.0f));
-    ParticleMgr->addContainer(1250, glm::vec4(1.0f,0.5f,0.0f,1.0f));
-    ParticleMgr->addContainer(1060, glm::vec4(0.0f,1.0f,0.5f,1.0f));
+    ParticleMgr->addContainer(1000, glm::vec4(1.0f,0.5f,1.0f,0.8f));
+    ParticleMgr->addContainer(1250, glm::vec4(1.0f,0.5f,0.0f,0.8f));
+    ParticleMgr->addContainer(1060, glm::vec4(0.0f,1.0f,0.5f,0.8f));
     ParticleMgr->update();
 
     _drawGrid = new drawGrid();
@@ -112,7 +112,7 @@ void glwidget::mousePressEvent ( QMouseEvent * event )
   mouse_x = event->x();
   mouse_y = event->y();
 
-  ParticleMgr->visType = CIRCLES;
+  //ParticleMgr->visType = CIRCLES;
 }
 
 void glwidget::mouseReleaseEvent ( QMouseEvent * event )

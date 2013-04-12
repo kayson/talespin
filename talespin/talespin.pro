@@ -1,4 +1,4 @@
-#-------------------------------------------------
+ #-------------------------------------------------
 #
 # Project created by QtCreator 2013-03-06T13:45:00
 #
@@ -26,6 +26,12 @@ HEADERS  += mainwindow.h \
     ParticleContainer.h \
     drawgrid.h
 
-INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype2
+INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype2 ./freetype/2.4.10/include/
 
 FORMS    += mainwindow.ui
+
+win32 {
+    LIBS += -lfreetype2411 -lftgl
+}
+
+

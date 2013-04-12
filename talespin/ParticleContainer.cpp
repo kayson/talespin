@@ -35,10 +35,15 @@ void ParticleContainer::timeUpdateParticles()
         Particle& particle = **i;
         
         particle._position +=  particle._velocity;
-        if( glm::distance( particle._targetPosition.at(0),  particle._position ) > 0.1f)
+        if( glm::distance( particle._targetPosition.at(0),  particle._position ) > 5.0f)
         {
              particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.3f) / glm::distance( particle._targetPosition.at(0),  particle._position);
-             particle._velocity *= 0.8f;
+             particle._velocity *= 0.7f;
+        }
+        else if( glm::distance( particle._targetPosition.at(0),  particle._position ) > 0.05f)
+        {
+            particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.1f) / glm::distance( particle._targetPosition.at(0),  particle._position);
+            particle._velocity *= 0.5f;
         }
         else
             particle._velocity *= 0.1f;
@@ -65,12 +70,14 @@ void ParticleContainer::drawParticles(float radius, VisualizationType type)
         Particle* particle = _particleVec.at(mid);
         float rad = radius * _particleVec.size() / 500;
         glm::vec3 pos = particle->_position;
+
         glColor4fv( &_color[0] );
+
         glBegin(GL_QUADS);
-        glVertex3f( pos[0], pos[1], 0.0f );
-        glVertex3f( pos[0] + rad, pos[1], 0.0f );
-        glVertex3f( pos[0] + rad, pos[1] + rad, 0.0f );
-        glVertex3f( pos[0], pos[1] + rad, 0.0f );
+            glVertex3f( pos[0], pos[1], 0.0f );
+            glVertex3f( pos[0] + rad, pos[1], 0.0f );
+            glVertex3f( pos[0] + rad, pos[1] + rad, 0.0f );
+            glVertex3f( pos[0], pos[1] + rad, 0.0f );
         glEnd();
     }
 

@@ -106,6 +106,12 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::WheelFocus</enum>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
           <item>
            <property name="text">
             <string>Red</string>
@@ -287,6 +293,9 @@
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::DefaultContextMenu</enum>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
@@ -347,8 +356,8 @@
    <slot>particleSize(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>90</x>
-     <y>301</y>
+     <x>100</x>
+     <y>292</y>
     </hint>
     <hint type="destinationlabel">
      <x>383</x>
@@ -379,8 +388,8 @@
    <slot>setSpacing(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>102</x>
-     <y>351</y>
+     <x>112</x>
+     <y>336</y>
     </hint>
     <hint type="destinationlabel">
      <x>401</x>
@@ -395,8 +404,8 @@
    <slot>fullScreen()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1352</x>
-     <y>491</y>
+     <x>1345</x>
+     <y>500</y>
     </hint>
     <hint type="destinationlabel">
      <x>1257</x>
@@ -427,8 +436,8 @@
    <slot>showGrid(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>32</x>
-     <y>363</y>
+     <x>42</x>
+     <y>359</y>
     </hint>
     <hint type="destinationlabel">
      <x>234</x>
@@ -443,8 +452,8 @@
    <slot>setNumberOfParticles(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>145</x>
-     <y>251</y>
+     <x>155</x>
+     <y>248</y>
     </hint>
     <hint type="destinationlabel">
      <x>268</x>
