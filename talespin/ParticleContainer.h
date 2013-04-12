@@ -6,7 +6,7 @@
 #include <iostream>
 #include <algorithm>
 
-enum VisualizationType { BARCHART, CIRCLES };
+enum VisualizationType { BARCHART, CIRCLES, LINES };
 
 class ParticleContainer
 {
@@ -15,12 +15,13 @@ public:
     void drawParticles(float radius, VisualizationType type);
 
     int timePosition;
+    int ID;
     glm::vec4 getColor();
     float getNumParticles();
 
 private:
     void fillParticleContainer();
-    ParticleContainer(const int timePos, const int numParticles,  const glm::vec4 color);
+    ParticleContainer(const int newID, const int timePos, const int numParticles,  const glm::vec4 color);
     ~ParticleContainer();
     friend class ParticleManager;
 

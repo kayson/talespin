@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         QSqlQuery query(db);
         query.setForwardOnly(true);
-        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE EXISTS ( SELECT ArticleName FROM View_utb_transactions )");
+        query.prepare("SELECT ArticleName FROM View_utb_Articles WHERE AriticleNO = '1100001' ");
 
         if(query.exec())
         {
@@ -82,7 +82,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 }
 
-
 void MainWindow::addBar()
 {
     QString year = ui->lineEdit->text();
@@ -121,6 +120,8 @@ void MainWindow::addBar()
             ui->panelGL->ParticleMgr->update();
         }
     }
+
+    ui->panelGL->ParticleMgr->IDcounter++;
 }
 
 void MainWindow::fullScreen()

@@ -1,8 +1,9 @@
 #include "ParticleContainer.h"
 #include "QtOpenGL/QGLWidget"
 
-ParticleContainer::ParticleContainer(const int timePos, const int numParticles, const glm::vec4 color)
-    : timePosition(timePos)
+ParticleContainer::ParticleContainer(const int newID, const int timePos, const int numParticles, const glm::vec4 color)
+    : ID(newID)
+    , timePosition(timePos)
     ,  _color(color)
     , _numParticles(numParticles)
 {
@@ -60,7 +61,7 @@ void ParticleContainer::timeUpdateParticles()
 
 void ParticleContainer::drawParticles(float radius, VisualizationType type)
 {	
-    if( type == BARCHART )
+    if( type == BARCHART || type == LINES)
     {
         glPointSize(radius);
         glBegin(GL_POINTS);

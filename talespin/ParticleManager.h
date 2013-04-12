@@ -14,6 +14,8 @@ public:
     int columns;
     int spacing;
 
+    int IDcounter;
+
     VisualizationType visType;
 
     void draw();

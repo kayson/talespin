@@ -112,7 +112,8 @@ void glwidget::mousePressEvent ( QMouseEvent * event )
   mouse_x = event->x();
   mouse_y = event->y();
 
-  //ParticleMgr->visType = CIRCLES;
+  ParticleMgr->visType = LINES;
+  ParticleMgr->update();
 }
 
 void glwidget::mouseReleaseEvent ( QMouseEvent * event )
@@ -122,6 +123,7 @@ void glwidget::mouseReleaseEvent ( QMouseEvent * event )
   mouse_state = -1;
 
   ParticleMgr->visType = BARCHART;
+  ParticleMgr->update();
 }
 
 void glwidget::mouseMoveEvent ( QMouseEvent * event )

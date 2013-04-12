@@ -4,6 +4,7 @@
 
 ParticleManager::ParticleManager()
 {
+    IDcounter = 0;
 }
 
 ParticleManager::~ParticleManager()
@@ -37,7 +38,7 @@ void ParticleManager::draw()
 
 ParticleContainer* ParticleManager::addContainer(const int timePos, const int maxNumParticles, const glm::vec4 color)
 {
-    ParticleContainer* newContainer = new ParticleContainer(timePos, maxNumParticles, color);
+    ParticleContainer* newContainer = new ParticleContainer(IDcounter,timePos, maxNumParticles, color);
     _containerVec.push_back(newContainer);
     return newContainer;
 }
@@ -100,8 +101,11 @@ void ParticleManager::update()
         for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
         {
             ParticleContainer& container = **i;
+
             if(container.timePosition != month) continue;
 
+            if(visType == BARCHART)
+            {
                 int c = 1;
                 int r = 1;
 
@@ -117,6 +121,32 @@ void ParticleManager::update()
                     particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + (month-1)*spacing , r, 0.0f);
                 }
                 n++;
+            }
+//            else if(visType == LINES)
+//            {
+//                for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
+//                {
+//                    ParticleContainer& container2 = **k;
+
+//                    if(container2.ID != container.ID && container2.timePosition != month+1) continue;
+
+//                    int c = 1;
+//                    int numP = container.getNumParticles();
+//                    int numP2 = container2.getNumParticles();
+//                    for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
+//                    {
+//                        Particle& particle = **j;
+
+//                        particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*10 + (month-1)*spacing)*(numP - c)/numP
+//                                                                   + (30 + (month)*10 + (month)*spacing)*c/numP
+//                                                                   , numP/10*(numP - c)/numP
+//                                                                   + numP2/10*c/numP
+//                                                                   , 0.0f);
+//                    }
+//                    n++;
+//                }
+//            }
+
         }
     }
 }
