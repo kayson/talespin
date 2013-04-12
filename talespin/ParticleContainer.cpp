@@ -1,8 +1,9 @@
 #include "ParticleContainer.h"
 #include "QtOpenGL/QGLWidget"
 
-ParticleContainer::ParticleContainer(const int numParticles, const glm::vec4 color)
-    : _color(color)
+ParticleContainer::ParticleContainer(const int timePos, const int numParticles, const glm::vec4 color)
+    : timePosition(timePos)
+    ,  _color(color)
     , _numParticles(numParticles)
 {
     for(int i = 0; i <numParticles;i++)
@@ -35,14 +36,21 @@ void ParticleContainer::timeUpdateParticles()
         Particle& particle = **i;
         
         particle._position +=  particle._velocity;
-        if( glm::distance( particle._targetPosition.at(0),  particle._position ) > 5.0f)
+
+        float d = glm::distance( particle._targetPosition.at(0),  particle._position );
+        if( d > 20.0f)
         {
-             particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.3f) / glm::distance( particle._targetPosition.at(0),  particle._position);
+             particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.9f) / d;
+             particle._velocity *= 0.9f;
+        }
+        else if( d > 5.0f)
+        {
+             particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.3f) / d;
              particle._velocity *= 0.7f;
         }
-        else if( glm::distance( particle._targetPosition.at(0),  particle._position ) > 0.05f)
+        else if( d > 0.05f)
         {
-            particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.1f) / glm::distance( particle._targetPosition.at(0),  particle._position);
+            particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.1f) / d;
             particle._velocity *= 0.5f;
         }
         else

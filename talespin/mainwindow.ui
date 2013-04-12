@@ -86,15 +86,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox">
-          <property name="minimum">
-           <number>100</number>
-          </property>
-          <property name="maximum">
-           <number>20000</number>
-          </property>
-          <property name="singleStep">
-           <number>100</number>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="text">
+           <string>2011</string>
           </property>
          </widget>
         </item>
@@ -178,10 +172,13 @@
            </sizepolicy>
           </property>
           <property name="minimum">
-           <number>10</number>
+           <number>1</number>
           </property>
           <property name="maximum">
            <number>100</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
           </property>
           <property name="tracking">
            <bool>true</bool>

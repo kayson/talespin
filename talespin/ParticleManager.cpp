@@ -31,13 +31,13 @@ void ParticleManager::draw()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
-        container.drawParticles(radius, visType);
+            container.drawParticles(radius, visType);
     }
 }
 
-ParticleContainer* ParticleManager::addContainer(const int maxNumParticles, const glm::vec4 color)
+ParticleContainer* ParticleManager::addContainer(const int timePos, const int maxNumParticles, const glm::vec4 color)
 {
-    ParticleContainer* newContainer = new ParticleContainer(maxNumParticles, color);
+    ParticleContainer* newContainer = new ParticleContainer(timePos, maxNumParticles, color);
     _containerVec.push_back(newContainer);
     return newContainer;
 }
@@ -56,6 +56,7 @@ int ParticleManager::numContainers()
 int ParticleManager::getMaxSize()
 {
     float max = 0;
+
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
@@ -94,22 +95,29 @@ void ParticleManager::update()
 {
     float n = 0;
 
-    for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i,n++)
+    for(int month = 1; month <= 12; month++)
     {
-        ParticleContainer& container = **i;
-		int c = 1;
-        int r = 1;
+        for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
+        {
+            ParticleContainer& container = **i;
+            if(container.timePosition != month) continue;
 
-        for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
-		{
-            if(c > columns)
-			{
-				c = 1;
-				r++;
-			}
-			Particle& particle = **j;
-            particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + n*spacing , r, 0.0f);
-		}
+                int c = 1;
+                int r = 1;
+
+                for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
+                {
+                    if(c > columns)
+                    {
+                        c = 1;
+                        r++;
+                    }
+                    Particle& particle = **j;
+
+                    particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + (month-1)*spacing , r, 0.0f);
+                }
+                n++;
+        }
     }
 }
 

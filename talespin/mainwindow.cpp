@@ -77,13 +77,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             close();
             break;
 
-        case Qt::Key_Alt:
-            ui->panelGL->_drawGrid->hide = false;
-            break;
-
-        case Qt::Key_Shift:
-            ui->panelGL->_drawGrid->hide = true;
-
         break;
     }
 
@@ -92,35 +85,41 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::addBar()
 {
-    float num = ui->spinBox->value();
+    QString year = ui->lineEdit->text();
+
+    float num = 0;
     QString col = ui->comboBox->currentText();
 
-    if(db.open())
+    for(int month = 1;month <= 12; month++)
     {
-        QString article = ui->comboBox_2->currentText();
-        qDebug() << article;
+        if(db.open())
+        {
+            QString article = ui->comboBox_2->currentText();
 
-        QSqlQuery query(db);
+            QSqlQuery query(db);
 
-        query.setForwardOnly(true);
+            query.setForwardOnly(true);
 
-        query.prepare("SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article");
-        query.bindValue(":article", article);
-        query.exec();
-        query.next();
-        num = query.value(0).toInt();
-    }
+            query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month ");
+            query.bindValue(":article", article);
+            query.bindValue(":year", year);
+            query.bindValue(":month", month);
+            query.exec();
+            query.next();
+            num = query.value(0).toInt();
+        }
 
-    if(num > 100)
-    {
-        if(col == "Red")
-            ui->panelGL->ParticleMgr->addContainer(num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
-        else if(col == "Green")
-            ui->panelGL->ParticleMgr->addContainer(num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
-        else if(col == "Blue")
-            ui->panelGL->ParticleMgr->addContainer(num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+        if(num > 0)
+        {
+            if(col == "Red")
+                ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+            else if(col == "Green")
+                ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+            else if(col == "Blue")
+                ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
 
-        ui->panelGL->ParticleMgr->update();
+            ui->panelGL->ParticleMgr->update();
+        }
     }
 }
 

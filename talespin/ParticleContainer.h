@@ -14,12 +14,13 @@ public:
 	void timeUpdateParticles();
     void drawParticles(float radius, VisualizationType type);
 
+    int timePosition;
     glm::vec4 getColor();
     float getNumParticles();
 
 private:
     void fillParticleContainer();
-    ParticleContainer(const int numParticles,  const glm::vec4 color);
+    ParticleContainer(const int timePos, const int numParticles,  const glm::vec4 color);
     ~ParticleContainer();
     friend class ParticleManager;
 
