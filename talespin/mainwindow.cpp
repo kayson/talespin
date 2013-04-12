@@ -125,7 +125,10 @@ void MainWindow::addBar()
 
     ui->listWidget->addItem(article);
     ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 372ca9d872e2f923fbddcd7ea5ba7d93d7aadc34
 }
 
 void MainWindow::fullScreen()
@@ -149,5 +152,10 @@ void MainWindow::fullScreen()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    qDeleteAll(ui->listWidget->selectedItems());
+
+        qDeleteAll(ui->listWidget->selectedItems());
+        qDebug() << ui->listWidget->currentRow()+1;
+        ui->panelGL->ParticleMgr->removeContainers(ui->listWidget->currentRow()+1);
+
+
 }
