@@ -88,13 +88,12 @@ void MainWindow::addBar()
 
     float num = 0;
     QString col = ui->comboBox->currentText();
+    QString article = ui->comboBox_2->currentText();
 
     for(int month = 1;month <= 12; month++)
     {
         if(db.open())
         {
-            QString article = ui->comboBox_2->currentText();
-
             QSqlQuery query(db);
 
             query.setForwardOnly(true);
@@ -120,8 +119,13 @@ void MainWindow::addBar()
             ui->panelGL->ParticleMgr->update();
         }
     }
+<<<<<<< HEAD
 
     ui->panelGL->ParticleMgr->IDcounter++;
+=======
+    ui->listWidget->addItem(article);
+    ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
+>>>>>>> 9764a1971755879b51d59eb1ee76f07b7eb817bf
 }
 
 void MainWindow::fullScreen()
@@ -140,4 +144,10 @@ void MainWindow::fullScreen()
         ui->horizontalLayout->setMargin(1);
         fullscreen = true;
     }
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    qDeleteAll(ui->listWidget->selectedItems());
 }

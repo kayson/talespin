@@ -70,8 +70,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>191</width>
-         <height>601</height>
+         <width>201</width>
+         <height>596</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -247,6 +247,16 @@
          <widget class="QCheckBox" name="checkBox">
           <property name="text">
            <string>CheckBox</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="listWidget"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Remove</string>
           </property>
          </widget>
         </item>
