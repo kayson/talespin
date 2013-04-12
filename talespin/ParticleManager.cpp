@@ -56,7 +56,7 @@ int ParticleManager::numContainers()
 
 int ParticleManager::getMaxSize()
 {
-    float max = 0;
+    int max = 0;
 
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
@@ -78,17 +78,17 @@ ParticleContainer* ParticleManager::getContainer(const int n)
 {
     if(_containerVec.size() > n)
         return _containerVec.at(n);
-	else
-		return false;
+    else
+        return false;
 }
 
 bool ParticleManager::removeContainer(const int n)
 {
     if(_containerVec.size() < n)
-		return false;
+        return false;
 
     _containerVec.erase(_containerVec.begin()+n);
-	return true;
+    return true;
 
 }
 
@@ -122,30 +122,31 @@ void ParticleManager::update()
                 }
                 n++;
             }
-//            else if(visType == LINES)
-//            {
-//                for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
-//                {
-//                    ParticleContainer& container2 = **k;
+            else if(visType == LINES)
+            {
+                int numP2 = 0;
+                for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
+                {
+                    ParticleContainer& container2 = **k;
 
-//                    if(container2.ID != container.ID && container2.timePosition != month+1) continue;
+                    if(container2.ID != container.ID || container2.timePosition != container.timePosition+1) continue;
+                    numP2 = container2.getNumParticles();
+                }
+                int c = 1;
+                int numP = container.getNumParticles();
+                if(numP2 == 0) numP2 = numP;
+                for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
+                {
+                    Particle& particle = **j;
 
-//                    int c = 1;
-//                    int numP = container.getNumParticles();
-//                    int numP2 = container2.getNumParticles();
-//                    for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
-//                    {
-//                        Particle& particle = **j;
+                    particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*12 + (month-1)*spacing) * (numP - c)/numP
+                                                               + (30 + (month)*12 + (month)*spacing) * c/numP
+                                                               , numP/12 * (numP - c)/numP
+                                                               + numP2/12 * c/numP
+                                                               , 0.0f);
+                }
 
-//                        particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*10 + (month-1)*spacing)*(numP - c)/numP
-//                                                                   + (30 + (month)*10 + (month)*spacing)*c/numP
-//                                                                   , numP/10*(numP - c)/numP
-//                                                                   + numP2/10*c/numP
-//                                                                   , 0.0f);
-//                    }
-//                    n++;
-//                }
-//            }
+            }
 
         }
     }
