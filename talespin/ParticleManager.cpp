@@ -84,7 +84,6 @@ ParticleContainer* ParticleManager::getContainer(const int n)
 
 void ParticleManager::removeContainers(const int id)
 {
-    int counter = 0;
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
@@ -144,10 +143,10 @@ void ParticleManager::update()
                 {
                     Particle& particle = **j;
 
-                    particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*12 + (month-1)*spacing) * (numP - c)/numP
-                                                               + (30 + (month)*12 + (month)*spacing) * c/numP
-                                                               , numP/12 * (numP - c)/numP
-                                                               + numP2/12 * c/numP
+                    particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*columns + (month-1)*spacing) * (numP - c)/numP
+                                                               + (30 + (month)*columns + (month)*spacing) * c/numP
+                                                               , numP/columns * (numP - c)/numP
+                                                               + numP2/columns * c/numP
                                                                , 0.0f);
                 }
 
