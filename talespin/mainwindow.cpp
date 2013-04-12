@@ -119,13 +119,12 @@ void MainWindow::addBar()
             ui->panelGL->ParticleMgr->update();
         }
     }
-<<<<<<< HEAD
+
 
     ui->panelGL->ParticleMgr->IDcounter++;
-=======
+
     ui->listWidget->addItem(article);
     ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
->>>>>>> 9764a1971755879b51d59eb1ee76f07b7eb817bf
 }
 
 void MainWindow::fullScreen()
@@ -149,5 +148,10 @@ void MainWindow::fullScreen()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    qDeleteAll(ui->listWidget->selectedItems());
+
+        qDeleteAll(ui->listWidget->selectedItems());
+        qDebug() << ui->listWidget->currentRow()+1;
+        ui->panelGL->ParticleMgr->removeContainers(ui->listWidget->currentRow()+1);
+
+
 }

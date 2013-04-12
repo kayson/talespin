@@ -27,7 +27,7 @@ public:
     glm::vec4 getColorIndex(const int i);
     ParticleContainer* getContainer(const int n);
     ParticleContainer* addContainer(const int timePos, const int maxNumParticles, const glm::vec4 color);
-    bool removeContainer(const int n);
+    void removeContainers(const int id);
 
     void update();
 
