@@ -17,7 +17,7 @@ public:
     int timePosition;
     int ID;
     glm::vec4 getColor();
-    float getNumParticles();
+    int getNumParticles();
 
 private:
     void fillParticleContainer();
@@ -26,7 +26,7 @@ private:
     friend class ParticleManager;
 
     glm::vec4 _color;
-    float _numParticles;
+    int _numParticles;
 
     typedef std::vector<Particle*> ParticleCtrVec;
     ParticleCtrVec _particleVec;

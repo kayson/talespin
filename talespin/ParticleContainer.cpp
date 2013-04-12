@@ -97,7 +97,7 @@ glm::vec4 ParticleContainer::getColor()
     return _color;
 }
 
-float ParticleContainer::getNumParticles()
+int ParticleContainer::getNumParticles()
 {
     return _numParticles;
 }
