@@ -26,6 +26,7 @@ private:
     friend class ParticleManager;
 
     glm::vec4 _color;
+    glm::vec3 _position;
     int _numParticles;
 
     typedef std::vector<Particle*> ParticleCtrVec;
