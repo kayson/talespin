@@ -95,6 +95,14 @@ void ParticleManager::removeContainers(const int id)
             i--;
         }
     }
+
+
+    for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
+    {
+        ParticleContainer& container = **i;
+            container.ID--;
+    }
+    IDcounter --;
 }
 
 void ParticleManager::update()
