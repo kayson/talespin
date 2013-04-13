@@ -148,10 +148,22 @@ void MainWindow::fullScreen()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    if(ui->listWidget->count() > 0)
+    {
+        if(!ui->listWidget->currentItem())
+            return;
+        //qDeleteAll(ui->listWidget->selectedItems());
+        //qDebug() << ui->listWidget->currentRow()+1;
 
-        qDeleteAll(ui->listWidget->selectedItems());
-        qDebug() << ui->listWidget->currentRow()+1;
-        ui->panelGL->ParticleMgr->removeContainers(ui->listWidget->currentRow()+1);
+        QListWidgetItem *itm = ui->listWidget->currentItem();
+        //if(ui->listWidget->currentRow()+1)
+        if(itm->isSelected())
+        {
+           ui->panelGL->ParticleMgr->removeContainers(itm->listWidget()->currentRow());
+           qDeleteAll(ui->listWidget->selectedItems());
+          // ui->panelGL->ParticleMgr->removeContainers(ui->listWidget->currentRow()+1);
+        }
+     }
 
 
 }
