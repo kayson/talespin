@@ -75,18 +75,15 @@ void ParticleContainer::drawParticles(float radius, VisualizationType type)
     }
     else if( type == CIRCLES )
     {
-        int mid = _particleVec.size() / 2;
-        Particle* particle = _particleVec.at(mid);
         float rad = radius * _particleVec.size() / 500;
-        glm::vec3 pos = particle->_position;
 
         glColor4fv( &_color[0] );
 
         glBegin(GL_QUADS);
-            glVertex3f( pos[0], pos[1], 0.0f );
-            glVertex3f( pos[0] + rad, pos[1], 0.0f );
-            glVertex3f( pos[0] + rad, pos[1] + rad, 0.0f );
-            glVertex3f( pos[0], pos[1] + rad, 0.0f );
+            glVertex3f( _position[0], _position[1], 0.0f );
+            glVertex3f( _position[0] + rad, _position[1], 0.0f );
+            glVertex3f( _position[0] + rad, _position[1] + rad, 0.0f );
+            glVertex3f( _position[0], _position[1] + rad, 0.0f );
         glEnd();
     }
 
