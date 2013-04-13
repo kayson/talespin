@@ -24,15 +24,13 @@ glwidget::glwidget(QWidget *parent)
     camera_friction = 0.92f;
 
     ParticleMgr = new ParticleManager();
-    ParticleMgr->visType = BARCHART;
+    ParticleMgr->visType = CIRCLES;
     ParticleMgr->columns = 10;
     ParticleMgr->radius = 1.0f;
     ParticleMgr->spacing = 0;
+    ParticleMgr->timePosition = 1;
 
     ParticleMgr->clearContainers();
-    //ParticleMgr->addContainer(1000, glm::vec4(1.0f,0.5f,1.0f,0.8f));
-    //ParticleMgr->addContainer(1250, glm::vec4(1.0f,0.5f,0.0f,0.8f));
-    //ParticleMgr->addContainer(1060, glm::vec4(0.0f,1.0f,0.5f,0.8f));
     ParticleMgr->update();
 
     _drawGrid = new drawGrid();
@@ -112,7 +110,7 @@ void glwidget::mousePressEvent ( QMouseEvent * event )
   mouse_x = event->x();
   mouse_y = event->y();
 
-  ParticleMgr->visType = LINES;
+  ParticleMgr->visType = BARCHART;
   ParticleMgr->update();
 }
 
@@ -122,7 +120,7 @@ void glwidget::mouseReleaseEvent ( QMouseEvent * event )
 
   mouse_state = -1;
 
-  ParticleMgr->visType = BARCHART;
+  ParticleMgr->visType = CIRCLES;
   ParticleMgr->update();
 }
 
@@ -185,7 +183,7 @@ void glwidget::loadSettings()
 
 void glwidget::showGrid(bool hide)
 {
-    _drawGrid->hide = hide;
+    _drawGrid->visible = hide;
 }
 
 void glwidget::particleSize(int value)
@@ -205,6 +203,13 @@ void glwidget::setNumberOfParticles(int value)
 void glwidget::setSpacing(int value)
 {
     ParticleMgr->spacing = value;
+    ParticleMgr->update();
+    updateGL();
+}
+
+void glwidget::timePositionChanged(int value)
+{
+    ParticleMgr->timePosition = value;
     ParticleMgr->update();
     updateGL();
 }

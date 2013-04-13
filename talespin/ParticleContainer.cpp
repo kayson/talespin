@@ -7,6 +7,7 @@ ParticleContainer::ParticleContainer(const int newID, const int timePos, const i
     ,  _color(color)
     , _numParticles(numParticles)
 {
+    _position = glm::vec3( 150.0f, 150.0f,0.0f);
     for(int i = 0; i <numParticles;i++)
     {
         _particleVec.push_back(new Particle());
@@ -59,34 +60,17 @@ void ParticleContainer::timeUpdateParticles()
     }   
 }
 
-void ParticleContainer::drawParticles(float radius, VisualizationType type)
+void ParticleContainer::drawParticles(float radius)
 {	
-    if( type == BARCHART || type == LINES)
+    glPointSize(radius);
+    glBegin(GL_POINTS);
+    for(ParticleCtrVec::iterator i = _particleVec.begin(); i != _particleVec.end(); ++i)
     {
-        glPointSize(radius);
-        glBegin(GL_POINTS);
-        for(ParticleCtrVec::iterator i = _particleVec.begin(); i != _particleVec.end(); ++i)
-        {
-            Particle& particle = **i;
-            glColor4fv( &_color[0] );
-            glVertex3fv( &particle._position[0] );
-        }
-        glEnd();
-    }
-    else if( type == CIRCLES )
-    {
-        float rad = radius * _particleVec.size() / 500;
-
+        Particle& particle = **i;
         glColor4fv( &_color[0] );
-
-        glBegin(GL_QUADS);
-            glVertex3f( _position[0], _position[1], 0.0f );
-            glVertex3f( _position[0] + rad, _position[1], 0.0f );
-            glVertex3f( _position[0] + rad, _position[1] + rad, 0.0f );
-            glVertex3f( _position[0], _position[1] + rad, 0.0f );
-        glEnd();
+        glVertex3fv( &particle._position[0] );
     }
-
+    glEnd();
 }
 
 glm::vec4 ParticleContainer::getColor()

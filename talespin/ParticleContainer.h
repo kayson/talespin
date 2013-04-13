@@ -12,7 +12,7 @@ class ParticleContainer
 {
 public:   
 	void timeUpdateParticles();
-    void drawParticles(float radius, VisualizationType type);
+    void drawParticles(float radius);
 
     int timePosition;
     int ID;

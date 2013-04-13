@@ -51,6 +51,7 @@ public slots:
     void particleSize(int value);
     void setNumberOfParticles(int value);
     void setSpacing(int value);
+    void timePositionChanged(int value);
     void clearMgr();
     void showGrid(bool hide);
 };

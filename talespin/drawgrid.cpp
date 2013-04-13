@@ -19,7 +19,7 @@ drawGrid* drawGrid::addGrid()
 
 void drawGrid::drawBarText(ParticleManager *pMgr)
 {
-    if(hide)
+    if(visible)
     {
 
     maxsize = pMgr->getMaxSize() / pMgr->columns;
@@ -49,7 +49,7 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
 
 void drawGrid::drawBarGrid(ParticleManager *pMgr)
 {
-    if(hide)
+    if(visible)
     {
         FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
 

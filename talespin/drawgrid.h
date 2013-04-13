@@ -13,7 +13,7 @@ public:
     drawGrid* addGrid();
 
     ParticleManager* ParticleMgr;
-    bool hide;
+    bool visible;
 
 private:
     int printIntToString;

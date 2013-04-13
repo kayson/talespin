@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         QSqlQuery query(db);
         query.setForwardOnly(true);
-        query.prepare(" SELECT ArticleName FROM View_utb_Articles WHERE AriticleNO = '1100001' ");
+        query.prepare(" SELECT ArticleName FROM View_utb_Articles ");
 
         if(query.exec())
         {
@@ -166,4 +166,27 @@ void MainWindow::on_pushButton_3_clicked()
      }
 
 
+}
+
+void MainWindow::on_radioButton_toggled(bool checked)
+{
+    ui->panelGL->ParticleMgr->visType = BARCHART;
+    ui->checkBox->setDisabled(false);
+    ui->panelGL->ParticleMgr->update();
+}
+
+void MainWindow::on_radioButton_2_toggled(bool checked)
+{
+    ui->panelGL->ParticleMgr->visType = LINES;
+    ui->checkBox->setDisabled(false);
+    ui->panelGL->ParticleMgr->update();
+}
+
+void MainWindow::on_radioButton_3_toggled(bool checked)
+{
+    ui->panelGL->ParticleMgr->visType = CIRCLES;
+    ui->panelGL->_drawGrid->visible = false;
+    ui->checkBox->setChecked(false);
+    ui->checkBox->setDisabled(true);
+    ui->panelGL->ParticleMgr->update();
 }

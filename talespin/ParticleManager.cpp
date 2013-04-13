@@ -32,7 +32,8 @@ void ParticleManager::draw()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
-            container.drawParticles(radius, visType);
+        if(visType != CIRCLES || container.timePosition == timePosition)
+            container.drawParticles(radius);
     }
 }
 
@@ -90,7 +91,6 @@ void ParticleManager::removeContainers(const int id)
         ParticleContainer& container = **i;
         if(container.ID == id)
         {
-
             _containerVec.erase(i);
             i--;
         }
@@ -99,60 +99,83 @@ void ParticleManager::removeContainers(const int id)
 
 void ParticleManager::update()
 {
-    float n = 0;
+    if(visType == BARCHART || visType == LINES)
+    {
+        float n = 0;
 
-    for(int month = 1; month <= 12; month++)
+        for(int month = 1; month <= 12; month++)
+        {
+            for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
+            {
+                ParticleContainer& container = **i;
+
+                if(container.timePosition != month) continue;
+
+                if(visType == BARCHART)
+                {
+                    int c = 1;
+                    int r = 1;
+
+                    for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
+                    {
+                        if(c > columns)
+                        {
+                            c = 1;
+                            r++;
+                        }
+                        Particle& particle = **j;
+
+                        particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + (month-1)*spacing , r, 0.0f);
+                    }
+                    n++;
+                }
+                else if(visType == LINES)
+                {
+                    int numP2 = 0;
+                    for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
+                    {
+                        ParticleContainer& container2 = **k;
+
+                        if(container2.ID != container.ID || container2.timePosition != container.timePosition+1) continue;
+                        numP2 = container2.getNumParticles();
+                    }
+                    int c = 1;
+                    int numP = container.getNumParticles();
+                    if(numP2 == 0) numP2 = numP;
+                    for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
+                    {
+                        Particle& particle = **j;
+
+                        particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*columns + (month-1)*spacing) * (numP - c)/numP
+                                                                   + (30 + (month)*columns + (month)*spacing) * c/numP
+                                                                   , numP/columns * (numP - c)/numP
+                                                                   + numP2/columns * c/numP
+                                                                   , 0.0f);
+                    }
+
+                }
+
+
+            }
+        }
+    }
+    else if(visType == CIRCLES)
     {
         for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
         {
             ParticleContainer& container = **i;
-
-            if(container.timePosition != month) continue;
-
-            if(visType == BARCHART)
+            int numP = container.getNumParticles();
+            for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j)
             {
-                int c = 1;
-                int r = 1;
-
-                for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
-                {
-                    if(c > columns)
-                    {
-                        c = 1;
-                        r++;
-                    }
-                    Particle& particle = **j;
-
-                    particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + (month-1)*spacing , r, 0.0f);
-                }
-                n++;
+                Particle& particle = **j;
+                float rng = ((float) rand() / (RAND_MAX+1.0f));
+                float R = numP / 10 * sqrt(((float) rand() / (RAND_MAX+1.0f)));
+                float xPos = R * cosf(3.1415926 * 2 * rng);
+                float yPos = R * sinf(3.1415926 * 2 * rng);
+                particle._targetPosition.at(0) = glm::vec3(container._position.x + xPos
+                                                           , container._position.y + yPos
+                                                           , 0.0f);
             }
-            else if(visType == LINES)
-            {
-                int numP2 = 0;
-                for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
-                {
-                    ParticleContainer& container2 = **k;
-
-                    if(container2.ID != container.ID || container2.timePosition != container.timePosition+1) continue;
-                    numP2 = container2.getNumParticles();
-                }
-                int c = 1;
-                int numP = container.getNumParticles();
-                if(numP2 == 0) numP2 = numP;
-                for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
-                {
-                    Particle& particle = **j;
-
-                    particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*columns + (month-1)*spacing) * (numP - c)/numP
-                                                               + (30 + (month)*columns + (month)*spacing) * c/numP
-                                                               , numP/columns * (numP - c)/numP
-                                                               + numP2/columns * c/numP
-                                                               , 0.0f);
-                }
-
-            }
-
         }
     }
 }
