@@ -124,7 +124,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox_2"/>
+         <widget class="QLineEdit" name="lineEdit_2"/>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton">
@@ -363,8 +363,8 @@
    <slot>particleSize(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>100</x>
-     <y>292</y>
+     <x>110</x>
+     <y>282</y>
     </hint>
     <hint type="destinationlabel">
      <x>383</x>
@@ -395,8 +395,8 @@
    <slot>setSpacing(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>112</x>
-     <y>336</y>
+     <x>122</x>
+     <y>326</y>
     </hint>
     <hint type="destinationlabel">
      <x>401</x>
@@ -443,8 +443,8 @@
    <slot>showGrid(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>42</x>
-     <y>359</y>
+     <x>52</x>
+     <y>349</y>
     </hint>
     <hint type="destinationlabel">
      <x>234</x>
@@ -459,8 +459,8 @@
    <slot>setNumberOfParticles(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>155</x>
-     <y>248</y>
+     <x>165</x>
+     <y>238</y>
     </hint>
     <hint type="destinationlabel">
      <x>268</x>

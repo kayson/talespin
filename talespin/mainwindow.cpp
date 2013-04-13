@@ -24,14 +24,18 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         QSqlQuery query(db);
         query.setForwardOnly(true);
-        query.prepare(" SELECT ArticleName FROM View_utb_Articles WHERE AriticleNO = '1100001' ");
+        query.prepare(" SELECT ArticleName FROM View_utb_Articles ");
 
         if(query.exec())
         {
+            QStringList CompletionList;
             while(query.next())
             {
-                ui->comboBox_2->addItem(query.value(0).toString());
+                CompletionList << query.value(0).toString();
             }
+            StringCompleter = new QCompleter(CompletionList,this);
+            StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+            ui->lineEdit_2->setCompleter(StringCompleter);
         }
     }
 
@@ -88,7 +92,7 @@ void MainWindow::addBar()
 
     float num = 0;
     QString col = ui->comboBox->currentText();
-    QString article = ui->comboBox_2->currentText();
+    QString article = ui->lineEdit_2->text();
 
     for(int month = 1;month <= 12; month++)
     {
