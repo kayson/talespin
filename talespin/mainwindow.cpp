@@ -124,7 +124,7 @@ void MainWindow::addBar()
     ui->panelGL->ParticleMgr->IDcounter++;
 
     ui->listWidget->addItem(article);
-    ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
+    //ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
 }
 
 void MainWindow::fullScreen()
