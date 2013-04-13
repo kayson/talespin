@@ -28,10 +28,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
         if(query.exec())
         {
+            QStringList CompletionList;
             while(query.next())
             {
-                ui->comboBox_2->addItem(query.value(0).toString());
+                CompletionList << query.value(0).toString();
             }
+            StringCompleter = new QCompleter(CompletionList,this);
+            StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+            ui->lineEdit_2->setCompleter(StringCompleter);
         }
     }
 
@@ -88,7 +92,7 @@ void MainWindow::addBar()
 
     float num = 0;
     QString col = ui->comboBox->currentText();
-    QString article = ui->comboBox_2->currentText();
+    QString article = ui->lineEdit_2->text();
 
     for(int month = 1;month <= 12; month++)
     {
@@ -124,7 +128,7 @@ void MainWindow::addBar()
     ui->panelGL->ParticleMgr->IDcounter++;
 
     ui->listWidget->addItem(article);
-    ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
+    //ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
 }
 
 void MainWindow::fullScreen()
@@ -152,16 +156,12 @@ void MainWindow::on_pushButton_3_clicked()
     {
         if(!ui->listWidget->currentItem())
             return;
-        //qDeleteAll(ui->listWidget->selectedItems());
-        //qDebug() << ui->listWidget->currentRow()+1;
 
         QListWidgetItem *itm = ui->listWidget->currentItem();
-        //if(ui->listWidget->currentRow()+1)
         if(itm->isSelected())
         {
            ui->panelGL->ParticleMgr->removeContainers(itm->listWidget()->currentRow());
            qDeleteAll(ui->listWidget->selectedItems());
-          // ui->panelGL->ParticleMgr->removeContainers(ui->listWidget->currentRow()+1);
         }
      }
 

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QtSql/QtSql>
+#include <QCompleter>
+#include <QDirModel>
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +23,7 @@ private:
     bool fullscreen;
     void saveSettings();
     void loadSettings();
+    QCompleter *StringCompleter;
 
 protected:
     void keyPressEvent( QKeyEvent *event );
