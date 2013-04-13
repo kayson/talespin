@@ -84,16 +84,17 @@ ParticleContainer* ParticleManager::getContainer(const int n)
 
 void ParticleManager::removeContainers(const int id)
 {
+
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
         if(container.ID == id)
         {
+
             _containerVec.erase(i);
             i--;
         }
     }
-
 }
 
 void ParticleManager::update()
