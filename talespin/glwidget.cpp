@@ -73,7 +73,7 @@ void glwidget::resizeGL(int width, int height)
     gluPerspective(90.f, // FOV
                     (GLfloat) width / (GLfloat) height, // Aspect Ratio
                     1.0f, // Z-Clipping Near
-                    1000.0f); // Z-Clipping Far
+                    100.0f); // Z-Clipping Far
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
