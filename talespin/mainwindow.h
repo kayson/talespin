@@ -30,13 +30,22 @@ protected:
     QSqlDatabase db;
 
 public slots:
-    void addBar();
     void fullScreen();
 private slots:
-    void on_pushButton_3_clicked();
-    void on_radioButton_toggled(bool checked);
-    void on_radioButton_2_toggled(bool checked);
-    void on_radioButton_3_toggled(bool checked);
+    void on_barChartRadioButton_toggled(bool checked);
+    void on_lineGraphRadioButton_toggled(bool checked);
+    void on_addToList_clicked();
+    void on_removeVisualisation_clicked();
+    void on_period_clicked();
+    void on_time_clicked();
+    void on_clearBars_clicked();
+    void on_particleRadiusSlider_valueChanged(int value);
+    void on_barSpacingSlider_valueChanged(int value);
+    void on_barWidthSlider_valueChanged(int value);
+    void on_timePositionSlider_valueChanged(int value);
+    void on_checkBox_clicked(bool checked);
+    void on_circleVisualisationRadioButton_toggled(bool checked);
+    void on_showMainWindowCheckBox_clicked(bool checked);
 };
 
 #endif // MAINWINDOW_H
