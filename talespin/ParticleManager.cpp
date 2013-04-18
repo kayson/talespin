@@ -109,7 +109,7 @@ void ParticleManager::update()
 {
     if(visType == BARCHART || visType == LINES)
     {
-        float n = 0;
+        number = 0;
 
         for(int month = 1; month <= 12; month++)
         {
@@ -133,9 +133,9 @@ void ParticleManager::update()
                         }
                         Particle& particle = **j;
 
-                        particle._targetPosition.at(0) = glm::vec3(30 + c + n*columns + (month-1)*spacing , r, 0.0f);
+                        particle._targetPosition.at(0) = glm::vec3(30 + c + number*columns + (month-1)*spacing , r, 0.0f);
                     }
-                    n++;
+                    number++;
                 }
                 else if(visType == LINES)
                 {

@@ -1060,6 +1060,29 @@ min-width: 80px;
          <bool>true</bool>
         </property>
        </widget>
+       <widget class="QLineEdit" name="numberOfGridsLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>681</x>
+          <y>99</y>
+          <width>31</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="numberOfGrids">
+        <property name="geometry">
+         <rect>
+          <x>592</x>
+          <y>100</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Number of grids</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

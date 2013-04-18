@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->groupBox_6->hide();
     ui->period->setChecked(true);
 
+    ui->numberOfGrids->hide();
+    ui->numberOfGridsLineEdit->hide();
+
     db = QSqlDatabase::addDatabase("QODBC");
 
     db.setDatabaseName("DRIVER=SQL Server;SERVER=62.168.149.41;DATABASE=ActorPLATSBOKVISUALC_utb;UID=Visual_utb;PWD=qwe123!!");
@@ -153,6 +156,8 @@ void MainWindow::on_removeVisualisation_clicked()
         {
            ui->panelGL->ParticleMgr->removeContainers(itm->listWidget()->currentRow());
            qDeleteAll(ui->listWidget->selectedItems());
+           ui->panelGL->ParticleMgr->number--;
+           ui->panelGL->ParticleMgr->update();
         }
      }
 }
@@ -243,7 +248,19 @@ void MainWindow::on_timePositionSlider_valueChanged(int value)
 
 void MainWindow::on_checkBox_clicked(bool checked)
 {
-    ui->panelGL->showGrid(checked);
+    if (checked == true)
+    {
+        ui->panelGL->showGrid(checked);
+        ui->numberOfGrids->show();
+        ui->numberOfGridsLineEdit->setText(QString::number(ui->panelGL->_drawGrid->numberOfGrids));
+        ui->numberOfGridsLineEdit->show();
+    }
+    else
+    {
+        ui->panelGL->showGrid(checked);
+        ui->numberOfGrids->hide();
+        ui->numberOfGridsLineEdit->hide();
+    }
 }
 
 void MainWindow::on_showMainWindowCheckBox_clicked(bool checked)
@@ -259,4 +276,11 @@ void MainWindow::on_showMainWindowCheckBox_clicked(bool checked)
         ui->widget_2->show();
     }
 
+}
+
+void MainWindow::on_numberOfGridsLineEdit_textChanged(const QString &arg1)
+{
+    int grid;
+    grid = arg1.toInt();
+    ui->panelGL->_drawGrid->numberOfGrids = grid;
 }

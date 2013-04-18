@@ -14,6 +14,7 @@ public:
 
     ParticleManager* ParticleMgr;
     bool visible;
+    int numberOfGrids;
 
 private:
     int printIntToString;

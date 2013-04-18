@@ -46,6 +46,7 @@ private slots:
     void on_checkBox_clicked(bool checked);
     void on_circleVisualisationRadioButton_toggled(bool checked);
     void on_showMainWindowCheckBox_clicked(bool checked);
+    void on_numberOfGridsLineEdit_textChanged(const QString &arg1);
 };
 
 #endif // MAINWINDOW_H

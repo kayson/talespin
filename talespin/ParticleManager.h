@@ -12,6 +12,7 @@ public:
 
     float radius;
     int columns;
+    int number;
     int spacing;
     int timePosition;
     int IDcounter;
