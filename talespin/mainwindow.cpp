@@ -9,7 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    fullscreen = false;
+
+    ui->label_11->hide();
+    ui->label_12->hide();
+    ui->groupBox_6->hide();
+    ui->period->setChecked(true);
 
     db = QSqlDatabase::addDatabase("QODBC");
 
@@ -35,7 +39,11 @@ MainWindow::MainWindow(QWidget *parent) :
             }
             StringCompleter = new QCompleter(CompletionList,this);
             StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-            ui->lineEdit_2->setCompleter(StringCompleter);
+            //StringCompleter->setCompletionMode(QCompleter::InlineCompletion);
+            //StringCompleter->setCompletionMode(QCompleter::QCompleter::UnfilteredPopupCompletion);
+
+            ui->searchAllArticles->setCompleter(StringCompleter);
+            StringCompleter->setCompletionPrefix( query.value(0).toString().split(" ").back().trimmed().toLower() );
         }
     }
 
@@ -55,9 +63,9 @@ void MainWindow::saveSettings()
     settings.setValue("windowPos", pos());
     settings.setValue("windowSize", size());
 
-    settings.setValue("barWidth", ui->horizontalSlider->value());
-    settings.setValue("particleRadius", ui->horizontalSlider_2->value());
-    settings.setValue("barSpace", ui->horizontalSlider_3->value());
+    settings.setValue("barWidth", ui->barWidthSlider->value());
+    settings.setValue("particleRadius", ui->particleRadiusSlider->value());
+    settings.setValue("barSpace", ui->barSpacingSlider->value());
 }
 
 void MainWindow::loadSettings()
@@ -67,9 +75,9 @@ void MainWindow::loadSettings()
     resize(settings.value("windowSize", QSize(1537, 677)).toSize());
     move(settings.value("windowPos", QPoint(200, 200)).toPoint());
 
-    ui->horizontalSlider->setValue(settings.value("barWidth", 10).toInt());
-    ui->horizontalSlider_2->setValue(settings.value("particleRadius", 1.0f).toFloat());
-    ui->horizontalSlider_3->setValue(settings.value("barSpace", 0).toInt());
+    ui->barWidthSlider->setValue(settings.value("barWidth", 10).toInt());
+    ui->particleRadiusSlider->setValue(settings.value("particleRadius", 1.0f).toFloat());
+    ui->barSpacingSlider->setValue(settings.value("barSpace", 0).toInt());
 
 }
 
@@ -86,71 +94,53 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 }
 
-void MainWindow::addBar()
+
+void MainWindow::on_addToList_clicked()
 {
-    QString year = ui->lineEdit->text();
-
-    float num = 0;
-    QString col = ui->comboBox->currentText();
-    QString article = ui->lineEdit_2->text();
-
-    for(int month = 1;month <= 12; month++)
-    {
-        if(db.open())
+        QString year = ui->typeYear->text();
+        //qDebug() << hej;
+        float num = 0;
+        QString col = ui->comboBox->currentText();
+        QString article = ui->searchAllArticles->text();
+        bool found = false;
+        for(int month = 1;month <= 12; month++)
         {
-            QSqlQuery query(db);
+            if(db.open())
+            {
+                QSqlQuery query(db);
+                query.setForwardOnly(true);
 
-            query.setForwardOnly(true);
+                query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month ");
+                query.bindValue(":article", article);
+                query.bindValue(":year", year);
+                query.bindValue(":month", month);
 
-            query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month ");
-            query.bindValue(":article", article);
-            query.bindValue(":year", year);
-            query.bindValue(":month", month);
-            query.exec();
-            query.next();
-            num = query.value(0).toInt();
+                query.exec();
+                query.next();
+                num = query.value(0).toInt();
+            }
+
+            if(num > 0)
+            {
+                found = true;
+                if(col == "Red")
+                    ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+                else if(col == "Green")
+                    ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+                else if(col == "Blue")
+                    ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+
+                ui->panelGL->ParticleMgr->update();
+            }
         }
-
-        if(num > 0)
+        if(found)
         {
-            if(col == "Red")
-                ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
-            else if(col == "Green")
-                ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
-            else if(col == "Blue")
-                ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
-
-            ui->panelGL->ParticleMgr->update();
+            ui->listWidget->addItem(article + " " + ui->typeYear->text());
+            ui->panelGL->ParticleMgr->IDcounter++;
         }
-    }
-
-
-    ui->panelGL->ParticleMgr->IDcounter++;
-
-    ui->listWidget->addItem(article);
-    //ui->listWidget->setSelectionMode(QAbstractItemView::MultiSelection );
 }
 
-void MainWindow::fullScreen()
-{
-    if(fullscreen)
-    {
-        showNormal();
-        ui->widget->show();
-        ui->horizontalLayout->setMargin(9);
-        fullscreen = false;
-    }
-    else
-    {
-        showFullScreen();
-        ui->widget->hide();
-        ui->horizontalLayout->setMargin(1);
-        fullscreen = true;
-    }
-}
-
-
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_removeVisualisation_clicked()
 {
     if(ui->listWidget->count() > 0)
     {
@@ -164,29 +154,88 @@ void MainWindow::on_pushButton_3_clicked()
            qDeleteAll(ui->listWidget->selectedItems());
         }
      }
-
-
 }
 
-void MainWindow::on_radioButton_toggled(bool checked)
+void MainWindow::on_barChartRadioButton_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->visType = BARCHART;
     ui->checkBox->setDisabled(false);
     ui->panelGL->ParticleMgr->update();
 }
 
-void MainWindow::on_radioButton_2_toggled(bool checked)
+void MainWindow::on_lineGraphRadioButton_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->visType = LINES;
     ui->checkBox->setDisabled(false);
     ui->panelGL->ParticleMgr->update();
 }
 
-void MainWindow::on_radioButton_3_toggled(bool checked)
+void MainWindow::on_circleVisualisationRadioButton_toggled(bool checked)
 {
+    ui->timePositionSlider->setEnabled(checked);
     ui->panelGL->ParticleMgr->visType = CIRCLES;
     ui->panelGL->_drawGrid->visible = false;
     ui->checkBox->setChecked(false);
     ui->checkBox->setDisabled(true);
     ui->panelGL->ParticleMgr->update();
+}
+
+
+void MainWindow::on_period_clicked()
+{
+    ui->label_11->hide();
+    ui->label_12->hide();
+    ui->groupBox_6->hide();
+}
+
+void MainWindow::on_time_clicked()
+{
+    ui->label_11->show();
+    ui->label_12->show();
+    ui->groupBox_6->show();
+}
+
+void MainWindow::on_clearBars_clicked()
+{
+    ui->panelGL->ParticleMgr->clearContainers();
+}
+
+void MainWindow::on_particleRadiusSlider_valueChanged(int value)
+{
+    ui->panelGL->particleSize(value);
+}
+
+void MainWindow::on_barSpacingSlider_valueChanged(int value)
+{
+    ui->panelGL->setSpacing(value);
+}
+
+void MainWindow::on_barWidthSlider_valueChanged(int value)
+{
+    ui->panelGL->setNumberOfParticles(value);
+}
+
+void MainWindow::on_timePositionSlider_valueChanged(int value)
+{
+    ui->panelGL->timePositionChanged(value);
+}
+
+void MainWindow::on_checkBox_clicked(bool checked)
+{
+    ui->panelGL->showGrid(checked);
+}
+
+void MainWindow::on_showMainWindowCheckBox_clicked(bool checked)
+{
+    if (checked == false)
+    {
+        ui->tabWidget_3->hide();
+        ui->widget_2->hide();
+    }
+    else
+    {
+        ui->tabWidget_3->show();
+        ui->widget_2->show();
+    }
+
 }

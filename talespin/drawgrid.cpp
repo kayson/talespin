@@ -6,6 +6,8 @@ float maxsize = 0;
 float intervall = 0;
 int numContainers = 0;
 
+const int fontSize = 12;
+
 drawGrid::drawGrid()
 {
 
@@ -32,7 +34,7 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
         for(int i=0;i != pMgr->numContainers();i++)
         {
 
-            font.FaceSize(15);
+            font.FaceSize(fontSize);
             glColor4fv(&pMgr->getColorIndex(i)[0]);
             glRasterPos3f(30.0f + (pMgr->columns * i)+(pMgr->spacing *i), maxsize + 5.0f,0.0f);
 
@@ -58,8 +60,8 @@ void drawGrid::drawBarGrid(ParticleManager *pMgr)
         numContainers = pMgr->numContainers();
 
         // Lines
-        glLineWidth(2);
-        glColor4f(1.0,1.0,1.0,0.5);
+        glLineWidth(1);
+        glColor4f(1.0,1.0,1.0,0.3);
         glBegin(GL_LINES);
         for(int i=1;i < 10;i++)
         {
@@ -79,7 +81,8 @@ void drawGrid::drawBarGrid(ParticleManager *pMgr)
 
         for(int i=1;i < 10;i++)
         {
-            font.FaceSize(15);
+            font.FaceSize(fontSize);
+
             glColor4f(1.0,1.0,1.0,0.5);
             glRasterPos3f(0.0f,intervall*i,0.0f);
 

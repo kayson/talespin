@@ -73,7 +73,7 @@ void glwidget::resizeGL(int width, int height)
     gluPerspective(90.f, // FOV
                     (GLfloat) width / (GLfloat) height, // Aspect Ratio
                     1.0f, // Z-Clipping Near
-                    100.0f); // Z-Clipping Far
+                    1000.0f); // Z-Clipping Far
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
@@ -90,9 +90,9 @@ void glwidget::paintGL()
     scene_zoom_dx *= camera_friction;
     scene_zoom /= sc;
 
-    if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
-    if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
-    if( scene_zoom < -300 ){ scene_zoom = -300; }
+    //if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
+    //if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
+    if( scene_zoom < -800 ){ scene_zoom = -800; }
     if( scene_zoom > -10 ){ scene_zoom = -10; }
 
     glClear(GL_COLOR_BUFFER_BIT);
