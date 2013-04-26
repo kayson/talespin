@@ -51,6 +51,7 @@ private slots:
     void on_shopComboBox_activated(const QString &arg1);
     void on_showComboBox_activated(const QString &arg1);
 
+    void on_searchAllArticles_returnPressed();
 };
 
 #endif // MAINWINDOW_H

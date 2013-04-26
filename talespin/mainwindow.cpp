@@ -319,3 +319,37 @@ void MainWindow::on_showComboBox_activated(const QString &arg1)
     ui->addMultipleItems->addItem(arg1);
 }
 
+void MainWindow::on_searchAllArticles_returnPressed()
+{
+    float num = 0;
+    QString article = ui->searchAllArticles->text();
+    bool found = false;
+
+    if(db.open())
+    {
+        QSqlQuery query(db);
+        query.setForwardOnly(true);
+
+        query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article");
+        query.bindValue(":article", article);
+
+        query.exec();
+        query.next();
+        num = query.value(0).toInt();
+
+    }
+
+    if(num > 0)
+    {
+        found = true;
+    }
+
+
+    if(found)
+    {
+        QString item;
+        item = ui->searchAllArticles->text();
+        ui->addMultipleItems->addItem(item);
+    }
+
+}
