@@ -23,6 +23,7 @@ private:
     bool fullscreen;
     void saveSettings();
     void loadSettings();
+    QSqlQueryModel *model, *model2, *model3, *model4;
     QCompleter *StringCompleter;
 
 protected:
@@ -47,6 +48,10 @@ private slots:
     void on_circleVisualisationRadioButton_toggled(bool checked);
     void on_showMainWindowCheckBox_clicked(bool checked);
     void on_numberOfGridsLineEdit_textChanged(const QString &arg1);
+    void on_ticketComboBox_activated(const QString &arg1);
+    void on_restaurantComboBox_activated(const QString &arg1);
+    void on_shopComboBox_activated(const QString &arg1);
+    void on_showComboBox_activated(const QString &arg1);
 };
 
 #endif // MAINWINDOW_H

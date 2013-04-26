@@ -173,8 +173,8 @@ min-width: 80px;
          <rect>
           <x>1</x>
           <y>0</y>
-          <width>431</width>
-          <height>311</height>
+          <width>571</width>
+          <height>351</height>
          </rect>
         </property>
         <property name="font">
@@ -183,7 +183,7 @@ min-width: 80px;
          </font>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="tabsClosable">
          <bool>false</bool>
@@ -204,21 +204,21 @@ min-width: 80px;
          <widget class="QGroupBox" name="groupBox">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>10</y>
-            <width>101</width>
-            <height>151</height>
+            <x>2</x>
+            <y>60</y>
+            <width>141</width>
+            <height>101</height>
            </rect>
           </property>
           <property name="font">
            <font>
-            <pointsize>13</pointsize>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="title">
            <string>Biljett</string>
           </property>
-          <widget class="QCheckBox" name="checkBox_2">
+          <widget class="QCheckBox" name="chooseAllTicketCheckBox">
            <property name="geometry">
             <rect>
              <x>10</x>
@@ -236,40 +236,35 @@ min-width: 80px;
             <string>Välj allt</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="searchAllArticles">
+          <widget class="QComboBox" name="ticketComboBox">
            <property name="geometry">
             <rect>
-             <x>5</x>
+             <x>0</x>
              <y>60</y>
-             <width>94</width>
-             <height>20</height>
+             <width>121</width>
+             <height>21</height>
             </rect>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>10</pointsize>
-            </font>
            </property>
           </widget>
          </widget>
          <widget class="QGroupBox" name="groupBox_2">
           <property name="geometry">
            <rect>
-            <x>100</x>
-            <y>10</y>
-            <width>101</width>
-            <height>151</height>
+            <x>142</x>
+            <y>60</y>
+            <width>141</width>
+            <height>101</height>
            </rect>
           </property>
           <property name="font">
            <font>
-            <pointsize>13</pointsize>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="title">
            <string>Restaurang</string>
           </property>
-          <widget class="QCheckBox" name="checkBox_3">
+          <widget class="QCheckBox" name="chooseAllRestaurantCheckBox">
            <property name="geometry">
             <rect>
              <x>10</x>
@@ -287,13 +282,13 @@ min-width: 80px;
             <string>Välj allt</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_5">
+          <widget class="QComboBox" name="restaurantComboBox">
            <property name="geometry">
             <rect>
-             <x>5</x>
+             <x>10</x>
              <y>60</y>
-             <width>94</width>
-             <height>20</height>
+             <width>121</width>
+             <height>21</height>
             </rect>
            </property>
           </widget>
@@ -301,21 +296,21 @@ min-width: 80px;
          <widget class="QGroupBox" name="groupBox_3">
           <property name="geometry">
            <rect>
-            <x>200</x>
-            <y>10</y>
-            <width>101</width>
-            <height>151</height>
+            <x>282</x>
+            <y>60</y>
+            <width>141</width>
+            <height>101</height>
            </rect>
           </property>
           <property name="font">
            <font>
-            <pointsize>13</pointsize>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="title">
            <string>Butik</string>
           </property>
-          <widget class="QCheckBox" name="checkBox_4">
+          <widget class="QCheckBox" name="chooseAllShopCheckBox">
            <property name="geometry">
             <rect>
              <x>10</x>
@@ -333,13 +328,13 @@ min-width: 80px;
             <string>Välj allt</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_6">
+          <widget class="QComboBox" name="shopComboBox">
            <property name="geometry">
             <rect>
-             <x>4</x>
+             <x>10</x>
              <y>60</y>
-             <width>94</width>
-             <height>20</height>
+             <width>121</width>
+             <height>21</height>
             </rect>
            </property>
           </widget>
@@ -347,21 +342,21 @@ min-width: 80px;
          <widget class="QGroupBox" name="groupBox_4">
           <property name="geometry">
            <rect>
-            <x>300</x>
-            <y>10</y>
-            <width>101</width>
-            <height>151</height>
+            <x>422</x>
+            <y>60</y>
+            <width>141</width>
+            <height>101</height>
            </rect>
           </property>
           <property name="font">
            <font>
-            <pointsize>13</pointsize>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="title">
-           <string>Event</string>
+           <string>Föreställning</string>
           </property>
-          <widget class="QCheckBox" name="checkBox_5">
+          <widget class="QCheckBox" name="chooseAllShowCheckBox">
            <property name="geometry">
             <rect>
              <x>10</x>
@@ -379,13 +374,13 @@ min-width: 80px;
             <string>Välj allt</string>
            </property>
           </widget>
-          <widget class="QLineEdit" name="lineEdit_7">
+          <widget class="QComboBox" name="showComboBox">
            <property name="geometry">
             <rect>
-             <x>5</x>
+             <x>10</x>
              <y>60</y>
-             <width>94</width>
-             <height>20</height>
+             <width>121</width>
+             <height>21</height>
             </rect>
            </property>
           </widget>
@@ -393,8 +388,8 @@ min-width: 80px;
          <widget class="QPushButton" name="addToList">
           <property name="geometry">
            <rect>
-            <x>310</x>
-            <y>230</y>
+            <x>460</x>
+            <y>270</y>
             <width>94</width>
             <height>29</height>
            </rect>
@@ -409,6 +404,44 @@ min-width: 80px;
           </property>
           <property name="text">
            <string>Lägg Till</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="searchAllArticles">
+          <property name="geometry">
+           <rect>
+            <x>59</x>
+            <y>20</y>
+            <width>221</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_14">
+          <property name="geometry">
+           <rect>
+            <x>12</x>
+            <y>22</y>
+            <width>46</width>
+            <height>13</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Search:</string>
+          </property>
+         </widget>
+         <widget class="QListWidget" name="addMultipleItems">
+          <property name="geometry">
+           <rect>
+            <x>3</x>
+            <y>171</y>
+            <width>141</width>
+            <height>131</height>
+           </rect>
           </property>
          </widget>
         </widget>

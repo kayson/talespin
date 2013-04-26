@@ -31,10 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
     else
     {
         QSqlQuery query(db);
-        query.setForwardOnly(true);
-        query.prepare(" SELECT ArticleName FROM View_utb_Articles ");
 
-        if(query.exec())
+        query.setForwardOnly(true);
+
+        if(query.exec(" SELECT ArticleName FROM View_utb_Articles"))
         {
             QStringList CompletionList;
             while(query.next())
@@ -48,15 +48,52 @@ MainWindow::MainWindow(QWidget *parent) :
 
             ui->searchAllArticles->setCompleter(StringCompleter);
             StringCompleter->setCompletionPrefix( query.value(0).toString().split(" ").back().trimmed().toLower() );
+
+        }
+        if(query.exec("SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (1100, 1700, 1800, 2300)"))
+        {
+            ui->ticketComboBox->setFont(QFont("Arial", 8));
+            while(query.next())
+            {
+                ui->ticketComboBox->addItem(query.value(0).toString());
+            }
+        }
+
+        if(query.exec(" SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (3100, 3102, 3210, 3220, 3240, 3250, 3260) "))
+        {
+            //ui->restaurantComboBox->setEditable(true);
+            ui->restaurantComboBox->setFont(QFont("Arial", 8));
+            while(query.next())
+            {
+                ui->restaurantComboBox->addItem(query.value(0).toString());
+            }
+        }
+
+        if(query.exec(" SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (110, 140, 150, 160, 170, 180, 190, 200, 210, 300, 500, 600, 700, 3270, 9991, 9992) "))
+        {
+            ui->shopComboBox->setFont(QFont("Arial", 8));
+            while(query.next())
+            {
+                ui->shopComboBox->addItem(query.value(0).toString());
+            }
+        }
+
+        if(query.exec(" SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (1100, 1700, 1800, 2300) "))
+        {
+            ui->showComboBox->setFont(QFont("Arial", 8));
+            while(query.next())
+            {
+                ui->showComboBox->addItem(query.value(0).toString());
+            }
         }
     }
-
     loadSettings();
 }
 
 MainWindow::~MainWindow()
 {
     saveSettings();
+    db.close();
     delete ui;
 }
 
@@ -284,3 +321,25 @@ void MainWindow::on_numberOfGridsLineEdit_textChanged(const QString &arg1)
     grid = arg1.toInt();
     ui->panelGL->_drawGrid->numberOfGrids = grid;
 }
+
+void MainWindow::on_ticketComboBox_activated(const QString &arg1)
+{
+    ui->addMultipleItems->addItem(arg1);
+
+}
+
+void MainWindow::on_restaurantComboBox_activated(const QString &arg1)
+{
+    ui->addMultipleItems->addItem(arg1);
+}
+
+void MainWindow::on_shopComboBox_activated(const QString &arg1)
+{
+    ui->addMultipleItems->addItem(arg1);
+}
+
+void MainWindow::on_showComboBox_activated(const QString &arg1)
+{
+    ui->addMultipleItems->addItem(arg1);
+}
+
