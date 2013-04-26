@@ -4,13 +4,11 @@
 
 float maxsize = 0;
 float intervall = 0;
-int numContainers = 0;
 
-const int fontSize = 12;
+const int fontSize = 15;
 
 drawGrid::drawGrid()
 {
-
 }
 
 drawGrid* drawGrid::addGrid()
@@ -23,73 +21,119 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
 {
     if(visible)
     {
-
-    maxsize = pMgr->getMaxSize() / pMgr->columns;
-    intervall = maxsize/10;
-
-
-    FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
-    if(!font.Error())
-    {
-        for(int i=0;i != pMgr->numContainers();i++)
+        FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
+        if(!font.Error())
         {
+            for(int i=0; i != pMgr->numContainers(); i++)
+            {
+                font.FaceSize(fontSize);
+                glColor4fv(&pMgr->getColorIndex(i)[0]);
+                if(pMgr->visType == BARCHART)
+                    glRasterPos3f(32.0f + (pMgr->columns * (pMgr->getContainer(i)->timePosition-1) * pMgr->IDcounter )
+                                  + (pMgr->spacing * (pMgr->getContainer(i)->timePosition-1) )
+                                  + (pMgr->columns * pMgr->getContainer(i)->ID)
+                                  ,pMgr->getContainer(i)->getNumParticles()/pMgr->columns + 5.0f
+                                  ,0.0f);
+                else if(pMgr->visType == LINES)
+                    glRasterPos3f(30.0f + (pMgr->columns * (pMgr->getContainer(i)->timePosition-1) )
+                                  + (pMgr->spacing * (pMgr->getContainer(i)->timePosition-1) )
+                                  ,pMgr->getContainer(i)->getNumParticles()/pMgr->columns + 10.0f
+                                  ,0.0f);
 
-            font.FaceSize(fontSize);
-            glColor4fv(&pMgr->getColorIndex(i)[0]);
-            glRasterPos3f(30.0f + (pMgr->columns * i)+(pMgr->spacing *i), maxsize + 5.0f,0.0f);
+                printIntToString = pMgr->getContainer(i)->getNumParticles();
+                char numberstring[(((sizeof printIntToString) * CHAR_BIT) + 2)/3 + 2];
+                sprintf_s(numberstring, "%d", printIntToString);
 
-            printIntToString = pMgr->getContainer(i)->getNumParticles();
-            char numberstring[(((sizeof printIntToString) * CHAR_BIT) + 2)/3 + 2];
-            sprintf(numberstring, "%d", printIntToString);
+                font.Render(numberstring);
+            }
 
-            font.Render(numberstring);
+            QStringList month;
+            month<<"Jan"<<"Feb"<<"Mar"<<"Apr"<<"May"<<"Jun"<<"Jul"<<"Aug"<<"Sep"<<"Okt"<<"Nov"<<"Dec";
 
-        }
-    }
+            for(int i = 0; i < month.size(); ++i)
+            {
+                glColor4f(1.0f,1.0f,1.0f,0.7f);
+                if(pMgr->visType == BARCHART)
+                    glRasterPos3f(30.0f + (pMgr->columns * pMgr->IDcounter * i)+(pMgr->spacing *i),-10.0f,0.0f);
+                else if(pMgr->visType == LINES)
+                    glRasterPos3f(30.0f + (pMgr->columns * i)+(pMgr->spacing *i),-10.0f,0.0f);
+                QByteArray ba = month.at(i).toLocal8Bit();
+                const char *c_str = ba.data();
+                font.Render(c_str);
+            }
+         }
     }
 }
 
 void drawGrid::drawBarGrid(ParticleManager *pMgr)
 {
-    if(visible)
+    if(visible && (pMgr->visType==BARCHART || pMgr->visType==LINES))
     {
         FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
 
-        maxsize = pMgr->getMaxSize() / pMgr->columns;
-        intervall = maxsize/10;
-        numContainers = pMgr->numContainers();
+        maxsize = pMgr->getMaxSize();
+        if(maxsize >= 2000)
+        {
+            maxsize /= 1000;
+            maxsize = floor(maxsize + 0.5) * 1000;
+            intervall = 1000;
+        }
+        else if(maxsize >= 200)
+        {
+            maxsize /= 100;
+            maxsize = floor(maxsize + 0.5) * 100;
+            intervall = 100;
+        }
+        else if(maxsize >= 20)
+        {
+            maxsize /= 10;
+            maxsize = floor(maxsize + 0.5) * 10;
+            intervall = 10;
+        }
+        else
+            intervall = 1;
 
         // Lines
-        glLineWidth(1);
-        glColor4f(1.0,1.0,1.0,0.3);
+        glLineWidth(2);
+        glColor4f(1.0f,1.0f,1.0f,0.2f);
         glBegin(GL_LINES);
-        for(int i=1;i < 10;i++)
+        for(int i=intervall;i <= maxsize;i+=intervall)
         {
             glVertex3f(20
-                      ,intervall*i
+                      ,(float)i / (float)pMgr->columns
+                      ,0);
+            if(pMgr->visType == BARCHART)
+                glVertex3f(40 + (pMgr->columns*pMgr->numContainers()) + pMgr->spacing * (pMgr->numOftimeInterval - 1)
+                      ,(float)i / (float)pMgr->columns
+                      ,0);
+            else if(pMgr->visType == LINES)
+                glVertex3f(40 + (pMgr->columns*pMgr->numOftimeInterval) + pMgr->spacing * pMgr->numOftimeInterval
+                      ,(float)i / (float)pMgr->columns
                       ,0);
 
-            glVertex3f(30 + pMgr->columns*numContainers+(pMgr->spacing * (numContainers -1) )
-                      ,intervall*i
-                      ,0);
         }
+        glVertex3f(20,0,0);
+        if(pMgr->visType == BARCHART)
+            glVertex3f(40 + pMgr->columns*pMgr->numContainers() + pMgr->spacing * (pMgr->numOftimeInterval - 1) ,0,0);
+         else if(pMgr->visType == LINES)
+            glVertex3f(40 + pMgr->columns*pMgr->numOftimeInterval + pMgr->spacing * pMgr->numOftimeInterval ,0,0);
 
         glVertex3f(20,0,0);
-        glVertex3f(30 + pMgr->columns*numContainers+(pMgr->spacing * (numContainers -1)),0,0);
-        glVertex3f(20,0,0); glVertex3f(20,maxsize,0);
+        glVertex3f(20,maxsize / pMgr->columns,0);
         glEnd();
 
-        for(int i=1;i < 10;i++)
+        for(int i=intervall;i <= maxsize;i+=intervall)
         {
             font.FaceSize(fontSize);
 
             glColor4f(1.0,1.0,1.0,0.5);
-            glRasterPos3f(0.0f,intervall*i,0.0f);
 
-            printIntToString = i*pMgr->getMaxSize()/10;
+            glRasterPos3f(10.0f,i / pMgr->columns,0.0f);
+
+            printIntToString = i;
+
             char numberstring[(((sizeof printIntToString) * CHAR_BIT) + 2)/3 + 2];
-            sprintf(numberstring, "%d", printIntToString);
-
+            sprintf_s(numberstring, "%d", printIntToString);
             font.Render(numberstring);
         }
     }

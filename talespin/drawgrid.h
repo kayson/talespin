@@ -16,6 +16,7 @@ public:
     bool visible;
 
 private:
+    friend class ParticleManager;
     int printIntToString;
 
 };

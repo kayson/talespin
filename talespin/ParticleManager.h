@@ -12,8 +12,10 @@ public:
 
     float radius;
     int columns;
+    int number;
     int spacing;
     int timePosition;
+    int numOftimeInterval;
     int IDcounter;
 
     VisualizationType visType;

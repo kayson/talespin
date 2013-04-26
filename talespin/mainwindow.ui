@@ -183,7 +183,7 @@ min-width: 80px;
          </font>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <property name="tabsClosable">
          <bool>false</bool>
@@ -249,6 +249,9 @@ min-width: 80px;
             <font>
              <pointsize>10</pointsize>
             </font>
+           </property>
+           <property name="text">
+            <string>Entré Vuxen</string>
            </property>
           </widget>
          </widget>
@@ -1058,6 +1061,29 @@ min-width: 80px;
         </property>
         <property name="checked">
          <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="numberOfGridsLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>681</x>
+          <y>99</y>
+          <width>31</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="numberOfGrids">
+        <property name="geometry">
+         <rect>
+          <x>592</x>
+          <y>100</y>
+          <width>81</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Number of grids</string>
         </property>
        </widget>
       </widget>
