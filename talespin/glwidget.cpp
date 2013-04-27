@@ -98,9 +98,10 @@ void glwidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(scene_pan_x, scene_pan_y, scene_zoom);
-    _drawGrid->drawBarText(ParticleMgr);
     _drawGrid->drawBarGrid(ParticleMgr);
     ParticleMgr->draw();
+    _drawGrid->drawBarText(ParticleMgr);
+    //ParticleMgr->draw();
 
 }
 
