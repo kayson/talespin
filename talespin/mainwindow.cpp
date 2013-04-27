@@ -138,10 +138,25 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::on_addToList_clicked()
 {
         QString year = ui->typeYear->text();
-        //qDebug() << hej;
+
         float num = 0;
         QString col = ui->comboBox->currentText();
-        QString article = ui->searchAllArticles->text();
+        // QString article = ui->searchAllArticles->text();
+        QString article = "(";
+        for(int i = 0; i < ui->addMultipleItems->count(); i++)
+        {
+
+            QListWidgetItem *item = ui->addMultipleItems->item(i);
+            if(i != 0) article.append(",");
+
+            article.append("'");
+            article.append(item->text());
+            article.append("'");
+
+        }
+        article.append(")");
+        qDebug() << article;
+
         bool found = false;
         for(int month = 1;month <= 12; month++)
         {
@@ -150,15 +165,14 @@ void MainWindow::on_addToList_clicked()
                 QSqlQuery query(db);
                 query.setForwardOnly(true);
 
-                query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month ");
+                query.prepare("SELECT count(*) FROM View_utb_transactions WHERE ArticleName IN :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month");
                 query.bindValue(":article", article);
                 query.bindValue(":year", year);
                 query.bindValue(":month", month);
-
                 query.exec();
                 query.next();
                 num = query.value(0).toInt();
-
+                qDebug() << num;
             }
 
             if(num > 0)
