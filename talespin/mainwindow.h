@@ -5,6 +5,8 @@
 #include <QtSql/QtSql>
 #include <QCompleter>
 #include <QDirModel>
+#include <QtGui>
+#include <QtCore>
 
 namespace Ui {
 class MainWindow;
@@ -13,6 +15,10 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+    void AddRoot(QString name);
+    void AddChild(QTreeWidgetItem *parent, QString name);
+    QTreeWidgetItem* getRoot();
     
 public:
     MainWindow(QWidget *parent = 0);
@@ -32,7 +38,7 @@ protected:
 private slots:
     void on_barChartRadioButton_toggled(bool checked);
     void on_lineGraphRadioButton_toggled(bool checked);
-    void on_addToList_clicked();
+    void on_startVisualisationPushButton_clicked();
     void on_removeVisualisation_clicked();
     void on_period_clicked();
     void on_time_clicked();
@@ -52,6 +58,12 @@ private slots:
     void on_showComboBox_activated(const QString &arg1);
 
     void on_searchAllArticles_returnPressed();
+    void on_selectAllTicketToolButton_clicked();
+    void on_chooseAllRestaurantToolButton_clicked();
+    void on_chooseAllShopToolButton_clicked();
+    void on_removeItemFromList_clicked();
+    void on_removeToolButton_clicked();
+    void on_newGroupToolButton_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/MyFiles">
+        <file>pic/lines.png</file>
+        <file>pic/bars.png</file>
+        <file>pic/expand.png</file>
+        <file>pic/radiobutton.png</file>
+        <file>pic/earth.jpg</file>
+    </qresource>
+</RCC>
