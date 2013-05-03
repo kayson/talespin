@@ -34,4 +34,7 @@ win32 {
     LIBS += -lfreetype2411 -lftgl
 }
 
+RESOURCES += \
+    MyResources.qrc
+
 

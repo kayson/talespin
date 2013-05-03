@@ -10,6 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->progressBar->reset();
+    ui->progressBar->setTextVisible(false);
+
+    ui->treeWidget->setColumnCount(1);
+    ui->treeWidget->header()->close();
+    ui->treeWidget->setSelectionMode(QAbstractItemView::MultiSelection);
+
     ui->label_11->hide();
     ui->label_12->hide();
     ui->groupBox_6->hide();
@@ -17,6 +24,43 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->numberOfGrids->hide();
     ui->numberOfGridsLineEdit->hide();
+    ui->selectAllTicketToolButton->setFont(QFont("Arial", 8));
+    ui->chooseAllShopToolButton->setFont(QFont("Arial", 8));
+    ui->chooseAllRestaurantToolButton->setFont(QFont("Arial", 8));
+    ui->chooseAllShowToolButton->setFont(QFont("Arial", 8));
+
+    ui->addMultipleItems->setSelectionMode(QAbstractItemView::MultiSelection);
+    ui->tabWidget_3->hide();
+
+    QString placeholderText;
+    placeholderText = QString::fromUtf8("Fritext sök...");
+    ui->searchAllArticles->setPlaceholderText(placeholderText);
+    //*[mandatoryField = "true"]{background-color: yellow}
+    ui->searchAllArticles->setStyleSheet("color: blue;"
+                                         "background-color: yellow;"
+                                         "selection-color:red;"
+                                         "selection-background-color: blue;");
+
+    ui->testButton->hide();
+//    QImage img(":/MyFiles/pic/earth.jpg");
+//    QPixmap pixmap4(":/MyFiles/pic/earth.jpg");
+//    ui->testButton->setIcon(QPixmap::fromImage(img));
+//    ui->testButton->setIconSize(img.size());
+//    ui->testButton->resize(img.size());
+//    ui->testButton->setMask(pixmap4.mask());
+
+    QPixmap pixmap(":/MyFiles/pic/lines.png");
+    ui->lineLabel->setPixmap(pixmap);
+    ui->lineLabel->setScaledContents(true);
+
+    QPixmap pixmap2(":/MyFiles/pic/bars.png");
+    ui->barLabel->setPixmap(pixmap2);
+    ui->barLabel->setScaledContents(true);
+
+    QPixmap pixmap3(":/MyFiles/pic/expand.png");
+    QIcon icon;
+    icon.addPixmap(pixmap3);
+    ui->iconToolButton->setIcon(icon);
 
     db = QSqlDatabase::addDatabase("QODBC");
 
@@ -131,15 +175,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
         break;
     }
-
 }
 
-
-void MainWindow::on_addToList_clicked()
+void MainWindow::on_startVisualisationPushButton_clicked()
 {
         QString year = ui->typeYear->text();
 
         float num = 0;
+
         QString col = ui->comboBox->currentText();
         QString article = ui->searchAllArticles->text();
 //        QString article = "(";
@@ -158,42 +201,57 @@ void MainWindow::on_addToList_clicked()
 //        qDebug() << article;
 
         bool found = false;
-        for(int month = 1;month <= 12; month++)
+
+        for (int i = 0; i <= ui->treeWidget->topLevelItemCount()-1; i++)
         {
-            if(db.open())
+            for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
-                QSqlQuery query(db);
-                query.setForwardOnly(true);
+                QString article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
+                //QString article = ui->searchAllArticles->text();
 
-                query.prepare("SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month");
-                query.bindValue(":article", article);
-                query.bindValue(":year", year);
-                query.bindValue(":month", month);
-                query.exec();
-                query.next();
-                num = query.value(0).toInt();
-                qDebug() << num;
-            }
+                bool found = false;
+                for(int month = 1;month <= 12; month++)
+                {
+                    if(db.open())
+                    {
+                        QSqlQuery query(db);
+                        query.setForwardOnly(true);
 
-            if(num > 0)
-            {
-                found = true;
-                if(col == "Red")
-                    ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
-                else if(col == "Green")
-                    ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
-                else if(col == "Blue")
-                    ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+                        query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month ");
+                        query.bindValue(":article", article);
+                        query.bindValue(":year", year);
+                        query.bindValue(":month", month);
 
-                ui->panelGL->ParticleMgr->update();
+                        query.exec();
+                        query.next();
+                        num = query.value(0).toInt();
+                    }
+
+                    if(num > 0)
+                    {
+                        found = true;
+                        if(col == "Red")
+                            ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+                        else if(col == "Green")
+                            ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+                        else if(col == "Blue")
+                            ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+
+                        ui->panelGL->ParticleMgr->update();
+                        ui->progressBar->setRange(0,12);
+                        ui->progressBar->setValue(month);
+                    }
+                }
+                if(found)
+                {
+                    ui->listWidget->addItem(article + " " + ui->typeYear->text());
+                    //ui->treeWidget->topLevelItem(i)->setHidden(true);
+                    ui->panelGL->ParticleMgr->numOftimeInterval = 12;
+                    ui->panelGL->ParticleMgr->IDcounter++;
+                }
             }
         }
-        if(found)
-        {
-            ui->listWidget->addItem(article + " " + ui->typeYear->text());
-            ui->panelGL->ParticleMgr->numOftimeInterval = 12;
-            ui->panelGL->ParticleMgr->IDcounter++;
-        }
+        ui->treeWidget->clear();
 }
 
 void MainWindow::on_removeVisualisation_clicked()
@@ -294,13 +352,19 @@ void MainWindow::on_showMainWindowCheckBox_clicked(bool checked)
 {
     if (checked == false)
     {
-        ui->tabWidget_3->hide();
+        ui->groupWidget->hide();
         ui->widget_2->hide();
+        ui->marketingWidget->hide();
+        ui->timeWidget->hide();
+        ui->addVisualisationWidget->hide();
     }
     else
     {
-        ui->tabWidget_3->show();
+        ui->groupWidget->show();
         ui->widget_2->show();
+        ui->marketingWidget->show();
+        ui->timeWidget->show();
+        ui->addVisualisationWidget->show();
     }
 
 }
@@ -314,23 +378,47 @@ void MainWindow::on_numberOfGridsLineEdit_textChanged(const QString &arg1)
 
 void MainWindow::on_ticketComboBox_activated(const QString &arg1)
 {
-    ui->addMultipleItems->addItem(arg1);
-
+    //ui->addMultipleItems->addItem(arg1);
+    if(ui->treeWidget->topLevelItemCount() == 0)
+    {
+        int i = ui->treeWidget->topLevelItemCount()+1;
+        QString s = QString::number(i);
+        AddRoot("Grupp " + s);
+    }
+    AddChild(getRoot(),arg1);
 }
 
 void MainWindow::on_restaurantComboBox_activated(const QString &arg1)
 {
-    ui->addMultipleItems->addItem(arg1);
+    if(ui->treeWidget->topLevelItemCount() == 0)
+    {
+        int i = ui->treeWidget->topLevelItemCount()+1;
+        QString s = QString::number(i);
+        AddRoot("Grupp " + s);
+    }
+    AddChild(getRoot(),arg1);
 }
 
 void MainWindow::on_shopComboBox_activated(const QString &arg1)
 {
-    ui->addMultipleItems->addItem(arg1);
+    if(ui->treeWidget->topLevelItemCount() == 0)
+    {
+        int i = ui->treeWidget->topLevelItemCount()+1;
+        QString s = QString::number(i);
+        AddRoot("Grupp " + s);
+    }
+    AddChild(getRoot(),arg1);
 }
 
 void MainWindow::on_showComboBox_activated(const QString &arg1)
 {
-    ui->addMultipleItems->addItem(arg1);
+    if(ui->treeWidget->topLevelItemCount() == 0)
+    {
+        int i = ui->treeWidget->topLevelItemCount()+1;
+        QString s = QString::number(i);
+        AddRoot("Grupp " + s);
+    }
+    AddChild(getRoot(),arg1);
 }
 
 void MainWindow::on_searchAllArticles_returnPressed()
@@ -364,6 +452,144 @@ void MainWindow::on_searchAllArticles_returnPressed()
         QString item;
         item = ui->searchAllArticles->text();
         ui->addMultipleItems->addItem(item);
+
+        if(ui->treeWidget->topLevelItemCount() == 0)
+        {
+            int i = ui->treeWidget->topLevelItemCount()+1;
+            QString s = QString::number(i);
+            AddRoot("Grupp " + s);
+        }
+        AddChild(getRoot(),item);
     }
 
+}
+
+void MainWindow::on_selectAllTicketToolButton_clicked()
+{
+    if(db.open())
+    {
+        QSqlQuery query(db);
+        query.setForwardOnly(true);
+
+        if(query.exec("SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (1100, 1700, 1800, 2300)"))
+        {
+
+            while(query.next())
+            {
+                if(ui->treeWidget->topLevelItemCount() == 0)
+                {
+                    int i = ui->treeWidget->topLevelItemCount()+1;
+                    QString s = QString::number(i);
+                    AddRoot("Grupp " + s);
+                }
+                AddChild(getRoot(),query.value(0).toString());
+            }
+        }
+    }
+}
+
+void MainWindow::on_chooseAllRestaurantToolButton_clicked()
+{
+    if(db.open())
+    {
+        QSqlQuery query(db);
+        query.setForwardOnly(true);
+
+        if(query.exec(" SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (3100, 3102, 3210, 3220, 3240, 3250, 3260) "))
+        {
+
+            while(query.next())
+            {
+                if(ui->treeWidget->topLevelItemCount() == 0)
+                {
+                    int i = ui->treeWidget->topLevelItemCount()+1;
+                    QString s = QString::number(i);
+                    AddRoot("Grupp " + s);
+                }
+                AddChild(getRoot(),query.value(0).toString());
+            }
+        }
+    }
+}
+
+void MainWindow::on_chooseAllShopToolButton_clicked()
+{
+    if(db.open())
+    {
+        QSqlQuery query(db);
+        query.setForwardOnly(true);
+
+        if(query.exec(" SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (110, 140, 150, 160, 170, 180, 190, 200, 210, 300, 500, 600, 700, 3270, 9991, 9992) "))
+        {
+
+            while(query.next())
+            {
+                if(ui->treeWidget->topLevelItemCount() == 0)
+                {
+                    int i = ui->treeWidget->topLevelItemCount()+1;
+                    QString s = QString::number(i);
+                    AddRoot("Grupp " + s);
+                }
+                AddChild(getRoot(),query.value(0).toString());
+            }
+        }
+    }
+}
+
+void MainWindow::on_removeItemFromList_clicked()
+{
+    if(ui->addMultipleItems->count() > 0)
+    {
+        if(!ui->addMultipleItems->currentItem())
+            return;
+
+        QListWidgetItem *itm = ui->addMultipleItems->currentItem();
+        if(itm->isSelected())
+        {
+           qDeleteAll(ui->addMultipleItems->selectedItems());
+        }
+     }
+}
+
+QTreeWidgetItem* MainWindow::getRoot()
+{
+    QTreeWidgetItem *treeItem = ui->treeWidget->topLevelItem(ui->treeWidget->topLevelItemCount()-1);
+    return treeItem;
+}
+
+void MainWindow::AddRoot(QString name)
+{
+    QTreeWidgetItem *itm = new QTreeWidgetItem(ui->treeWidget);
+    itm->setText(0,name);
+    itm->setFlags(itm->flags()| (Qt::ItemIsEditable));
+}
+
+void MainWindow::AddChild(QTreeWidgetItem *parent, QString name)
+{
+    QTreeWidgetItem *itm = new QTreeWidgetItem();
+    itm->setText(0,name);
+    parent->addChild(itm);
+}
+
+void MainWindow::on_removeToolButton_clicked()
+{
+    if(ui->treeWidget->topLevelItemCount() > 0)
+    {
+        if(!ui->treeWidget->currentItem())
+            return;
+
+        QTreeWidgetItem *itm = ui->treeWidget->currentItem();
+        if(itm->isSelected())
+        {
+            qDeleteAll(ui->treeWidget->selectedItems());
+        }
+    }
+}
+
+void MainWindow::on_newGroupToolButton_clicked()
+{
+    int i = ui->treeWidget->topLevelItemCount()+1;
+    QString s = QString::number(i);
+    AddRoot("Grupp " + s);
+    ui->treeWidget->resizeColumnToContents(i);
 }
