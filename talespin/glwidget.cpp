@@ -178,7 +178,12 @@ void glwidget::loadSettings()
 
 void glwidget::showGrid(bool hide)
 {
-    _drawGrid->visible = hide;
+    _drawGrid->hideGrid = hide;
+}
+
+void glwidget::showNumbers(bool hide)
+{
+    _drawGrid->hideNumbers = hide;
 }
 
 void glwidget::particleSize(int value)

@@ -19,7 +19,7 @@ drawGrid* drawGrid::addGrid()
 
 void drawGrid::drawBarText(ParticleManager *pMgr)
 {
-    if(visible)
+    if(hideNumbers)
     {
         FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
         if(!font.Error())
@@ -67,7 +67,7 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
 
 void drawGrid::drawBarGrid(ParticleManager *pMgr)
 {
-    if(visible && (pMgr->visType==BARCHART || pMgr->visType==LINES))
+    if(hideGrid && (pMgr->visType==BARCHART || pMgr->visType==LINES))
     {
         FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
 

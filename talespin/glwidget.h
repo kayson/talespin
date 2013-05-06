@@ -54,6 +54,7 @@ public slots:
     void timePositionChanged(int value);
     void clearMgr();
     void showGrid(bool hide);
+    void showNumbers(bool hide);
 };
 
 #endif // GLWIDGET_H

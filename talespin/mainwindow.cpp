@@ -29,8 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->chooseAllRestaurantToolButton->setFont(QFont("Arial", 8));
     ui->chooseAllShowToolButton->setFont(QFont("Arial", 8));
 
-    ui->addMultipleItems->setSelectionMode(QAbstractItemView::MultiSelection);
-    ui->tabWidget_3->hide();
+    //ui->addMultipleItems->setSelectionMode(QAbstractItemView::MultiSelection);
 
     QString placeholderText;
     placeholderText = QString::fromUtf8("Fritext sök...");
@@ -41,10 +40,22 @@ MainWindow::MainWindow(QWidget *parent) :
                                          "selection-color:red;"
                                          "selection-background-color: blue;");
 
-    ui->testButton->hide();
 //    QImage img(":/MyFiles/pic/earth.jpg");
-//    QPixmap pixmap4(":/MyFiles/pic/earth.jpg");
-//    ui->testButton->setIcon(QPixmap::fromImage(img));
+    QPixmap pixmap4(":/MyFiles/pic/triangleButton.png");
+//    QIcon ButtonIcon;
+//    ButtonIcon.addPixmap(pixmap4);
+//    ui->testButton->setIcon(ButtonIcon);
+//    ui->testButton->setIconSize(pixmap4.rect().size());
+
+    QIcon triangleButtonIcon;
+    triangleButtonIcon.addPixmap(pixmap4);
+    ui->startVisualisationPushButton->setIcon(triangleButtonIcon);
+    ui->startVisualisationPushButton->setIconSize(QSize(120,400));
+    ui->startVisualisationPushButton->setMask(pixmap4.mask());
+
+//    ui->testButton->setIcon(QIcon(":/MyFiles/pic/transstring.png"));
+//    ui->testButton->setIconSize(QSize(150,40));
+
 //    ui->testButton->setIconSize(img.size());
 //    ui->testButton->resize(img.size());
 //    ui->testButton->setMask(pixmap4.mask());
@@ -257,14 +268,14 @@ void MainWindow::on_removeVisualisation_clicked()
 void MainWindow::on_barChartRadioButton_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->visType = BARCHART;
-    ui->checkBox->setDisabled(false);
+    ui->gridCheckBox->setDisabled(false);
     ui->panelGL->ParticleMgr->update();
 }
 
 void MainWindow::on_lineGraphRadioButton_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->visType = LINES;
-    ui->checkBox->setDisabled(false);
+    ui->gridCheckBox->setDisabled(false);
     ui->panelGL->ParticleMgr->update();
 }
 
@@ -272,9 +283,9 @@ void MainWindow::on_circleVisualisationRadioButton_toggled(bool checked)
 {
     ui->timePositionSlider->setEnabled(checked);
     ui->panelGL->ParticleMgr->visType = CIRCLES;
-    ui->panelGL->_drawGrid->visible = false;
-    ui->checkBox->setChecked(false);
-    ui->checkBox->setDisabled(true);
+    ui->panelGL->_drawGrid->hideGrid = false;
+    ui->gridCheckBox->setChecked(false);
+    ui->gridCheckBox->setDisabled(true);
     ui->panelGL->ParticleMgr->update();
 }
 
@@ -318,7 +329,7 @@ void MainWindow::on_timePositionSlider_valueChanged(int value)
     ui->panelGL->timePositionChanged(value);
 }
 
-void MainWindow::on_checkBox_clicked(bool checked)
+void MainWindow::on_gridCheckBox_clicked(bool checked)
 {
     if (checked == true)
     {
@@ -330,6 +341,18 @@ void MainWindow::on_checkBox_clicked(bool checked)
     }
 }
 
+void MainWindow::on_numbersCheckBox_clicked(bool checked)
+{
+    if (checked == true)
+    {
+        ui->panelGL->showNumbers(checked);
+    }
+    else
+    {
+        ui->panelGL->showNumbers(checked);
+    }
+}
+
 void MainWindow::on_showMainWindowCheckBox_clicked(bool checked)
 {
     if (checked == false)
@@ -337,16 +360,12 @@ void MainWindow::on_showMainWindowCheckBox_clicked(bool checked)
         ui->groupWidget->hide();
         ui->widget_2->hide();
         ui->marketingWidget->hide();
-        ui->timeWidget->hide();
-        ui->addVisualisationWidget->hide();
     }
     else
     {
         ui->groupWidget->show();
         ui->widget_2->show();
         ui->marketingWidget->show();
-        ui->timeWidget->show();
-        ui->addVisualisationWidget->show();
     }
 
 }
@@ -433,7 +452,6 @@ void MainWindow::on_searchAllArticles_returnPressed()
     {
         QString item;
         item = ui->searchAllArticles->text();
-        ui->addMultipleItems->addItem(item);
 
         if(ui->treeWidget->topLevelItemCount() == 0)
         {
@@ -518,20 +536,6 @@ void MainWindow::on_chooseAllShopToolButton_clicked()
     }
 }
 
-void MainWindow::on_removeItemFromList_clicked()
-{
-    if(ui->addMultipleItems->count() > 0)
-    {
-        if(!ui->addMultipleItems->currentItem())
-            return;
-
-        QListWidgetItem *itm = ui->addMultipleItems->currentItem();
-        if(itm->isSelected())
-        {
-           qDeleteAll(ui->addMultipleItems->selectedItems());
-        }
-     }
-}
 
 QTreeWidgetItem* MainWindow::getRoot()
 {
@@ -553,7 +557,7 @@ void MainWindow::AddChild(QTreeWidgetItem *parent, QString name)
     parent->addChild(itm);
 }
 
-void MainWindow::on_removeToolButton_clicked()
+void MainWindow::on_removePushButton_clicked()
 {
     if(ui->treeWidget->topLevelItemCount() > 0)
     {
@@ -568,7 +572,7 @@ void MainWindow::on_removeToolButton_clicked()
     }
 }
 
-void MainWindow::on_newGroupToolButton_clicked()
+void MainWindow::on_newGroupPushButton_clicked()
 {
     int i = ui->treeWidget->topLevelItemCount()+1;
     QString s = QString::number(i);

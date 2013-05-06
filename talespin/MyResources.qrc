@@ -5,5 +5,7 @@
         <file>pic/expand.png</file>
         <file>pic/radiobutton.png</file>
         <file>pic/earth.jpg</file>
+        <file>pic/transstring.png</file>
+        <file>pic/triangleButton.png</file>
     </qresource>
 </RCC>
