@@ -190,15 +190,33 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::on_startVisualisationPushButton_clicked()
 {
-    float num = 0;
-    QString year = ui->typeYear->text();
-    QString col = ui->comboBox->currentText();
+        QString year = ui->typeYear->text();
+
+        float num = 0;
+
+        QString col = ui->comboBox->currentText();
+        QString article = ui->searchAllArticles->text();
+//        QString article = "(";
+//        for(int i = 0; i < ui->addMultipleItems->count(); i++)
+//        {
+
+//            QListWidgetItem *item = ui->addMultipleItems->item(i);
+//            if(i != 0) article.append(",");
+
+//            article.append("'");
+//            article.append(item->text());
+//            article.append("'");
+
+//        }
+//        article.append(")");
+//        qDebug() << article;
+
+        bool found = false;
 
         for (int i = 0; i <= ui->treeWidget->topLevelItemCount()-1; i++)
         {
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
-
                 QString article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
                 //QString article = ui->searchAllArticles->text();
 
