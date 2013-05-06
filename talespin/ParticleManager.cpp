@@ -111,13 +111,13 @@ void ParticleManager::update()
     {
         number = 0;
 
-        for(int month = 1; month <= 12; month++)
+        for(int timeInterval = 1; timeInterval <= numOftimeInterval; timeInterval++)
         {
             for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
             {
                 ParticleContainer& container = **i;
 
-                if(container.timePosition != month) continue;
+                if(container.timePosition != timeInterval) continue;
 
                 if(visType == BARCHART)
                 {
@@ -133,7 +133,7 @@ void ParticleManager::update()
                         }
                         Particle& particle = **j;
 
-                        particle._targetPosition.at(0) = glm::vec3(30 + c + number*columns + (month-1)*spacing , r, 0.0f);
+                        particle._targetPosition.at(0) = glm::vec3(30 + c + number*columns + (timeInterval-1)*spacing , r, 0.0f);
                     }
                     number++;
                 }
@@ -154,8 +154,8 @@ void ParticleManager::update()
                     {
                         Particle& particle = **j;
 
-                        particle._targetPosition.at(0) = glm::vec3((30 + (month-1)*columns + (month-1)*spacing) * (numP - c)/numP
-                                                                   + (30 + (month)*columns + (month)*spacing) * c/numP
+                        particle._targetPosition.at(0) = glm::vec3((30 + (timeInterval-1)*columns + (timeInterval-1)*spacing) * (numP - c)/numP
+                                                                   + (30 + (timeInterval)*columns + (timeInterval)*spacing) * c/numP
                                                                    , numP/columns * (numP - c)/numP
                                                                    + numP2/columns * c/numP
                                                                    , 0.0f);

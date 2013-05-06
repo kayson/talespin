@@ -47,17 +47,27 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
                 font.Render(numberstring);
             }
 
-            QStringList month;
-            month<<"Jan"<<"Feb"<<"Mar"<<"Apr"<<"May"<<"Jun"<<"Jul"<<"Aug"<<"Sep"<<"Okt"<<"Nov"<<"Dec";
+            QStringList intervals;
+            if(pMgr->numOftimeInterval == 12)
+                intervals<<"Jan"<<"Feb"<<"Mar"<<"Apr"<<"May"<<"Jun"<<"Jul"<<"Aug"<<"Sep"<<"Okt"<<"Nov"<<"Dec";
+            if(pMgr->numOftimeInterval == 4)
+                intervals<<"Vår"<<"Sommar"<<"Höst"<<"Vinter";
+            if(pMgr->numOftimeInterval == 31)
+            {
+                for(int d = 1; d <= 31; d++)
+                {
+                    intervals<<QString::number(d);
+                }
+            }
 
-            for(int i = 0; i < month.size(); ++i)
+            for(int i = 0; i < intervals.size(); ++i)
             {
                 glColor4f(1.0f,1.0f,1.0f,0.7f);
                 if(pMgr->visType == BARCHART)
                     glRasterPos3f(30.0f + (pMgr->columns * pMgr->IDcounter * i)+(pMgr->spacing *i),-10.0f,0.0f);
                 else if(pMgr->visType == LINES)
                     glRasterPos3f(30.0f + (pMgr->columns * i)+(pMgr->spacing *i),-10.0f,0.0f);
-                QByteArray ba = month.at(i).toLocal8Bit();
+                QByteArray ba = intervals.at(i).toLocal8Bit();
                 const char *c_str = ba.data();
                 font.Render(c_str);
             }

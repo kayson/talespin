@@ -179,79 +179,87 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::on_startVisualisationPushButton_clicked()
 {
-        QString year = ui->typeYear->text();
+    QString year = ui->typeYear->text();
+    QString month = ui->typeMonth->text();
 
-        float num = 0;
+    if(!db.open()) return;
 
-        QString col = ui->comboBox->currentText();
-        QString article = ui->searchAllArticles->text();
-//        QString article = "(";
-//        for(int i = 0; i < ui->addMultipleItems->count(); i++)
-//        {
+    if(ui->panelGL->ParticleMgr->IDcounter == 0)
+    {
+        if(ui->monthsRB->isChecked())
+            ui->panelGL->ParticleMgr->numOftimeInterval = 12;
+        if(ui->quartersRB->isChecked())
+            ui->panelGL->ParticleMgr->numOftimeInterval = 4;
+        if(ui->daysRB->isChecked())
+            ui->panelGL->ParticleMgr->numOftimeInterval = 31;
+    }
 
-//            QListWidgetItem *item = ui->addMultipleItems->item(i);
-//            if(i != 0) article.append(",");
+    for (int i = 0; i <= ui->treeWidget->topLevelItemCount()-1; i++)
+    {
+        bool found = true;
+        QString groupName = ui->treeWidget->topLevelItem(i)->text(0);
 
-//            article.append("'");
-//            article.append(item->text());
-//            article.append("'");
-
-//        }
-//        article.append(")");
-//        qDebug() << article;
-
-        bool found = false;
-
-        for (int i = 0; i <= ui->treeWidget->topLevelItemCount()-1; i++)
+        for(int timeInterval = 1;timeInterval <= ui->panelGL->ParticleMgr->numOftimeInterval; timeInterval++)
         {
+            int num = 0;
+            int sumprice = 0;
+
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
                 QString article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
-                //QString article = ui->searchAllArticles->text();
 
-                bool found = false;
-                for(int month = 1;month <= 12; month++)
+                QSqlQuery query(db);
+                query.setForwardOnly(true);
+
+                if(ui->panelGL->ParticleMgr->numOftimeInterval == 31)
                 {
-                    if(db.open())
-                    {
-                        QSqlQuery query(db);
-                        query.setForwardOnly(true);
-
-                        query.prepare(" SELECT count(*) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month ");
-                        query.bindValue(":article", article);
-                        query.bindValue(":year", year);
-                        query.bindValue(":month", month);
-
-                        query.exec();
-                        query.next();
-                        num = query.value(0).toInt();
-                    }
-
-                    if(num > 0)
-                    {
-                        found = true;
-                        if(col == "Red")
-                            ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
-                        else if(col == "Green")
-                            ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
-                        else if(col == "Blue")
-                            ui->panelGL->ParticleMgr->addContainer(month, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
-
-                        ui->panelGL->ParticleMgr->update();
-                        ui->progressBar->setRange(0,12);
-                        ui->progressBar->setValue(month);
-                    }
+                    query.prepare(" SELECT sum(Amount), sum(RowTotal) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(month, Date) = :month AND DATEPART(day, Date) = :timeInterval ");
+                    query.bindValue(":article", article);
+                    query.bindValue(":month", month);
+                    query.bindValue(":timeInterval", timeInterval);
                 }
-                if(found)
+                else
                 {
-                    ui->listWidget->addItem(article + " " + ui->typeYear->text());
-                    //ui->treeWidget->topLevelItem(i)->setHidden(true);
-                    ui->panelGL->ParticleMgr->numOftimeInterval = 12;
-                    ui->panelGL->ParticleMgr->IDcounter++;
+                    if(ui->panelGL->ParticleMgr->numOftimeInterval == 12)
+                        query.prepare(" SELECT sum(Amount), sum(RowTotal) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :timeInterval ");
+                    if(ui->panelGL->ParticleMgr->numOftimeInterval == 4)
+                        query.prepare(" SELECT sum(Amount), sum(RowTotal) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(quarter, Date) = :timeInterval ");
+                    query.bindValue(":article", article);
+                    query.bindValue(":year", year);
+                    query.bindValue(":timeInterval", timeInterval);
                 }
+
+                query.exec();
+                query.next();
+                num += query.value(0).toInt();
+                sumprice += query.value(1).toInt();
+
             }
+
+            if(ui->panelGL->ParticleMgr->IDcounter == 0)
+                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+            else if(ui->panelGL->ParticleMgr->IDcounter == 1)
+                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+            else if(ui->panelGL->ParticleMgr->IDcounter == 2)
+                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+
+            ui->panelGL->ParticleMgr->update();
+            ui->progressBar->setRange(0,ui->panelGL->ParticleMgr->numOftimeInterval);
+            ui->progressBar->setValue(timeInterval);
+
         }
-        ui->treeWidget->clear();
+
+        if(found)
+        {
+            ui->listWidget->addItem(groupName + " " + ui->typeYear->text());
+            //ui->treeWidget->topLevelItem(i)->setHidden(true);
+            if(ui->timeWidget->isEnabled())
+                ui->timeWidget->setDisabled(true);
+
+            ui->panelGL->ParticleMgr->IDcounter++;
+        }
+    }
+    ui->treeWidget->clear();
 }
 
 void MainWindow::on_removeVisualisation_clicked()
@@ -264,10 +272,13 @@ void MainWindow::on_removeVisualisation_clicked()
         QListWidgetItem *itm = ui->listWidget->currentItem();
         if(itm->isSelected())
         {
-           ui->panelGL->ParticleMgr->removeContainers(itm->listWidget()->currentRow());
-           qDeleteAll(ui->listWidget->selectedItems());
-           ui->panelGL->ParticleMgr->number--;
-           ui->panelGL->ParticleMgr->update();
+            ui->panelGL->ParticleMgr->removeContainers(itm->listWidget()->currentRow());
+            qDeleteAll(ui->listWidget->selectedItems());
+            ui->panelGL->ParticleMgr->number--;
+            ui->panelGL->ParticleMgr->update();
+            if(ui->panelGL->ParticleMgr->IDcounter == 0)
+                ui->timeWidget->setDisabled(false);
+
         }
      }
 }
