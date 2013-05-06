@@ -19,6 +19,7 @@ public:
     int IDcounter;
 
     VisualizationType visType;
+    EntityType entType;
 
     void draw();
     void timeUpdate();
@@ -28,7 +29,7 @@ public:
 
     glm::vec4 getColorIndex(const int i);
     ParticleContainer* getContainer(const int n);
-    ParticleContainer* addContainer(const int timePos, const int maxNumParticles, const glm::vec4 color);
+    void addContainer(const int timePos, const int maxNumParticles, const int profit, const glm::vec4 color);
     void removeContainers(const int id);
 
     void update();

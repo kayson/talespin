@@ -64,6 +64,9 @@ private slots:
     void on_chooseAllShopToolButton_clicked();
     void on_removePushButton_clicked();
     void on_newGroupPushButton_clicked();
+    void on_radioButton_toggled(bool checked);
+    void on_radioButton_2_toggled(bool checked);
+    void on_radioButton_3_toggled(bool checked);
 };
 
 #endif // MAINWINDOW_H

@@ -1,10 +1,11 @@
 #include "ParticleContainer.h"
 #include "QtOpenGL/QGLWidget"
 
-ParticleContainer::ParticleContainer(const int newID, const int timePos, const int numParticles, const glm::vec4 color)
+ParticleContainer::ParticleContainer(const int newID, EntityType inEntity, const int timePos, const int numParticles, const glm::vec4 color)
     : ID(newID)
+    , entity(inEntity)
     , timePosition(timePos)
-    ,  _color(color)
+    , _color(color)
     , _numParticles(numParticles)
 {
     _position = glm::vec3( 150.0f, 150.0f,0.0f);

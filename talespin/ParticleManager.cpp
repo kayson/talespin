@@ -5,6 +5,7 @@
 ParticleManager::ParticleManager()
 {
     IDcounter = 0;
+    entType = QUANTITY;
 }
 
 ParticleManager::~ParticleManager()
@@ -32,16 +33,22 @@ void ParticleManager::draw()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
+        if(container.entity != entType) continue;
         if(visType != CIRCLES || container.timePosition == timePosition)
             container.drawParticles(radius);
     }
 }
 
-ParticleContainer* ParticleManager::addContainer(const int timePos, const int maxNumParticles, const glm::vec4 color)
+void ParticleManager::addContainer(const int timePos, const int maxNumParticles, const int profit, const glm::vec4 color)
 {
-    ParticleContainer* newContainer = new ParticleContainer(IDcounter,timePos, maxNumParticles, color);
+    ParticleContainer* newContainer = new ParticleContainer(IDcounter, QUANTITY, timePos, maxNumParticles, color);
     _containerVec.push_back(newContainer);
-    return newContainer;
+
+    newContainer = new ParticleContainer(IDcounter, EARNINGS, timePos, profit/100, color);
+    _containerVec.push_back(newContainer);
+
+    newContainer = new ParticleContainer(IDcounter, MEAN, timePos, profit/maxNumParticles, color);
+    _containerVec.push_back(newContainer);
 }
 
 glm::vec4 ParticleManager::getColorIndex(const int i)
