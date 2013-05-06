@@ -13,7 +13,7 @@ public:
     drawGrid* addGrid();
 
     ParticleManager* ParticleMgr;
-    bool visible;
+    bool hideGrid, hideNumbers ;
 
 private:
     friend class ParticleManager;

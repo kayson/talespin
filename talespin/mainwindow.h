@@ -47,7 +47,8 @@ private slots:
     void on_barSpacingSlider_valueChanged(int value);
     void on_barWidthSlider_valueChanged(int value);
     void on_timePositionSlider_valueChanged(int value);
-    void on_checkBox_clicked(bool checked);
+    void on_gridCheckBox_clicked(bool checked);
+    void on_numbersCheckBox_clicked(bool checked);
     void on_circleVisualisationRadioButton_toggled(bool checked);
     void on_showMainWindowCheckBox_clicked(bool checked);
 
@@ -61,9 +62,8 @@ private slots:
     void on_selectAllTicketToolButton_clicked();
     void on_chooseAllRestaurantToolButton_clicked();
     void on_chooseAllShopToolButton_clicked();
-    void on_removeItemFromList_clicked();
-    void on_removeToolButton_clicked();
-    void on_newGroupToolButton_clicked();
+    void on_removePushButton_clicked();
+    void on_newGroupPushButton_clicked();
 };
 
 #endif // MAINWINDOW_H
