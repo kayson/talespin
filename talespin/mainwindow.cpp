@@ -378,11 +378,11 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             }
 
             if(ui->panelGL->ParticleMgr->IDcounter == 0)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(1.0f,0.0f,0.0f,0.8f));
             else if(ui->panelGL->ParticleMgr->IDcounter == 1)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,0.0f,0.8f));
             else if(ui->panelGL->ParticleMgr->IDcounter == 2)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,0.0f,1.0f,0.8f));
 
             ui->panelGL->ParticleMgr->update();
             ui->progressBar->setRange(0,ui->panelGL->ParticleMgr->numOftimeInterval);
@@ -693,6 +693,7 @@ void MainWindow::on_newGroupPushButton_clicked()
     ui->treeWidget->resizeColumnToContents(i);
 }
 
+
 void MainWindow::on_gridCheckBox_toggled(bool checked)
 {
     ui->panelGL->showGrid(checked);
@@ -726,4 +727,23 @@ void MainWindow::on_zoomSlider_valueChanged(int value)
 void MainWindow::on_closeAction_triggered()
 {
     qApp->exit();
+}
+
+void MainWindow::on_radioButton_toggled(bool checked)
+{
+    ui->panelGL->ParticleMgr->entType = QUANTITY;
+    ui->panelGL->ParticleMgr->update();
+}
+
+void MainWindow::on_radioButton_2_toggled(bool checked)
+{
+    ui->panelGL->ParticleMgr->entType = EARNINGS;
+    ui->panelGL->ParticleMgr->update();
+}
+
+void MainWindow::on_radioButton_3_toggled(bool checked)
+{
+    ui->panelGL->ParticleMgr->entType = MEAN;
+    ui->panelGL->ParticleMgr->update();
+
 }

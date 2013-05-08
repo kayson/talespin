@@ -60,12 +60,18 @@ private slots:
     void on_searchAllArticles_returnPressed();
     void on_removePushButton_clicked();
     void on_newGroupPushButton_clicked();
+
     void on_gridCheckBox_toggled(bool checked);
     void on_numbersCheckBox_toggled(bool checked);
     void on_advanceSettingsAction_triggered();
     void on_createNewAction_triggered();
     void on_zoomSlider_valueChanged(int value);
     void on_closeAction_triggered();
+
+    void on_radioButton_toggled(bool checked);
+    void on_radioButton_2_toggled(bool checked);
+    void on_radioButton_3_toggled(bool checked);
+
 };
 
 #endif // MAINWINDOW_H

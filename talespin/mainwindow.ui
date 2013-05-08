@@ -1112,16 +1112,23 @@ image: url(:/MyFiles/pic/radiobutton.png);
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="numbersCheckBox_2">
+            <widget class="QRadioButton" name="radioButton">
              <property name="text">
-              <string>siffror</string>
+              <string>RadioButton</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="gridCheckBox_2">
+            <widget class="QRadioButton" name="radioButton_2">
              <property name="text">
-              <string>Grid</string>
+              <string>RadioButton</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_3">
+             <property name="text">
+              <string>RadioButton</string>
              </property>
             </widget>
            </item>
