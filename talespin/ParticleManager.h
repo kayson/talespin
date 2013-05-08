@@ -23,6 +23,7 @@ public:
 
     void draw();
     void timeUpdate();
+    void changeEntity();
     void clearContainers();
     int numContainers();
     int getMaxSize();

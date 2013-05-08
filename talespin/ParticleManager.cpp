@@ -33,21 +33,23 @@ void ParticleManager::draw()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
-        if(container.entity != entType) continue;
         if(visType != CIRCLES || container.timePosition == timePosition)
             container.drawParticles(radius);
     }
 }
 
+void ParticleManager::changeEntity()
+{
+    for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
+    {
+        ParticleContainer& container = **i;
+        container.fillParticleContainer(entType);
+    }
+}
+
 void ParticleManager::addContainer(const int timePos, const int maxNumParticles, const int profit, const glm::vec4 color)
 {
-    ParticleContainer* newContainer = new ParticleContainer(IDcounter, QUANTITY, timePos, maxNumParticles, color);
-    _containerVec.push_back(newContainer);
-
-    newContainer = new ParticleContainer(IDcounter, EARNINGS, timePos, profit/100, color);
-    _containerVec.push_back(newContainer);
-
-    newContainer = new ParticleContainer(IDcounter, MEAN, timePos, profit/maxNumParticles, color);
+    ParticleContainer* newContainer = new ParticleContainer(IDcounter, entType, timePos, maxNumParticles, profit, color);
     _containerVec.push_back(newContainer);
 }
 
@@ -69,10 +71,28 @@ int ParticleManager::getMaxSize()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
-        if(container.getNumParticles() > max)
+        if(entType == QUANTITY)
         {
-            max = container.getNumParticles();
+            if(container.getNumParticles() > max)
+            {
+                max = container.getNumParticles();
+            }
         }
+        else if(entType == EARNINGS)
+        {
+            if(container.getProfit()/1000 > max)
+            {
+                max = container.getProfit()/1000;
+            }
+        }
+        else if(entType == MEAN)
+        {
+            if( (container.getProfit()/container.getNumParticles()) > max)
+            {
+                max = (container.getProfit()/container.getNumParticles());
+            }
+        }
+
     }
     return max;
 }
@@ -150,12 +170,24 @@ void ParticleManager::update()
                     for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
                     {
                         ParticleContainer& container2 = **k;
-
                         if(container2.ID != container.ID || container2.timePosition != container.timePosition+1) continue;
-                        numP2 = container2.getNumParticles();
+                        if(entType == QUANTITY)
+                            numP2 = container2.getNumParticles();
+                        else if(entType == EARNINGS)
+                            numP2 = container2.getProfit()/1000;
+                        else if(entType == MEAN)
+                            numP2 = container2.getProfit()/container2.getNumParticles();
                     }
                     int c = 1;
-                    int numP = container.getNumParticles();
+                    int numP = 0;
+
+                    if(entType == QUANTITY)
+                        numP = container.getNumParticles();
+                    else if(entType == EARNINGS)
+                        numP = container.getProfit()/1000;
+                    else if(entType == MEAN)
+                        numP = container.getProfit()/container.getNumParticles();
+
                     if(numP2 == 0) numP2 = numP;
                     for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
                     {

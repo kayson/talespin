@@ -17,15 +17,14 @@ public:
 
     int timePosition;
 
-    EntityType entity;
-
     int ID;
     glm::vec4 getColor();
     int getNumParticles();
+    int getProfit();
 
 private:
-    void fillParticleContainer();
-    ParticleContainer(const int newID, EntityType entity, const int timePos, const int numParticles,  const glm::vec4 color);
+    void fillParticleContainer(EntityType entity);
+    ParticleContainer(const int newID, EntityType entity, const int timePos, const int numParticles, const int totProfit,  const glm::vec4 color);
     ~ParticleContainer();
     friend class ParticleManager;
 

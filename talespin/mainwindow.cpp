@@ -617,17 +617,20 @@ void MainWindow::on_newGroupPushButton_clicked()
 void MainWindow::on_radioButton_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->entType = QUANTITY;
+    ui->panelGL->ParticleMgr->changeEntity();
     ui->panelGL->ParticleMgr->update();
 }
 
 void MainWindow::on_radioButton_2_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->entType = EARNINGS;
+    ui->panelGL->ParticleMgr->changeEntity();
     ui->panelGL->ParticleMgr->update();
 }
 
 void MainWindow::on_radioButton_3_toggled(bool checked)
 {
     ui->panelGL->ParticleMgr->entType = MEAN;
+    ui->panelGL->ParticleMgr->changeEntity();
     ui->panelGL->ParticleMgr->update();
 }

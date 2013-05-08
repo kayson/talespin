@@ -28,19 +28,28 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
             {
                 font.FaceSize(fontSize);
                 glColor4fv(&pMgr->getColorIndex(i)[0]);
+
+                if(pMgr->entType == QUANTITY)
+                    printIntToString = pMgr->getContainer(i)->getNumParticles();
+                else if(pMgr->entType == EARNINGS)
+                    printIntToString = pMgr->getContainer(i)->getProfit()/1000;
+                else if(pMgr->entType == MEAN)
+                    printIntToString = pMgr->getContainer(i)->getProfit()/pMgr->getContainer(i)->getNumParticles();
+
                 if(pMgr->visType == BARCHART)
                     glRasterPos3f(32.0f + (pMgr->columns * (pMgr->getContainer(i)->timePosition-1) * pMgr->IDcounter )
                                   + (pMgr->spacing * (pMgr->getContainer(i)->timePosition-1) )
                                   + (pMgr->columns * pMgr->getContainer(i)->ID)
-                                  ,pMgr->getContainer(i)->getNumParticles()/pMgr->columns + 5.0f
+                                  ,printIntToString/pMgr->columns + 5.0f
                                   ,0.0f);
                 else if(pMgr->visType == LINES)
                     glRasterPos3f(30.0f + (pMgr->columns * (pMgr->getContainer(i)->timePosition-1) )
                                   + (pMgr->spacing * (pMgr->getContainer(i)->timePosition-1) )
-                                  ,pMgr->getContainer(i)->getNumParticles()/pMgr->columns + 10.0f
+                                  ,printIntToString/pMgr->columns + 10.0f
                                   ,0.0f);
 
-                printIntToString = pMgr->getContainer(i)->getNumParticles();
+
+
                 char numberstring[(((sizeof printIntToString) * CHAR_BIT) + 2)/3 + 2];
                 sprintf_s(numberstring, "%d", printIntToString);
 

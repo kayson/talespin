@@ -1,19 +1,14 @@
 #include "ParticleContainer.h"
 #include "QtOpenGL/QGLWidget"
 
-ParticleContainer::ParticleContainer(const int newID, EntityType inEntity, const int timePos, const int numParticles, const glm::vec4 color)
+ParticleContainer::ParticleContainer(const int newID, EntityType entity, const int timePos, const int numParticles, const int totProfit, const glm::vec4 color)
     : ID(newID)
-    , entity(inEntity)
     , timePosition(timePos)
     , _color(color)
     , _numParticles(numParticles)
+    , _profit(totProfit)
 {
-    _position = glm::vec3( 150.0f, 150.0f,0.0f);
-    for(int i = 0; i <numParticles;i++)
-    {
-        _particleVec.push_back(new Particle());
-    }
-    fillParticleContainer();
+    fillParticleContainer(entity);
 }
 
 ParticleContainer::~ParticleContainer()
@@ -21,8 +16,31 @@ ParticleContainer::~ParticleContainer()
     _particleVec.clear();
 }
 
-void ParticleContainer::fillParticleContainer()
+void ParticleContainer::fillParticleContainer(EntityType entity)
 {
+    _particleVec.clear();
+    if(entity == QUANTITY)
+    {
+        for(int i = 0; i < _numParticles;i++)
+        {
+            _particleVec.push_back(new Particle());
+        }
+    }
+    else if(entity == EARNINGS)
+    {
+        for(int i = 0; i < _profit/1000;i++)
+        {
+            _particleVec.push_back(new Particle());
+        }
+    }
+    else if(entity == MEAN)
+    {
+        for(int i = 0; i < (_profit/_numParticles);i++)
+        {
+            _particleVec.push_back(new Particle());
+        }
+    }
+
     for(ParticleCtrVec::iterator i = _particleVec.begin(); i != _particleVec.end(); ++i)
     {
         Particle& particle = **i;
@@ -83,4 +101,10 @@ int ParticleContainer::getNumParticles()
 {
     return _numParticles;
 }
+
+int ParticleContainer::getProfit()
+{
+    return _profit;
+}
+
 
