@@ -49,6 +49,7 @@ signals:
 
 public slots:
     void particleSize(int value);
+    void zoom(int value);
     void setNumberOfParticles(int value);
     void setSpacing(int value);
     void timePositionChanged(int value);
