@@ -156,6 +156,13 @@ void glwidget::wheelEvent( QWheelEvent * event )
     event->accept();
 }
 
+void glwidget::zoom(int value)
+{
+    float numSteps = value;
+    scene_zoom_dx = numSteps/40;
+    std::cout<<numSteps<<std::endl;
+}
+
 void glwidget::saveSettings()
 {
     QSettings settings("Visualiseringscenter C", "ViC");
@@ -178,6 +185,7 @@ void glwidget::loadSettings()
 
 void glwidget::showGrid(bool hide)
 {
+    //std::cout << hide <<std::endl;
     _drawGrid->hideGrid = hide;
 }
 

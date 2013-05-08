@@ -38,17 +38,16 @@ protected:
 private slots:
     void on_barChartRadioButton_toggled(bool checked);
     void on_lineGraphRadioButton_toggled(bool checked);
+    void on_addVisualisationPushButton_clicked();
     void on_startVisualisationPushButton_clicked();
     void on_removeVisualisation_clicked();
-    void on_period_clicked();
-    void on_time_clicked();
+    void on_periodRadioButton_clicked();
+    void on_timeRadioButton_clicked();
     void on_clearBars_clicked();
     void on_particleRadiusSlider_valueChanged(int value);
     void on_barSpacingSlider_valueChanged(int value);
     void on_barWidthSlider_valueChanged(int value);
     void on_timePositionSlider_valueChanged(int value);
-    void on_gridCheckBox_clicked(bool checked);
-    void on_numbersCheckBox_clicked(bool checked);
     void on_circleVisualisationRadioButton_toggled(bool checked);
     void on_showMainWindowCheckBox_clicked(bool checked);
 
@@ -59,11 +58,14 @@ private slots:
     void on_showComboBox_activated(const QString &arg1);
 
     void on_searchAllArticles_returnPressed();
-    void on_selectAllTicketToolButton_clicked();
-    void on_chooseAllRestaurantToolButton_clicked();
-    void on_chooseAllShopToolButton_clicked();
     void on_removePushButton_clicked();
     void on_newGroupPushButton_clicked();
+    void on_gridCheckBox_toggled(bool checked);
+    void on_numbersCheckBox_toggled(bool checked);
+    void on_advanceSettingsAction_triggered();
+    void on_createNewAction_triggered();
+    void on_zoomSlider_valueChanged(int value);
+    void on_closeAction_triggered();
 };
 
 #endif // MAINWINDOW_H
