@@ -861,7 +861,7 @@ image: url(:/MyFiles/pic/radiobutton.png);
            <item>
             <widget class="QCheckBox" name="numbersCheckBox">
              <property name="text">
-              <string>siffror</string>
+              <string>Siffror</string>
              </property>
             </widget>
            </item>
@@ -869,6 +869,16 @@ image: url(:/MyFiles/pic/radiobutton.png);
             <widget class="QCheckBox" name="gridCheckBox">
              <property name="text">
               <string>Grid</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox">
+             <property name="text">
+              <string>Auto Zoom</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -1054,21 +1064,21 @@ image: url(:/MyFiles/pic/radiobutton.png);
            <item>
             <widget class="QRadioButton" name="radioButton">
              <property name="text">
-              <string>RadioButton</string>
+              <string>Antal</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QRadioButton" name="radioButton_2">
              <property name="text">
-              <string>RadioButton</string>
+              <string>Intäckter ( / 1000)</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QRadioButton" name="radioButton_3">
              <property name="text">
-              <string>RadioButton</string>
+              <string>Snitt (kr)</string>
              </property>
             </widget>
            </item>
@@ -1100,23 +1110,7 @@ image: url(:/MyFiles/pic/radiobutton.png);
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="4" column="4">
-            <widget class="QSlider" name="barSpacingSlider">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="maximum">
-              <number>50</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
+           <item row="2" column="4">
             <widget class="QSlider" name="particleRadiusSlider">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -1138,7 +1132,30 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="5" column="4">
+            <widget class="QSlider" name="barSpacingSlider">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximum">
+              <number>50</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Zoom</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
             <widget class="QSlider" name="barWidthSlider">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -1172,7 +1189,7 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="2" column="0">
             <widget class="QLabel" name="zoomLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1197,14 +1214,14 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="3" column="4">
+           <item row="4" column="4">
             <widget class="QLabel" name="label_5">
              <property name="text">
               <string>Stapelavstånd</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
+           <item row="5" column="0">
             <widget class="QLabel" name="barwidthLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1229,14 +1246,14 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="3" column="0" colspan="2">
+           <item row="4" column="0" colspan="2">
             <widget class="QLabel" name="label">
              <property name="text">
               <string>Stapelbredd</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="3">
+           <item row="5" column="3">
             <widget class="QLabel" name="barspacingLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1261,7 +1278,7 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="2" column="1">
             <widget class="QSlider" name="zoomSlider">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -1270,10 +1287,10 @@ image: url(:/MyFiles/pic/radiobutton.png);
               </sizepolicy>
              </property>
              <property name="minimum">
-              <number>-20</number>
+              <number>-800</number>
              </property>
              <property name="maximum">
-              <number>20</number>
+              <number>-10</number>
              </property>
              <property name="pageStep">
               <number>1</number>
@@ -1295,21 +1312,14 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="0" column="4">
+           <item row="1" column="4">
             <widget class="QLabel" name="label_3">
              <property name="text">
               <string>Partikelstorlek</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="2">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Zoom</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
+           <item row="6" column="1">
             <spacer name="verticalSpacer_5">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -1322,7 +1332,7 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </spacer>
            </item>
-           <item row="1" column="3">
+           <item row="2" column="3">
             <widget class="QLabel" name="particleLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1347,7 +1357,7 @@ image: url(:/MyFiles/pic/radiobutton.png);
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
+           <item row="2" column="2">
             <spacer name="horizontalSpacer_4">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -1435,11 +1445,29 @@ image: url(:/MyFiles/pic/radiobutton.png);
     <slot>clearMgr()</slot>
     <slot>showGrid(bool)</slot>
     <slot>timePositionChanged(int)</slot>
+    <slot>autoZoom(bool)</slot>
    </slots>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>panelGL</receiver>
+   <slot>autoZoom(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>529</x>
+     <y>622</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>540</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>addBar()</slot>
   <slot>fullScreen()</slot>

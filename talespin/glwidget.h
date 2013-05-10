@@ -37,11 +37,14 @@ protected:
     void saveSettings();
     void loadSettings();
 
+    void fixCam();
+
     QBasicTimer timer;
     float scene_zoom, scene_zoom_dx, mouse_pan_dx, mouse_pan_dy, scene_pan_x, scene_pan_y;
     float camera_friction;
     int mouse_state;
     int mouse_x, mouse_y;
+    bool _autoZoom;
 
 private:
 
@@ -56,6 +59,7 @@ public slots:
     void clearMgr();
     void showGrid(bool hide);
     void showNumbers(bool hide);
+    void autoZoom(bool zoom);
 };
 
 #endif // GLWIDGET_H

@@ -447,7 +447,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             else if(ui->panelGL->ParticleMgr->IDcounter == 2)
                 pixmap.fill(QColor(0,0,255));
             else if(ui->panelGL->ParticleMgr->IDcounter == 3)
-                pixmap.fill(QColor(255,255,0));
+                pixmap.fill(QColor(0,255,255));
 
             //pixmap.setMask(pixmap);
             QLabel *indicatorColor = new QLabel();

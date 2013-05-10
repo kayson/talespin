@@ -64,6 +64,11 @@ void ParticleContainer::timeUpdateParticles()
              particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.9f) / d;
              particle._velocity *= 0.9f;
         }
+        else if( d > 10.0f)
+        {
+             particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.6f) / d;
+             particle._velocity *= 0.8f;
+        }
         else if( d > 5.0f)
         {
              particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.3f) / d;

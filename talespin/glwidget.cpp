@@ -23,6 +23,8 @@ glwidget::glwidget(QWidget *parent)
     mouse_state = -1;
     camera_friction = 0.92f;
 
+    _autoZoom = true;
+
     ParticleMgr = new ParticleManager();
     ParticleMgr->visType = BARCHART;
     ParticleMgr->columns = 10;
@@ -73,7 +75,7 @@ void glwidget::resizeGL(int width, int height)
     gluPerspective(75.f, // FOV
                     (GLfloat) width / (GLfloat) height, // Aspect Ratio
                     1.0f, // Z-Clipping Near
-                    1000.0f); // Z-Clipping Far
+                    2000.0f); // Z-Clipping Far
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
@@ -90,9 +92,12 @@ void glwidget::paintGL()
     scene_zoom_dx *= camera_friction;
     scene_zoom /= sc;
 
-    //if( scene_pan_x > -170 * (scene_zoom / -100) ){ scene_pan_x = -170 * (scene_zoom / -100) ; }
-    //if( scene_pan_y > -90 * (scene_zoom / -100) ){ scene_pan_y = -90 * (scene_zoom / -100) ; }
-    if( scene_zoom < -800 ){ scene_zoom = -800; }
+    ParticleMgr->radius = -300 / scene_zoom;
+
+    if(_autoZoom)
+        fixCam();
+
+    //if( scene_zoom < -800 ){ scene_zoom = -800; }
     if( scene_zoom > -10 ){ scene_zoom = -10; }
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -101,7 +106,6 @@ void glwidget::paintGL()
     _drawGrid->drawBarGrid(ParticleMgr);
     ParticleMgr->draw();
     _drawGrid->drawBarText(ParticleMgr);
-    //ParticleMgr->draw();
 
 }
 
@@ -158,9 +162,7 @@ void glwidget::wheelEvent( QWheelEvent * event )
 
 void glwidget::zoom(int value)
 {
-    float numSteps = value;
-    scene_zoom_dx = numSteps/40;
-    std::cout<<numSteps<<std::endl;
+    scene_zoom = value;
 }
 
 void glwidget::saveSettings()
@@ -180,6 +182,25 @@ void glwidget::loadSettings()
     scene_zoom = settings.value("sceneZoom", -100).toFloat();
     scene_pan_x = settings.value("scenePanX", -150).toFloat();
     scene_pan_y = settings.value("scenePanY", -90).toFloat();
+
+}
+
+void glwidget::fixCam()
+{
+    float maxX = 0;
+    if(ParticleMgr->visType == BARCHART)
+            maxX = -( (ParticleMgr->columns * ParticleMgr->numContainers()) + ParticleMgr->spacing * (ParticleMgr->numOftimeInterval - 1) );
+    else if(ParticleMgr->visType == LINES)
+        maxX = -( (ParticleMgr->columns * ParticleMgr->numOftimeInterval) + ParticleMgr->spacing * ParticleMgr->numOftimeInterval );
+    float maxY = -( ParticleMgr->getMaxSize() / ParticleMgr->columns );
+
+    scene_pan_x = maxX * 0.5;
+    scene_pan_y = maxY * 0.5;
+
+    if((maxX/maxY) >= 1.5)
+        scene_zoom = maxX * 0.5;
+    else
+        scene_zoom = maxY * 0.8;
 
 }
 
@@ -220,6 +241,17 @@ void glwidget::timePositionChanged(int value)
     ParticleMgr->timePosition = value;
     ParticleMgr->update();
     updateGL();
+}
+
+void glwidget::autoZoom(bool zoom)
+{
+    if(zoom)
+    {
+        _autoZoom = true;
+        fixCam();
+    }
+    else
+        _autoZoom = false;
 }
 
 void glwidget::clearMgr()

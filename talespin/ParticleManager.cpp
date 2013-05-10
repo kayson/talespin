@@ -168,6 +168,7 @@ void ParticleManager::update()
                 else if(visType == LINES)
                 {
                     int numP2 = 0;
+
                     for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
                     {
                         ParticleContainer& container2 = **k;
@@ -190,6 +191,7 @@ void ParticleManager::update()
                         numP = container.getProfit()/container.getNumParticles();
 
                     if(numP2 == 0) numP2 = numP;
+
                     for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j,++c)
                     {
                         Particle& particle = **j;
