@@ -4,7 +4,11 @@
         <file>pic/bars.png</file>
         <file>pic/expand.png</file>
         <file>pic/radiobutton.png</file>
-        <file>pic/earth.jpg</file>
-        <file>pic/triangleButton.png</file>
+        <file>pic/iconBars.png</file>
+        <file>pic/iconBarWidth.png</file>
+        <file>pic/iconLines.png</file>
+        <file>pic/iconTriangle.png</file>
+        <file>pic/iconTriangleGrey.png</file>
+        <file>pic/iconRemove.png</file>
     </qresource>
 </RCC>

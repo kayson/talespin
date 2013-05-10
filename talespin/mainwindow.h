@@ -28,6 +28,7 @@ private:
     Ui::MainWindow *ui;
     void saveSettings();
     void loadSettings();
+    bool comboBoxItemCanged();
     QSqlQueryModel *model, *model2, *model3, *model4;
     QCompleter *StringCompleter;
 
@@ -52,13 +53,8 @@ private slots:
     void on_showMainWindowCheckBox_clicked(bool checked);
 
     void on_numberOfGridsLineEdit_textChanged(const QString &arg1);
-    void on_ticketComboBox_activated(const QString &arg1);
-    void on_restaurantComboBox_activated(const QString &arg1);
-    void on_shopComboBox_activated(const QString &arg1);
-    void on_showComboBox_activated(const QString &arg1);
 
-    void on_searchAllArticles_returnPressed();
-    void on_removePushButton_clicked();
+    void removeItems();
     void on_newGroupPushButton_clicked();
 
     void on_gridCheckBox_toggled(bool checked);
@@ -72,6 +68,7 @@ private slots:
     void on_radioButton_2_toggled(bool checked);
     void on_radioButton_3_toggled(bool checked);
 
+    void on_typeYearLE_editingFinished();
 };
 
 #endif // MAINWINDOW_H
