@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     void AddRoot(QString name);
-    void AddChild(QTreeWidgetItem *parent, QString name);
+    void AddChild(QTreeWidgetItem *parent, QString name, QString secondName);
     QTreeWidgetItem* getRoot();
     
 public:
@@ -31,6 +31,7 @@ private:
     bool comboBoxItemCanged();
     QSqlQueryModel *model, *model2, *model3, *model4;
     QCompleter *StringCompleter;
+    void setRoundedCorners(int radius_tl, int radius_tr, int radius_bl, int radius_br);
 
 protected:
     void keyPressEvent( QKeyEvent *event );

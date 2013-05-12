@@ -58,10 +58,10 @@ MainWindow::MainWindow(QWidget *parent) :
     placeholderText = QString::fromUtf8("Fritext sök...");
     ui->searchAllArticles->setPlaceholderText(placeholderText);
     //*[mandatoryField = "true"]{background-color: yellow}
-    ui->searchAllArticles->setStyleSheet("color: blue;"
-                                         "background-color: yellow;"
-                                         "selection-color:red;"
-                                         "selection-background-color: blue;");
+//    ui->searchAllArticles->setStyleSheet("color: blue;"
+//                                         "background-color: yellow;"
+//                                         "selection-color:red;"
+//                                         "selection-background-color: blue;");
 
     QString placeholderYear;
     placeholderYear =  QString::fromUtf8("ÅR");
@@ -296,7 +296,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
         {
             QString item;
             item = ui->searchAllArticles->text();
-            AddChild(getRoot(),item);
+            AddChild(getRoot(),item, ui->typeYearLE->text());
             ui->searchAllArticles->clear();
         }
 
@@ -305,7 +305,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                AddChild(getRoot(),query.value(0).toString());
+                //AddChild(getRoot(),query.value(0).toString());
             }
         }
 
@@ -314,7 +314,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                AddChild(getRoot(),query.value(0).toString());
+                //AddChild(getRoot(),query.value(0).toString());
             }
         }
 
@@ -323,28 +323,28 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                AddChild(getRoot(),query.value(0).toString());
+                //AddChild(getRoot(),query.value(0).toString());
             }
         }
 
         if(ui->ticketComboBox->currentIndex())
         {
             QString selectedItem = ui->ticketComboBox->currentText();
-            AddChild(getRoot(),selectedItem);
+            AddChild(getRoot(),selectedItem, ui->typeYearLE->text());
             ui->ticketComboBox->setCurrentIndex(0);
         }
 
         if(ui->restaurantComboBox->currentIndex())
         {
             QString selectedItem = ui->restaurantComboBox->currentText();
-            AddChild(getRoot(),selectedItem);
+            AddChild(getRoot(),selectedItem, ui->typeYearLE->text());
             ui->restaurantComboBox->setCurrentIndex(0);
         }
 
         if(ui->shopComboBox->currentIndex())
         {
             QString selectedItem = ui->shopComboBox->currentText();
-            AddChild(getRoot(),selectedItem);
+            AddChild(getRoot(),selectedItem, ui->typeYearLE->text());
             ui->shopComboBox->setCurrentIndex(0);
         }
 
@@ -421,23 +421,24 @@ void MainWindow::on_startVisualisationPushButton_clicked()
                 sumprice += query.value(1).toInt();
 
             }
+            if(ui->treeWidget->topLevelItem(i)->childCount() > 0)
+            {
+                if(ui->panelGL->ParticleMgr->IDcounter == 0)
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+                else if(ui->panelGL->ParticleMgr->IDcounter == 1)
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+                else if(ui->panelGL->ParticleMgr->IDcounter == 2)
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+                else if(ui->panelGL->ParticleMgr->IDcounter == 3)
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,1.0f,0.8f));
 
-            if(ui->panelGL->ParticleMgr->IDcounter == 0)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(1.0f,0.0f,0.0f,0.8f));
-            else if(ui->panelGL->ParticleMgr->IDcounter == 1)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,0.0f,0.8f));
-            else if(ui->panelGL->ParticleMgr->IDcounter == 2)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,0.0f,1.0f,0.8f));
-            else if(ui->panelGL->ParticleMgr->IDcounter == 3)
-                ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,1.0f,0.8f));
-
-            ui->panelGL->ParticleMgr->update();
-            ui->progressBar->setRange(0,ui->panelGL->ParticleMgr->numOftimeInterval);
-            ui->progressBar->setValue(timeInterval);
-
+                ui->panelGL->ParticleMgr->update();
+                ui->progressBar->setRange(0,ui->panelGL->ParticleMgr->numOftimeInterval);
+                ui->progressBar->setValue(timeInterval);
+            }
         }
 
-        if(found)
+        if(found && ui->treeWidget->topLevelItem(i)->childCount() > 0)
         {
             QPixmap pixmap(":/MyFiles/pic/iconRemove.png");
             if(ui->panelGL->ParticleMgr->IDcounter == 0)
@@ -469,7 +470,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
                 article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
-                AddChild(topItem,article);
+                AddChild(topItem,article, ui->typeYearLE->text());
             }
 
             ui->daysRB->setDisabled(true);
@@ -647,10 +648,12 @@ void MainWindow::AddRoot(QString name)
 
 }
 
-void MainWindow::AddChild(QTreeWidgetItem *parent, QString name)
+void MainWindow::AddChild(QTreeWidgetItem *parent, QString name, QString secondName)
 {
     QTreeWidgetItem *itm = new QTreeWidgetItem();
     itm->setText(0,name);
+    itm->setBackground(0,*(new QBrush(Qt::red,Qt::Dense6Pattern)));
+    itm->setText(1,secondName);
     parent->addChild(itm);
 }
 
@@ -691,7 +694,7 @@ void MainWindow::on_numbersCheckBox_toggled(bool checked)
 void MainWindow::on_advanceSettingsAction_triggered()
 {
     ui->settingsWidget->show();
-    ui->marketingWidget->hide();
+    //ui->marketingWidget->hide();
     ui->addVisualisationPushButton->hide();
 }
 
@@ -764,6 +767,32 @@ void MainWindow::on_typeYearLE_editingFinished()
         ui->addVisualisationPushButton->setIconSize(QSize(100,450));
         ui->addVisualisationPushButton->setMask(pixmap4.mask());
      }
+}
+
+void MainWindow::setRoundedCorners(int radius_tl, int radius_tr, int radius_bl, int radius_br) {
+    QRegion region(0, 0, width(), height(), QRegion::Rectangle);
+
+    // top left
+    QRegion round (0, 0, 2*radius_tl, 2*radius_tl, QRegion::Ellipse);
+    QRegion corner(0, 0, radius_tl, radius_tl, QRegion::Rectangle);
+    region = region.subtracted(corner.subtracted(round));
+
+    // top right
+    round = QRegion(width()-2*radius_tr, 0, 2*radius_tr, 2*radius_tr, QRegion::Ellipse);
+    corner = QRegion(width()-radius_tr, 0, radius_tr, radius_tr, QRegion::Rectangle);
+    region = region.subtracted(corner.subtracted(round));
+
+    // bottom right
+    round = QRegion(width()-2*radius_br, height()-2*radius_br, 2*radius_br, 2*radius_br, QRegion::Ellipse);
+    corner = QRegion(width()-radius_br, height()-radius_br, radius_br, radius_br, QRegion::Rectangle);
+    region = region.subtracted(corner.subtracted(round));
+
+    // bottom left
+    round = QRegion(0, height()-2*radius_bl, 2*radius_bl, 2*radius_bl, QRegion::Ellipse);
+    corner = QRegion(0, height()-radius_bl, radius_bl, radius_bl, QRegion::Rectangle);
+    region = region.subtracted(corner.subtracted(round));
+
+    setMask(region);
 }
 
 
