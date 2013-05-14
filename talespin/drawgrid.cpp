@@ -26,6 +26,7 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
         {
             for(int i=0; i != pMgr->numContainers(); i++)
             {
+                if(pMgr->getContainer(i)->getNumParticles() == 0 ) continue;
                 font.FaceSize(fontSize);
                 glColor4fv(&pMgr->getColorIndex(i)[0]);
 

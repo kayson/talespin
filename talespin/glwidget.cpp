@@ -75,7 +75,7 @@ void glwidget::resizeGL(int width, int height)
     gluPerspective(75.f, // FOV
                     (GLfloat) width / (GLfloat) height, // Aspect Ratio
                     1.0f, // Z-Clipping Near
-                    2000.0f); // Z-Clipping Far
+                    10000.0f); // Z-Clipping Far
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
@@ -99,7 +99,7 @@ void glwidget::paintGL()
     if(_autoZoom)
         fixCam();
 
-    //if( scene_zoom < -800 ){ scene_zoom = -800; }
+    if( scene_zoom < -3000 ){ scene_zoom = -3000; }
     if( scene_zoom > -10 ){ scene_zoom = -10; }
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -191,18 +191,33 @@ void glwidget::fixCam()
 {
     float maxX = 0;
     if(ParticleMgr->visType == BARCHART)
-            maxX = -( (ParticleMgr->columns * ParticleMgr->numContainers()) + ParticleMgr->spacing * (ParticleMgr->numOftimeInterval - 1) );
+        maxX = -( (ParticleMgr->columns * ParticleMgr->numContainers()) + ParticleMgr->spacing * (ParticleMgr->numOftimeInterval - 1) );
     else if(ParticleMgr->visType == LINES)
         maxX = -( (ParticleMgr->columns * ParticleMgr->numOftimeInterval) + ParticleMgr->spacing * ParticleMgr->numOftimeInterval );
+
     float maxY = -( ParticleMgr->getMaxSize() / ParticleMgr->columns );
 
     scene_pan_x = maxX * 0.5;
     scene_pan_y = maxY * 0.5;
 
-    if((maxX/maxY) >= 1.5)
-        scene_zoom = maxX * 0.5;
+    float scaleX = 0;
+    float scaleY = 0;
+
+    if(ParticleMgr->entType == QUANTITY)
+    {
+        scaleX = 0.5;
+        scaleY = 0.8;
+    }
     else
-        scene_zoom = maxY * 0.8;
+    {
+        scaleX = 0.3;
+        scaleY = 0.8;
+    }
+
+    if((maxX/maxY) >= 1.5)
+        scene_zoom = maxX * scaleX;
+    else
+        scene_zoom = maxY * scaleY;
 
 }
 

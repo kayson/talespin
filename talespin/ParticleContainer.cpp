@@ -19,6 +19,7 @@ ParticleContainer::~ParticleContainer()
 void ParticleContainer::fillParticleContainer(EntityType entity)
 {
     _particleVec.clear();
+    if( _numParticles == 0 ) return;
     if(entity == QUANTITY)
     {
         for(int i = 0; i < _numParticles;i++)

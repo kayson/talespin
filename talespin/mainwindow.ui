@@ -3151,6 +3151,9 @@ QRadioButton::indicator:checked:hover  {
         </item>
         <item row="1" column="5">
          <widget class="QWidget" name="settingsWidget" native="true">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
@@ -3306,6 +3309,12 @@ QRadioButton::indicator:checked:hover  {
      <height>21</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
    <widget class="QMenu" name="settingsMenu">
     <property name="title">
      <string>Inställningar</string>
@@ -3365,6 +3374,51 @@ QRadioButton::indicator:checked:hover  {
    </slots>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>searchAllArticles</tabstop>
+  <tabstop>typeYear_3</tabstop>
+  <tabstop>lineEdit_12</tabstop>
+  <tabstop>lineEdit_13</tabstop>
+  <tabstop>shopComboBox</tabstop>
+  <tabstop>selectAllRestaurantCheckBox</tabstop>
+  <tabstop>restaurantComboBox</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>showComboBox</tabstop>
+  <tabstop>quartersRB</tabstop>
+  <tabstop>monthsRB</tabstop>
+  <tabstop>daysRB</tabstop>
+  <tabstop>timeRadioButton</tabstop>
+  <tabstop>periodRadioButton</tabstop>
+  <tabstop>selectAllTicketCheckBox</tabstop>
+  <tabstop>ticketComboBox</tabstop>
+  <tabstop>removePushButton</tabstop>
+  <tabstop>newGroupPushButton</tabstop>
+  <tabstop>selectAllShopCheckBox</tabstop>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>myVisualisationTW</tabstop>
+  <tabstop>removeVisualisation</tabstop>
+  <tabstop>addVisualisationPushButton</tabstop>
+  <tabstop>startVisualisationPushButton</tabstop>
+  <tabstop>numbersCheckBox</tabstop>
+  <tabstop>gridCheckBox</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>showMainWindowCheckBox</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>particleRadiusSlider</tabstop>
+  <tabstop>barSpacingSlider</tabstop>
+  <tabstop>barWidthSlider</tabstop>
+  <tabstop>zoomSlider</tabstop>
+  <tabstop>barChartRadioButton</tabstop>
+  <tabstop>lineGraphRadioButton</tabstop>
+  <tabstop>numberOfGridsLineEdit</tabstop>
+  <tabstop>timePositionSlider</tabstop>
+  <tabstop>iconToolButton</tabstop>
+  <tabstop>clearBars</tabstop>
+  <tabstop>circleVisualisationRadioButton</tabstop>
+  <tabstop>comboBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

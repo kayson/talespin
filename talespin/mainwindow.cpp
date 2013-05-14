@@ -379,6 +379,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
         ui->groupWidget->show();
         ui->startVisualisationPushButton->show();
+
     }
 }
 

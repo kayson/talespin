@@ -33,6 +33,7 @@ void ParticleManager::draw()
     for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
     {
         ParticleContainer& container = **i;
+        if( container.getNumParticles() == 0 ) continue;
         if(visType != CIRCLES || container.timePosition == timePosition)
             container.drawParticles(radius);
     }
@@ -87,7 +88,8 @@ int ParticleManager::getMaxSize()
         }
         else if(entType == MEAN)
         {
-            if( (container.getProfit()/container.getNumParticles()) > max)
+            if( container.getNumParticles() == 0 ) continue;
+            else if( (container.getProfit()/container.getNumParticles()) > max)
             {
                 max = (container.getProfit()/container.getNumParticles());
             }
@@ -144,8 +146,8 @@ void ParticleManager::update()
             for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
             {
                 ParticleContainer& container = **i;
-
-                if(container.timePosition != timeInterval) continue;
+                if( container.getNumParticles() == 0 ) continue;
+                if( container.timePosition != timeInterval ) continue;
 
                 if(visType == BARCHART)
                 {
@@ -172,6 +174,7 @@ void ParticleManager::update()
                     for(std::vector<ParticleContainer*>::iterator k = _containerVec.begin(); k != _containerVec.end(); ++k)
                     {
                         ParticleContainer& container2 = **k;
+                        if(container2.getNumParticles() == 0 ) continue;
                         if(container2.ID != container.ID || container2.timePosition != container.timePosition+1) continue;
                         if(entType == QUANTITY)
                             numP2 = container2.getNumParticles();
@@ -187,7 +190,7 @@ void ParticleManager::update()
                         numP = container.getNumParticles();
                     else if(entType == EARNINGS)
                         numP = container.getProfit()/1000;
-                    else if(entType == MEAN)
+                    else if(entType == MEAN)                      
                         numP = container.getProfit()/container.getNumParticles();
 
                     if(numP2 == 0) numP2 = numP;
