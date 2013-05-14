@@ -3,12 +3,41 @@
 
 #include <QSettings>
 #include <QtGui>
+#include <QFontDatabase>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+        QStringList list;
+        list << "Roboto-Bold.ttf" << "Roboto-Medium.ttf" << "Roboto-Regular.ttf";
+        int fontID(-1);
+        bool fontWarningShown(false);
+        for (QStringList::const_iterator constIterator = list.constBegin(); constIterator != list.constEnd(); ++constIterator)
+        {
+            QFile res(":/MyFiles/" + *constIterator);
+            if (res.open(QIODevice::ReadOnly) == false)
+            {
+                if (fontWarningShown == false)
+                {
+                    QMessageBox::warning(0, "Application", (QString)"Impossible heje " + QChar(0x00AB) + " RobotoMedium " + QChar(0x00BB) + ".");
+                    fontWarningShown = true;
+                }
+            }
+            else
+            {
+                fontID = QFontDatabase::addApplicationFontFromData(res.readAll());
+                if (fontID == -1 && fontWarningShown == false)
+                {
+                    QMessageBox::warning(0, "Application", (QString)"hej hej monika " + QChar(0x00AB) + " Roboto-Medium " + QChar(0x00BB) + ".");
+                    fontWarningShown = true;
+                }
+            }
+        }
+
 
     ui->addVisualisationPushButton->setDisabled(true);
 
@@ -424,13 +453,13 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             if(ui->treeWidget->topLevelItem(i)->childCount() > 0)
             {
                 if(ui->panelGL->ParticleMgr->IDcounter == 0)
-                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(1.0f,0.0f,0.0f,0.8f));
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f, (1.0f/255.0f)*161.0f, (1.0f/255.0f)*221.0f, 1.0f));
                 else if(ui->panelGL->ParticleMgr->IDcounter == 1)
-                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,0.0f,0.8f));
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4((1.0f/255.0f)*195.0f, (1.0f/255.0f)*7.0f, (1.0f/255.0f)*89.0f, 1.0f));
                 else if(ui->panelGL->ParticleMgr->IDcounter == 2)
-                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,0.0f,1.0f,0.8f));
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4((1.0f/255.0f)*255.0f, (1.0f/255.0f)*202.0f, (1.0f/255.0f)*54.0f, 1.0f));
                 else if(ui->panelGL->ParticleMgr->IDcounter == 3)
-                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4(0.0f,1.0f,1.0f,0.8f));
+                    ui->panelGL->ParticleMgr->addContainer(timeInterval, num, sumprice, glm::vec4((1.0f/255.0f)*12.0f, (1.0f/255.0f)*174.0f, (1.0f/255.0f)*50.0f, 1.0f));
 
                 ui->panelGL->ParticleMgr->update();
                 ui->progressBar->setRange(0,ui->panelGL->ParticleMgr->numOftimeInterval);
@@ -442,13 +471,13 @@ void MainWindow::on_startVisualisationPushButton_clicked()
         {
             QPixmap pixmap(":/MyFiles/pic/iconRemove.png");
             if(ui->panelGL->ParticleMgr->IDcounter == 0)
-                pixmap.fill(QColor(255,0,0));
+                pixmap.fill(QColor(0,161,221));
             else if(ui->panelGL->ParticleMgr->IDcounter == 1)
-                pixmap.fill(QColor(0,255,0));
+                pixmap.fill(QColor(195,7,89));
             else if(ui->panelGL->ParticleMgr->IDcounter == 2)
-                pixmap.fill(QColor(0,0,255));
+                pixmap.fill(QColor(255,202,54));
             else if(ui->panelGL->ParticleMgr->IDcounter == 3)
-                pixmap.fill(QColor(0,255,255));
+                pixmap.fill(QColor(12,174,50));
 
             //pixmap.setMask(pixmap);
             QLabel *indicatorColor = new QLabel();
@@ -796,3 +825,40 @@ void MainWindow::setRoundedCorners(int radius_tl, int radius_tr, int radius_bl, 
 }
 
 
+void MainWindow::on_removePushButton_clicked()
+{
+    ui->treeWidget->clear();
+}
+
+
+void MainWindow::on_quartersRB_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->typeMonthLE->setDisabled(true);
+        ui->typeDayLE->setDisabled(true);
+    }
+
+}
+
+void MainWindow::on_monthsRB_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->typeMonthLE->setEnabled(true);
+        ui->typeDayLE->setDisabled(true);
+    }
+
+}
+
+void MainWindow::on_checkBox_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->zoomSlider->setDisabled(true);
+    }
+    else
+    {
+        ui->zoomSlider->setEnabled(true);
+    }
+}

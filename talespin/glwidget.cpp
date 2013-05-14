@@ -92,6 +92,8 @@ void glwidget::paintGL()
     scene_zoom_dx *= camera_friction;
     scene_zoom /= sc;
 
+    zoomChanged(scene_zoom);
+
     ParticleMgr->radius = -300 / scene_zoom;
 
     if(_autoZoom)
