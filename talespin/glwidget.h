@@ -49,6 +49,7 @@ protected:
 private:
 
 signals:
+    void zoomChanged(int value);
 
 public slots:
     void particleSize(int value);

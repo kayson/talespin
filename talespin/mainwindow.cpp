@@ -560,7 +560,7 @@ void MainWindow::on_lineGraphRadioButton_toggled(bool checked)
 
 void MainWindow::on_circleVisualisationRadioButton_toggled(bool checked)
 {
-    ui->timePositionSlider->setEnabled(checked);
+    //ui->timePositionSlider->setEnabled(checked);
     ui->panelGL->ParticleMgr->visType = CIRCLES;
     ui->panelGL->_drawGrid->hideGrid = false;
     ui->gridCheckBox->setChecked(false);
@@ -820,9 +820,6 @@ void MainWindow::setRoundedCorners(int radius_tl, int radius_tr, int radius_bl, 
 }
 
 
-
-
-
 void MainWindow::on_removePushButton_clicked()
 {
     ui->treeWidget->clear();
@@ -847,4 +844,16 @@ void MainWindow::on_monthsRB_toggled(bool checked)
         ui->typeDayLE->setDisabled(true);
     }
 
+}
+
+void MainWindow::on_checkBox_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->zoomSlider->setDisabled(true);
+    }
+    else
+    {
+        ui->zoomSlider->setEnabled(true);
+    }
 }
