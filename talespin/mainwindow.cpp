@@ -715,13 +715,6 @@ void MainWindow::on_numbersCheckBox_toggled(bool checked)
     ui->panelGL->showNumbers(checked);
 }
 
-void MainWindow::on_advanceSettingsAction_triggered()
-{
-    ui->settingsWidget->show();
-    //ui->marketingWidget->hide();
-    ui->addVisualisationPushButton->hide();
-}
-
 void MainWindow::on_createNewAction_triggered()
 {
     ui->marketingWidget->show();
@@ -855,5 +848,17 @@ void MainWindow::on_checkBox_toggled(bool checked)
     else
     {
         ui->zoomSlider->setEnabled(true);
+    }
+}
+
+void MainWindow::on_advanceSettingsAction_toggled(bool arg1)
+{
+    if(arg1)
+    {
+        ui->settingsWidget->show();
+    }
+    else
+    {
+        ui->settingsWidget->hide();
     }
 }

@@ -3252,6 +3252,9 @@ QRadioButton::indicator:checked:hover  {
    </property>
   </action>
   <action name="advanceSettingsAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Avancerade inställningar</string>
    </property>
