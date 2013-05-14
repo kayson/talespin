@@ -166,9 +166,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->zoomLabel->setPixmap(pixmap2);
     ui->zoomLabel->setScaledContents(true);
 
-    ui->particleLabel->setPixmap(pixmap2);
-    ui->particleLabel->setScaledContents(true);
-
     QPixmap pixmap3(":/MyFiles/pic/expand.png");
     QIcon icon;
     icon.addPixmap(pixmap3);
@@ -260,7 +257,6 @@ void MainWindow::saveSettings()
     settings.setValue("windowSize", size());
 
     settings.setValue("barWidth", ui->barWidthSlider->value());
-    settings.setValue("particleRadius", ui->particleRadiusSlider->value());
     settings.setValue("barSpace", ui->barSpacingSlider->value());
 }
 
@@ -272,7 +268,6 @@ void MainWindow::loadSettings()
     move(settings.value("windowPos", QPoint(200, 200)).toPoint());
 
     ui->barWidthSlider->setValue(settings.value("barWidth", 10).toInt());
-    ui->particleRadiusSlider->setValue(settings.value("particleRadius", 1.0f).toFloat());
     ui->barSpacingSlider->setValue(settings.value("barSpace", 0).toInt());
 
 }

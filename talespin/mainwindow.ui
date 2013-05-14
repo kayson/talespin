@@ -2102,161 +2102,6 @@ QTreeWidget#treeWidget::item:selected
 }</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="2">
-         <widget class="QGroupBox" name="groupBox_9">
-          <property name="styleSheet">
-           <string notr="true">QGroupBox#groupBox_9 { 
-	 border:0; 
-     background-color: transparent;
- }
-
-QGroupBox::title { 
-    background-color: transparent;
- }</string>
-          </property>
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_7">
-           <item>
-            <widget class="QLabel" name="label_20">
-             <property name="font">
-              <font>
-               <pointsize>11</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>Detaljer</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="numbersCheckBox">
-             <property name="styleSheet">
-              <string notr="true">QCheckBox  {
-    spacing: 5px;
- 	background-color: transparent;
-}
- 
-QCheckBox::indicator  {
-    width: 13px;
-    height: 13px;
-}
- 
-QCheckBox::indicator:unchecked  {
-    image: url(:/MyFiles/pic/checkbox_unchecked.png);
-}
- 
-QCheckBox::indicator:unchecked:hover  {
-    image: url(:/MyFiles/pic/checkbox_unchecked_hover.png);
-}
- 
- 
-QCheckBox::indicator:checked  {
-    image: url(:/MyFiles/pic/checkbox_checked.png);
-}
- 
-QCheckBox::indicator:checked:hover  {
-    image: url(:/MyFiles/pic/checkbox_checked_hover.png);
-}
- </string>
-             </property>
-             <property name="text">
-              <string>Siffror</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="gridCheckBox">
-             <property name="styleSheet">
-              <string notr="true">QCheckBox  {
-    spacing: 5px;
- 	background-color: transparent;
-}
- 
-QCheckBox::indicator  {
-    width: 13px;
-    height: 13px;
-}
- 
-QCheckBox::indicator:unchecked  {
-    image: url(:/MyFiles/pic/checkbox_unchecked.png);
-}
- 
-QCheckBox::indicator:unchecked:hover  {
-    image: url(:/MyFiles/pic/checkbox_unchecked_hover.png);
-}
- 
- 
-QCheckBox::indicator:checked  {
-    image: url(:/MyFiles/pic/checkbox_checked.png);
-}
- 
-QCheckBox::indicator:checked:hover  {
-    image: url(:/MyFiles/pic/checkbox_checked_hover.png);
-}
- </string>
-             </property>
-             <property name="text">
-              <string>Grid</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox">
-             <property name="styleSheet">
-              <string notr="true">QCheckBox  {
-    spacing: 5px;
- 	background-color: transparent;
-}
- 
-QCheckBox::indicator  {
-    width: 13px;
-    height: 13px;
-}
- 
-QCheckBox::indicator:unchecked  {
-    image: url(:/MyFiles/pic/checkbox_unchecked.png);
-}
- 
-QCheckBox::indicator:unchecked:hover  {
-    image: url(:/MyFiles/pic/checkbox_unchecked_hover.png);
-}
- 
- 
-QCheckBox::indicator:checked  {
-    image: url(:/MyFiles/pic/checkbox_checked.png);
-}
- 
-QCheckBox::indicator:checked:hover  {
-    image: url(:/MyFiles/pic/checkbox_checked_hover.png);
-}
- </string>
-             </property>
-             <property name="text">
-              <string>Auto Zoom</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item row="1" column="4">
          <widget class="QGroupBox" name="groupBox_12">
           <property name="styleSheet">
@@ -2360,6 +2205,7 @@ QGroupBox::title {
             <widget class="QLabel" name="label_22">
              <property name="font">
               <font>
+               <family>Roboto</family>
                <pointsize>11</pointsize>
               </font>
              </property>
@@ -2482,498 +2328,6 @@ QRadioButton::indicator:checked:hover  {
               </size>
              </property>
             </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QGroupBox" name="groupBox_8">
-          <property name="minimumSize">
-           <size>
-            <width>600</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QGroupBox#groupBox_8 { 
-	 border:0; 
-     background-color: transparent;
- }
-
-QGroupBox::title { 
-    background-color: transparent;
- }</string>
-          </property>
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="2" column="4">
-            <widget class="QSlider" name="particleRadiusSlider">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QSlider::groove:horizontal {
-border: 1px solid #bbb;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #EEE066, stop: 1 #FFFEBA);
-background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:horizontal {
-
-	background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::handle:horizontal:hover {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::sub-page:horizontal:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:horizontal:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:horizontal:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>20</number>
-             </property>
-             <property name="singleStep">
-              <number>1</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="4">
-            <widget class="QSlider" name="barSpacingSlider">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QSlider::groove:horizontal {
-border: 1px solid #bbb;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #EEE066, stop: 1 #FFFEBA);
-background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:horizontal {
-
-	background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::handle:horizontal:hover {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::sub-page:horizontal:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:horizontal:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:horizontal:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-             </property>
-             <property name="maximum">
-              <number>50</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Zoom</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QSlider" name="barWidthSlider">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QSlider::groove:horizontal {
-border: 1px solid #bbb;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #EEE066, stop: 1 #FFFEBA);
-background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:horizontal {
-
-background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::handle:horizontal:hover {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::sub-page:horizontal:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:horizontal:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:horizontal:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>20</number>
-             </property>
-             <property name="pageStep">
-              <number>1</number>
-             </property>
-             <property name="tracking">
-              <bool>true</bool>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="invertedAppearance">
-              <bool>false</bool>
-             </property>
-             <property name="invertedControls">
-              <bool>false</bool>
-             </property>
-             <property name="tickPosition">
-              <enum>QSlider::NoTicks</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="zoomLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="4">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Stapelavstånd</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="barwidthLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="2">
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>Stapelbredd</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="3">
-            <widget class="QLabel" name="barspacingLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Partikelstorlek</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <spacer name="verticalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="2" column="3">
-            <widget class="QLabel" name="particleLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>31</width>
-               <height>31</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="2" column="1">
-            <widget class="QSlider" name="zoomSlider">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QSlider::groove:horizontal {
-border: 1px solid #bbb;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:horizontal {
-background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
-    stop: 0 #EEE066, stop: 1 #FFFEBA);
-background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
-    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:horizontal {
-
-	background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
-border: 1px solid #777;
-height: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:horizontal {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::handle:horizontal:hover {
-	image: url(:/MyFiles/pic/radiobutton_checked.png);
-	margin: -4px 0;
-}
-
-QSlider::sub-page:horizontal:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:horizontal:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:horizontal:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-             </property>
-             <property name="minimum">
-              <number>-800</number>
-             </property>
-             <property name="maximum">
-              <number>-10</number>
-             </property>
-             <property name="pageStep">
-              <number>1</number>
-             </property>
-             <property name="tracking">
-              <bool>true</bool>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="invertedAppearance">
-              <bool>false</bool>
-             </property>
-             <property name="invertedControls">
-              <bool>false</bool>
-             </property>
-             <property name="tickPosition">
-              <enum>QSlider::NoTicks</enum>
-             </property>
-            </widget>
            </item>
           </layout>
          </widget>
@@ -3119,6 +2473,7 @@ QRadioButton::indicator:checked:hover  {
             <widget class="QLabel" name="label_18">
              <property name="font">
               <font>
+               <family>Roboto</family>
                <pointsize>11</pointsize>
               </font>
              </property>
@@ -3149,9 +2504,6 @@ QRadioButton::indicator:checked:hover  {
            <bool>false</bool>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="3" column="2">
-            <widget class="QLineEdit" name="numberOfGridsLineEdit"/>
-           </item>
            <item row="1" column="3">
             <widget class="QSlider" name="timePositionSlider">
              <property name="enabled">
@@ -3176,6 +2528,9 @@ QRadioButton::indicator:checked:hover  {
               <number>0</number>
              </property>
             </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="numberOfGridsLineEdit"/>
            </item>
            <item row="0" column="3">
             <widget class="QToolButton" name="iconToolButton">
@@ -3279,6 +2634,557 @@ QRadioButton::indicator:checked:hover  {
              </property>
              <property name="text">
               <string>Kontrollpanel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QGroupBox" name="groupBox_9">
+          <property name="styleSheet">
+           <string notr="true">QGroupBox#groupBox_9 { 
+	 border:0; 
+     background-color: transparent;
+ }
+
+QGroupBox::title { 
+    background-color: transparent;
+ }</string>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="QLabel" name="label_20">
+             <property name="font">
+              <font>
+               <family>Roboto</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Detaljer</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="numbersCheckBox">
+             <property name="styleSheet">
+              <string notr="true">QCheckBox  {
+    spacing: 5px;
+ 	background-color: transparent;
+}
+ 
+QCheckBox::indicator  {
+    width: 13px;
+    height: 13px;
+}
+ 
+QCheckBox::indicator:unchecked  {
+    image: url(:/MyFiles/pic/checkbox_unchecked.png);
+}
+ 
+QCheckBox::indicator:unchecked:hover  {
+    image: url(:/MyFiles/pic/checkbox_unchecked_hover.png);
+}
+ 
+ 
+QCheckBox::indicator:checked  {
+    image: url(:/MyFiles/pic/checkbox_checked.png);
+}
+ 
+QCheckBox::indicator:checked:hover  {
+    image: url(:/MyFiles/pic/checkbox_checked_hover.png);
+}
+ </string>
+             </property>
+             <property name="text">
+              <string>Siffror</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="gridCheckBox">
+             <property name="styleSheet">
+              <string notr="true">QCheckBox  {
+    spacing: 5px;
+ 	background-color: transparent;
+}
+ 
+QCheckBox::indicator  {
+    width: 13px;
+    height: 13px;
+}
+ 
+QCheckBox::indicator:unchecked  {
+    image: url(:/MyFiles/pic/checkbox_unchecked.png);
+}
+ 
+QCheckBox::indicator:unchecked:hover  {
+    image: url(:/MyFiles/pic/checkbox_unchecked_hover.png);
+}
+ 
+ 
+QCheckBox::indicator:checked  {
+    image: url(:/MyFiles/pic/checkbox_checked.png);
+}
+ 
+QCheckBox::indicator:checked:hover  {
+    image: url(:/MyFiles/pic/checkbox_checked_hover.png);
+}
+ </string>
+             </property>
+             <property name="text">
+              <string>Grid</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="minimumSize">
+           <size>
+            <width>600</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox#groupBox_8 { 
+	 border:0; 
+     background-color: transparent;
+ }
+
+QGroupBox::title { 
+    background-color: transparent;
+ }</string>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="topMargin">
+            <number>12</number>
+           </property>
+           <item row="5" column="1">
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="2">
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="zoomLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>31</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>31</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="checkBox">
+             <property name="styleSheet">
+              <string notr="true">QCheckBox  {
+    spacing: 5px;
+ 	background-color: transparent;
+}
+ 
+QCheckBox::indicator  {
+    width: 13px;
+    height: 13px;
+}
+ 
+QCheckBox::indicator:unchecked  {
+    image: url(:/MyFiles/pic/checkbox_unchecked.png);
+}
+ 
+QCheckBox::indicator:unchecked:hover  {
+    image: url(:/MyFiles/pic/checkbox_unchecked_hover.png);
+}
+ 
+ 
+QCheckBox::indicator:checked  {
+    image: url(:/MyFiles/pic/checkbox_checked.png);
+}
+ 
+QCheckBox::indicator:checked:hover  {
+    image: url(:/MyFiles/pic/checkbox_checked_hover.png);
+}
+ </string>
+             </property>
+             <property name="text">
+              <string>Auto Zoom</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="font">
+              <font>
+               <family>Roboto</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Zoom</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QSlider" name="zoomSlider">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #EEE066, stop: 1 #FFFEBA);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+
+	background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+	image: url(:/MyFiles/pic/radiobutton_checked.png);
+	margin: -4px 0;
+}
+
+QSlider::handle:horizontal:hover {
+	image: url(:/MyFiles/pic/radiobutton_checked.png);
+	margin: -4px 0;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+             </property>
+             <property name="minimum">
+              <number>-800</number>
+             </property>
+             <property name="maximum">
+              <number>-10</number>
+             </property>
+             <property name="pageStep">
+              <number>1</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="invertedAppearance">
+              <bool>false</bool>
+             </property>
+             <property name="invertedControls">
+              <bool>false</bool>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::NoTicks</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" colspan="2">
+            <widget class="QLabel" name="label_5">
+             <property name="font">
+              <font>
+               <family>Roboto</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Stapel Inställningar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3">
+            <widget class="QLabel" name="barspacingLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>31</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>31</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="4">
+            <widget class="QSlider" name="barWidthSlider">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #EEE066, stop: 1 #FFFEBA);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+
+background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+	image: url(:/MyFiles/pic/radiobutton_checked.png);
+	margin: -4px 0;
+}
+
+QSlider::handle:horizontal:hover {
+	image: url(:/MyFiles/pic/radiobutton_checked.png);
+	margin: -4px 0;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>20</number>
+             </property>
+             <property name="pageStep">
+              <number>1</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="invertedAppearance">
+              <bool>false</bool>
+             </property>
+             <property name="invertedControls">
+              <bool>false</bool>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::NoTicks</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLabel" name="barwidthLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>31</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>31</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QSlider" name="barSpacingSlider">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #EEE066, stop: 1 #FFFEBA);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #FFF9BA, stop: 1 #FFCA1A);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+
+	background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1, stop:0.0170455 rgba(0, 0, 0, 255), stop:0.113636 rgba(125, 125, 125, 255), stop:0.892045 rgba(188, 188, 188, 255), stop:1 rgba(0, 0, 0, 255));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+	image: url(:/MyFiles/pic/radiobutton_checked.png);
+	margin: -4px 0;
+}
+
+QSlider::handle:horizontal:hover {
+	image: url(:/MyFiles/pic/radiobutton_checked.png);
+	margin: -4px 0;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+             </property>
+             <property name="maximum">
+              <number>50</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
