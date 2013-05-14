@@ -70,6 +70,9 @@ private slots:
     void on_radioButton_3_toggled(bool checked);
 
     void on_typeYearLE_editingFinished();
+    void on_removePushButton_clicked();
+    void on_quartersRB_toggled(bool checked);
+    void on_monthsRB_toggled(bool checked);
 };
 
 #endif // MAINWINDOW_H

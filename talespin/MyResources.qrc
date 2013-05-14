@@ -3,12 +3,23 @@
         <file>pic/lines.png</file>
         <file>pic/bars.png</file>
         <file>pic/expand.png</file>
-        <file>pic/radiobutton.png</file>
         <file>pic/iconBars.png</file>
         <file>pic/iconBarWidth.png</file>
         <file>pic/iconLines.png</file>
         <file>pic/iconTriangle.png</file>
         <file>pic/iconTriangleGrey.png</file>
         <file>pic/iconRemove.png</file>
+        <file>pic/checkbox_checked.png</file>
+        <file>pic/checkbox_checked_hover.png</file>
+        <file>pic/checkbox_unchecked.png</file>
+        <file>pic/checkbox_unchecked_hover.png</file>
+        <file>pic/radiobutton_checked.png</file>
+        <file>pic/radiobutton_checked_hover.png</file>
+        <file>pic/radiobutton_unchecked.png</file>
+        <file>pic/radiobutton_unchecked_hover.png</file>
+        <file>pic/radiobutton.png</file>
+        <file>Roboto-Bold.ttf</file>
+        <file>Roboto-Medium.ttf</file>
+        <file>Roboto-Regular.ttf</file>
     </qresource>
 </RCC>
