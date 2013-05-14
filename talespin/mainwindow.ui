@@ -3281,6 +3281,51 @@ QRadioButton::indicator:checked:hover  {
    </slots>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>searchAllArticles</tabstop>
+  <tabstop>typeYear_3</tabstop>
+  <tabstop>lineEdit_12</tabstop>
+  <tabstop>lineEdit_13</tabstop>
+  <tabstop>shopComboBox</tabstop>
+  <tabstop>selectAllRestaurantCheckBox</tabstop>
+  <tabstop>restaurantComboBox</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>showComboBox</tabstop>
+  <tabstop>quartersRB</tabstop>
+  <tabstop>monthsRB</tabstop>
+  <tabstop>daysRB</tabstop>
+  <tabstop>timeRadioButton</tabstop>
+  <tabstop>periodRadioButton</tabstop>
+  <tabstop>selectAllTicketCheckBox</tabstop>
+  <tabstop>ticketComboBox</tabstop>
+  <tabstop>removePushButton</tabstop>
+  <tabstop>newGroupPushButton</tabstop>
+  <tabstop>selectAllShopCheckBox</tabstop>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>myVisualisationTW</tabstop>
+  <tabstop>removeVisualisation</tabstop>
+  <tabstop>addVisualisationPushButton</tabstop>
+  <tabstop>startVisualisationPushButton</tabstop>
+  <tabstop>numbersCheckBox</tabstop>
+  <tabstop>gridCheckBox</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>showMainWindowCheckBox</tabstop>
+  <tabstop>radioButton</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>particleRadiusSlider</tabstop>
+  <tabstop>barSpacingSlider</tabstop>
+  <tabstop>barWidthSlider</tabstop>
+  <tabstop>zoomSlider</tabstop>
+  <tabstop>barChartRadioButton</tabstop>
+  <tabstop>lineGraphRadioButton</tabstop>
+  <tabstop>numberOfGridsLineEdit</tabstop>
+  <tabstop>timePositionSlider</tabstop>
+  <tabstop>iconToolButton</tabstop>
+  <tabstop>clearBars</tabstop>
+  <tabstop>circleVisualisationRadioButton</tabstop>
+  <tabstop>comboBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

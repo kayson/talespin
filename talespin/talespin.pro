@@ -31,7 +31,7 @@ INCLUDEPATH += ./glm ./ftgl/2.1.3-rc5/include ./freetype/2.4.10/include/freetype
 FORMS    += mainwindow.ui
 
 win32 {
-    LIBS += -lfreetype -lftgl
+    LIBS += -lfreetype2411 -lftgl
 }
 
 RESOURCES += \
