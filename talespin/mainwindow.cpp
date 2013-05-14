@@ -166,9 +166,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->zoomLabel->setPixmap(pixmap2);
     ui->zoomLabel->setScaledContents(true);
 
-    ui->particleLabel->setPixmap(pixmap2);
-    ui->particleLabel->setScaledContents(true);
-
     QPixmap pixmap3(":/MyFiles/pic/expand.png");
     QIcon icon;
     icon.addPixmap(pixmap3);
@@ -260,7 +257,6 @@ void MainWindow::saveSettings()
     settings.setValue("windowSize", size());
 
     settings.setValue("barWidth", ui->barWidthSlider->value());
-    settings.setValue("particleRadius", ui->particleRadiusSlider->value());
     settings.setValue("barSpace", ui->barSpacingSlider->value());
 }
 
@@ -272,7 +268,6 @@ void MainWindow::loadSettings()
     move(settings.value("windowPos", QPoint(200, 200)).toPoint());
 
     ui->barWidthSlider->setValue(settings.value("barWidth", 10).toInt());
-    ui->particleRadiusSlider->setValue(settings.value("particleRadius", 1.0f).toFloat());
     ui->barSpacingSlider->setValue(settings.value("barSpace", 0).toInt());
 
 }
@@ -566,7 +561,7 @@ void MainWindow::on_lineGraphRadioButton_toggled(bool checked)
 
 void MainWindow::on_circleVisualisationRadioButton_toggled(bool checked)
 {
-    ui->timePositionSlider->setEnabled(checked);
+    //ui->timePositionSlider->setEnabled(checked);
     ui->panelGL->ParticleMgr->visType = CIRCLES;
     ui->panelGL->_drawGrid->hideGrid = false;
     ui->gridCheckBox->setChecked(false);
@@ -721,13 +716,6 @@ void MainWindow::on_numbersCheckBox_toggled(bool checked)
     ui->panelGL->showNumbers(checked);
 }
 
-void MainWindow::on_advanceSettingsAction_triggered()
-{
-    ui->settingsWidget->show();
-    //ui->marketingWidget->hide();
-    ui->addVisualisationPushButton->hide();
-}
-
 void MainWindow::on_createNewAction_triggered()
 {
     ui->marketingWidget->show();
@@ -861,5 +849,17 @@ void MainWindow::on_checkBox_toggled(bool checked)
     else
     {
         ui->zoomSlider->setEnabled(true);
+    }
+}
+
+void MainWindow::on_advanceSettingsAction_toggled(bool arg1)
+{
+    if(arg1)
+    {
+        ui->settingsWidget->show();
+    }
+    else
+    {
+        ui->settingsWidget->hide();
     }
 }

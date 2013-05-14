@@ -60,7 +60,6 @@ private slots:
 
     void on_gridCheckBox_toggled(bool checked);
     void on_numbersCheckBox_toggled(bool checked);
-    void on_advanceSettingsAction_triggered();
     void on_createNewAction_triggered();
     void on_zoomSlider_valueChanged(int value);
     void on_closeAction_triggered();
@@ -74,6 +73,7 @@ private slots:
     void on_quartersRB_toggled(bool checked);
     void on_monthsRB_toggled(bool checked);
     void on_checkBox_toggled(bool checked);
+    void on_advanceSettingsAction_toggled(bool arg1);
 };
 
 #endif // MAINWINDOW_H
