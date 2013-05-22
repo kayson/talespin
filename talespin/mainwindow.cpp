@@ -39,6 +39,11 @@ MainWindow::MainWindow(QWidget *parent) :
         }
 
 
+    ui->menuBar->setStyleSheet("QMenuBar {background-color: red;} QMenuBar::item{background-color: red;}  QMenuBar::item:selected {background: #a8a8a8;} ");
+    ui->visulatorMenu->setStyleSheet("QMenu {background-color: red;}");
+    ui->settingsMenu->setStyleSheet("QMenu {background-color: red;}");
+
+
     ui->addVisualisationPushButton->setDisabled(true);
 
     ui->settingsWidget->hide();
