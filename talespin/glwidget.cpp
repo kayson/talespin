@@ -26,14 +26,8 @@ glwidget::glwidget(QWidget *parent)
     _autoZoom = true;
 
     ParticleMgr = new ParticleManager();
-    ParticleMgr->visType = BARCHART;
-    ParticleMgr->columns = 10;
-    ParticleMgr->radius = 1.0f;
-    ParticleMgr->spacing = 0;
-    ParticleMgr->timePosition = 1;
-
-    ParticleMgr->clearContainers();
-    ParticleMgr->update();
+    ParticleMgr->visType = CLOGO;
+    ParticleMgr->cLogo();
 
     _drawGrid = new drawGrid();
 
@@ -58,7 +52,7 @@ void glwidget::timerEvent(QTimerEvent *event)
 
 void glwidget::initializeGL()
 {
-    glClearColor( 0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor( (1.0f/255.0f)*60.0f, (1.0f/255.0f)*60.0f, (1.0f/255.0f)*59.0f, 1.0f);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_POINT_SMOOTH );
@@ -94,7 +88,10 @@ void glwidget::paintGL()
 
     zoomChanged(scene_zoom);
 
-    ParticleMgr->radius = -300 / scene_zoom;
+    if(ParticleMgr->visType == CLOGO)
+        ParticleMgr->radius = 1;
+    else
+        ParticleMgr->radius = -300 / scene_zoom;
 
     if(_autoZoom)
         fixCam();

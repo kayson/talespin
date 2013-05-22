@@ -415,8 +415,8 @@ void MainWindow::on_startVisualisationPushButton_clicked()
 
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
-                article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
-
+                article = ui->treeWidget->topLevelItem(i)->child(j)->text(0).toLatin1();
+                qDebug() << article;
                //AddChild(topItem,article);
 
                 QSqlQuery query(db);
