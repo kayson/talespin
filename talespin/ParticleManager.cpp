@@ -335,6 +335,8 @@ void ParticleManager::update()
 
 void ParticleManager::cLogo()
 {
+    visType = CLOGO;
+
     addContainer(12,3000,0,glm::vec4((1.0f/255.0f)*255.0f, (1.0f/255.0f)*114.0f, (1.0f/255.0f)*37.0f, 1.0f));
 
     addContainer(11,3000,0,glm::vec4((1.0f/255.0f)*205.0f, (1.0f/255.0f)*50.0f, (1.0f/255.0f)*34.0f, 1.0f));

@@ -26,7 +26,6 @@ glwidget::glwidget(QWidget *parent)
     _autoZoom = true;
 
     ParticleMgr = new ParticleManager();
-    ParticleMgr->visType = CLOGO;
     logoTimer = 0;
     ParticleMgr->cLogo();
 
@@ -64,7 +63,7 @@ void glwidget::timerEvent(QTimerEvent *event)
 
 void glwidget::initializeGL()
 {
-    glClearColor( (1.0f/255.0f)*60.0f, (1.0f/255.0f)*60.0f, (1.0f/255.0f)*59.0f, 1.0f);
+    glClearColor(55.0f/255.0f, 55.0f/255.0f, 55.0f/255.0f, 1.0f);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_POINT_SMOOTH );
@@ -94,7 +93,8 @@ void glwidget::paintGL()
     mouse_pan_dx *= camera_friction;
     mouse_pan_dy *= camera_friction;
 
-    qreal sc = powf(1.1, scene_zoom_dx);
+    sc = powf(1.1, scene_zoom_dx);
+
     scene_zoom_dx *= camera_friction;
     scene_zoom /= sc;
 
@@ -161,7 +161,7 @@ void glwidget::mouseMoveEvent ( QMouseEvent * event )
 
 void glwidget::wheelEvent( QWheelEvent * event )
 {
-    int numSteps = event->delta() / 120;
+    float numSteps = event->delta() / 120;
     if (numSteps == 0)
     {
         event->ignore();
@@ -208,7 +208,6 @@ void glwidget::fixCam()
 
     float maxY = -( ParticleMgr->getMaxSize() / ParticleMgr->columns );
 
-    scene_pan_x = maxX * 0.5;
     scene_pan_y = maxY * 0.5;
 
     float scaleX = 0;
@@ -216,12 +215,14 @@ void glwidget::fixCam()
 
     if(ParticleMgr->entType == QUANTITY)
     {
-        scaleX = 0.5;
-        scaleY = 0.8;
+        scene_pan_x = maxX * 0.65;
+        scaleX = 0.4;
+        scaleY = 0.9;
     }
     else
     {
-        scaleX = 0.3;
+        scene_pan_x = maxX * 0.75;
+        scaleX = 0.4;
         scaleY = 0.8;
     }
 

@@ -38,11 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
             }
         }
 
-
-    ui->menuBar->setStyleSheet("QMenuBar {background-color: red;} QMenuBar::item{background-color: red;}  QMenuBar::item:selected {background: #a8a8a8;} ");
-    ui->visulatorMenu->setStyleSheet("QMenu {background-color: red;}");
-    ui->settingsMenu->setStyleSheet("QMenu {background-color: red;}");
-
+    ui->menuBar->setStyleSheet("QMenuBar {background-color: rgb(111, 111, 110);} QMenuBar::item{background-color: rgb(111, 111, 110);} QMenuBar::item{color: rgb(245, 245, 249);}  QMenuBar::item:selected {background: #a8a8a8;} ");
+    ui->visulatorMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);} ");
+    ui->settingsMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);}");
 
     ui->addVisualisationPushButton->setDisabled(true);
 
@@ -97,60 +95,73 @@ MainWindow::MainWindow(QWidget *parent) :
 //                                         "selection-color:red;"
 //                                         "selection-background-color: blue;");
 
-    QString placeholderYear;
-    placeholderYear =  QString::fromUtf8("ÅR");
-    ui->typeYearLE->setPlaceholderText(placeholderYear);
 
-    QStringList CompletionYear;
-    CompletionYear << "2010" << "2011" << "2012";
-    StringCompleter = new QCompleter(CompletionYear,this);
-    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->typeYearLE->setCompleter(StringCompleter);
+//    QString placeholderYear;
+//    placeholderYear =  QString::fromUtf8("ÅR");
+//    ui->typeYearLE->setPlaceholderText(placeholderYear);
 
-    QString placeholderMonth;
-    placeholderMonth =  QString::fromUtf8("MÅNAD");
-    ui->typeMonthLE->setPlaceholderText(placeholderMonth);
+//    QStringList CompletionYear;
+//    CompletionYear << "2010" << "2011" << "2012";
+//    StringCompleter = new QCompleter(CompletionYear,this);
+//    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+//    StringCompleter->popup()->setStyleSheet("background-color: rgb(225, 225, 225);");
+//    ui->typeYearLE->setCompleter(StringCompleter);
 
-    QStringList CompletionMonth;
+//    QString placeholderMonth;
+//    placeholderMonth =  QString::fromUtf8("MÅNAD");
+//    ui->typeMonthLE->setPlaceholderText(placeholderMonth);
 
-    for (int i = 0; i <= 12; i++)
-    {
-        QString s = QString::number(i);
-        CompletionMonth << s;
-    }
+    //    QStringList CompletionMonth;
 
-    StringCompleter = new QCompleter(CompletionMonth,this);
-    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->typeMonthLE->setCompleter(StringCompleter);
+    //    for (int i = 0; i <= 12; i++)
+    //    {
+    //        QString s = QString::number(i);
+    //        if(i<10)
+    //            CompletionMonth << "0" + s;
+    //        else
+    //            CompletionMonth << s;
+    //    }
 
-    QString placeholderDay;
-    placeholderDay =  QString::fromUtf8("DAG");
-    ui->typeDayLE->setPlaceholderText(placeholderDay);
+    //    StringCompleter = new QCompleter(CompletionMonth,this);
+    //    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    //    StringCompleter->popup()->setStyleSheet("background-color: rgb(225, 225, 225);");
+    //    ui->typeMonthLE->setCompleter(StringCompleter);
 
-    QStringList CompletionDay;
+    //    QString placeholderDay;
+    //    placeholderDay =  QString::fromUtf8("DAG");
+    //    ui->typeDayLE->setPlaceholderText(placeholderDay);
 
-    for (int i = 0; i <= 31; i++)
-    {
-        QString s = QString::number(i);
-        CompletionDay << s;
-    }
+    //    QStringList CompletionDay;
 
-    StringCompleter = new QCompleter(CompletionDay,this);
-    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    ui->typeDayLE->setCompleter(StringCompleter);
+    //    for (int i = 0; i <= 31; i++)
+    //    {
+    //        QString s = QString::number(i);
+    //        if(i<10)
+    //            CompletionDay << "0" + s;
+    //        else
+    //            CompletionDay << s;
+    //    }
+
+    //    StringCompleter = new QCompleter(CompletionDay,this);
+    //    StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    //    StringCompleter->popup()->setStyleSheet("background-color: rgb(225, 225, 225);");
+    //    ui->typeDayLE->setCompleter(StringCompleter);
 
 
-    QPixmap pixmap4(":/MyFiles/pic/iconTriangle.png");
+    QPixmap pixmapAdd(":/MyFiles/pic/button_add.png");
+    QPixmap pixmapReady(":/MyFiles/pic/button_ready.png");
     QIcon triangleButtonIcon;
-    triangleButtonIcon.addPixmap(pixmap4);
+    QIcon triangleButtonIcon2;
+    triangleButtonIcon.addPixmap(pixmapAdd);
+    triangleButtonIcon2.addPixmap(pixmapReady);
 
     ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
-    ui->addVisualisationPushButton->setIconSize(QSize(100,450));
-    ui->addVisualisationPushButton->setMask(pixmap4.mask());
+    ui->addVisualisationPushButton->setIconSize(QSize(100,145));
+    ui->addVisualisationPushButton->setMask(pixmapAdd.mask());
 
-    ui->startVisualisationPushButton->setIcon(triangleButtonIcon);
-    ui->startVisualisationPushButton->setIconSize(QSize(100,450));
-    ui->startVisualisationPushButton->setMask(pixmap4.mask());
+    ui->startVisualisationPushButton->setIcon(triangleButtonIcon2);
+    ui->startVisualisationPushButton->setIconSize(QSize(100,145));
+    ui->startVisualisationPushButton->setMask(pixmapReady.mask());
 
 
     QPixmap pixmap(":/MyFiles/pic/iconLines.png");
@@ -168,8 +179,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->barwidthLabel->setPixmap(barWidthPixmap);
     ui->barwidthLabel->setScaledContents(true);
 
-    ui->zoomLabel->setPixmap(pixmap2);
-    ui->zoomLabel->setScaledContents(true);
+    ui->zoomLabel->setText("0-100%");
+    ui->zoomLabel->setFont(QFont("Roboto", 7));
+    ui->zoomLabel->setStyleSheet("QLabel {color: rgb(245, 245, 249);}");
+    //ui->zoomLabel->setScaledContents(true);
 
     QPixmap pixmap3(":/MyFiles/pic/expand.png");
     QIcon icon;
@@ -202,9 +215,21 @@ MainWindow::MainWindow(QWidget *parent) :
             StringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
             //StringCompleter->setCompletionMode(QCompleter::InlineCompletion);
             //StringCompleter->setCompletionMode(QCompleter::QCompleter::UnfilteredPopupCompletion);
+            StringCompleter->popup()->setStyleSheet("background-color: rgb(146, 147, 147); color:rgb(245, 245, 244);");
+            //StringCompleter->popup()->setMaximumWidth(290);
+
+            //padding: 2px 4px; margin-left: 9px; margin-right: 9px; border-radius: 4px;
+
+//selection-color: white;
+//border: 2px groove gray;
+//border-radius: 4px;
+//padding: 2px 4px;
+//margin-left: 9px;
+//margin-right: 9px;
+
 
             ui->searchAllArticles->setCompleter(StringCompleter);
-            StringCompleter->setCompletionPrefix( query.value(0).toString().split(" ").back().trimmed().toLower() );
+            //StringCompleter->setCompletionPrefix( query.value(0).toString().split(" ").back().trimmed().toLower() );
 
         }
         if(query.exec("SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (1100, 1700, 1800, 2300)"))
@@ -301,7 +326,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
     {
         int i = ui->treeWidget->topLevelItemCount()+1;
         QString s = QString::number(i);
-        AddRoot("Grupp " + s);
+        AddRoot(s + "-");
     }
 
     if(db.open())
@@ -379,6 +404,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
         ui->groupWidget->show();
         ui->startVisualisationPushButton->show();
+        ui->startButtonWidget->show();
 
     }
 }
@@ -388,7 +414,6 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
 void MainWindow::on_startVisualisationPushButton_clicked()
 {
-    QString year = ui->typeYearLE->text();
     QString month = ui->typeMonthLE->text();
 
     if(!db.open()) return;
@@ -408,6 +433,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
         bool found = true;
         QString groupName = ui->treeWidget->topLevelItem(i)->text(0);
         QString article;
+        QString year;
 
 //        QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->myVisualisationTW);
 //        topItem->setText(0,groupName + " " + ui->typeYear->text());
@@ -420,8 +446,9 @@ void MainWindow::on_startVisualisationPushButton_clicked()
 
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
-                article = ui->treeWidget->topLevelItem(i)->child(j)->text(0).toLatin1();
-                qDebug() << article;
+                article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
+                    year = ui->treeWidget->topLevelItem(i)->child(j)->text(1);
+
                //AddChild(topItem,article);
 
                 QSqlQuery query(db);
@@ -491,7 +518,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             indicatorColor->setMaximumSize(15,15);
             //indicatorColor->setMask(pixmap);
             QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->myVisualisationTW);
-            topItem->setText(0,groupName + " " + ui->typeYearLE->text());
+            topItem->setText(0,groupName + " " );
             ui->myVisualisationTW->addTopLevelItem(topItem);
             ui->myVisualisationTW->setItemWidget(topItem,1,indicatorColor);
             ui->myVisualisationTW->header()->resizeSection(0,130);
@@ -500,7 +527,8 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
                 article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
-                AddChild(topItem,article, ui->typeYearLE->text());
+                year = ui->treeWidget->topLevelItem(i)->child(j)->text(1);
+                AddChild(topItem,article, year);
             }
 
             ui->daysRB->setDisabled(true);
@@ -513,12 +541,12 @@ void MainWindow::on_startVisualisationPushButton_clicked()
     }
     ui->treeWidget->clear();
     ui->marketingWidget->hide();
-    ui->addVisualisationPushButton->hide();
+    ui->addButtonWidget->hide();
     ui->addVisualisationPushButton->setDisabled(true);
     ui->groupWidget->hide();
-    ui->startVisualisationPushButton->hide();
+    ui->startButtonWidget->hide();
     ui->myVisualisationWidget->show();
-    ui->typeYearLE->clear();
+//    ui->typeYearLE->clear();
 }
 
 void MainWindow::on_removeVisualisation_clicked()
@@ -598,10 +626,10 @@ void MainWindow::on_clearBars_clicked()
     ui->panelGL->ParticleMgr->clearContainers();
 }
 
-void MainWindow::on_particleRadiusSlider_valueChanged(int value)
-{
-    ui->panelGL->particleSize(value);
-}
+//void MainWindow::on_particleRadiusSlider_valueChanged(int value)
+//{
+//    ui->panelGL->particleSize(value);
+//}
 
 void MainWindow::on_barSpacingSlider_valueChanged(int value)
 {
@@ -653,15 +681,18 @@ void MainWindow::AddRoot(QString name)
     itm->setExpanded(true);
     itm->setFlags(itm->flags()| (Qt::ItemIsEditable));
 
-    QPixmap pixmap(":/MyFiles/pic/iconRemove.png");
+    QPixmap pixmap(":/MyFiles/pic/cross_unchecked.png");
     QIcon removeIcon;
     removeIcon.addPixmap(pixmap);
     QToolButton *rButton = new QToolButton();
     rButton->setIcon(removeIcon);
-    rButton->setIconSize(QSize(20,20));
+    rButton->setIconSize(QSize(rButton->size().width(),rButton->size().height()));
+
     //rButton->setMask(pixmap.mask());
-    rButton->setMinimumSize(25,25);
-    rButton->setMaximumSize(25,25);
+    rButton->setMinimumSize(20,20);
+    rButton->setMaximumSize(20,20);
+
+
     //ui->treeWidget->resizeColumnToContents(0);
     ui->treeWidget->setItemWidget(itm,1,rButton);
     ui->treeWidget->header()->resizeSection(0,210);
@@ -682,7 +713,6 @@ void MainWindow::AddChild(QTreeWidgetItem *parent, QString name, QString secondN
 {
     QTreeWidgetItem *itm = new QTreeWidgetItem();
     itm->setText(0,name);
-    itm->setBackground(0,*(new QBrush(Qt::red,Qt::Dense6Pattern)));
     itm->setText(1,secondName);
     parent->addChild(itm);
 }
@@ -706,7 +736,7 @@ void MainWindow::on_newGroupPushButton_clicked()
 {
     int i = ui->treeWidget->topLevelItemCount()+1;
     QString s = QString::number(i);
-    AddRoot("Grupp " + s);
+    AddRoot(s + "-");
     ui->treeWidget->resizeColumnToContents(i);
 }
 
@@ -724,14 +754,9 @@ void MainWindow::on_numbersCheckBox_toggled(bool checked)
 void MainWindow::on_createNewAction_triggered()
 {
     ui->marketingWidget->show();
-    ui->addVisualisationPushButton->show();
+    ui->addButtonWidget->show();
     ui->settingsWidget->hide();
 
-}
-
-void MainWindow::on_zoomSlider_valueChanged(int value)
-{
-    ui->panelGL->zoom(value);
 }
 
 void MainWindow::on_closeAction_triggered()
@@ -782,12 +807,12 @@ void MainWindow::on_typeYearLE_editingFinished()
     {
         ui->addVisualisationPushButton->setEnabled(true);
         //ui->addVisualisationPushButton->setStyleSheet("QPushButton{background-color:red; } QPushButton:focus{background-color:blue;}");
-        QPixmap pixmap4(":/MyFiles/pic/iconTriangle.png");
+        QPixmap pixmap4(":/MyFiles/pic/button_add.png");
         QIcon triangleButtonIcon;
 
         triangleButtonIcon.addPixmap(pixmap4);
         ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
-        ui->addVisualisationPushButton->setIconSize(QSize(100,450));
+        ui->addVisualisationPushButton->setIconSize(QSize(100,145));
         ui->addVisualisationPushButton->setMask(pixmap4.mask());
      }
 }
@@ -849,10 +874,12 @@ void MainWindow::on_checkBox_toggled(bool checked)
 {
     if(checked)
     {
+        ui->panelGL->autoZoom(true);
         ui->zoomSlider->setDisabled(true);
     }
     else
     {
+        ui->panelGL->autoZoom(false);
         ui->zoomSlider->setEnabled(true);
     }
 }
@@ -867,4 +894,14 @@ void MainWindow::on_advanceSettingsAction_toggled(bool arg1)
     {
         ui->settingsWidget->hide();
     }
+}
+
+void MainWindow::on_panelGL_zoomChanged(int value)
+{
+    ui->zoomSlider->setValue(value);
+}
+
+void MainWindow::on_zoomSlider_sliderMoved(int position)
+{
+        ui->panelGL->zoom(position);
 }
