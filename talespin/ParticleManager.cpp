@@ -362,3 +362,103 @@ void ParticleManager::cLogo()
     addContainer(13,3000,0,glm::vec4((1.0f/255.0f)*70.0f, (1.0f/255.0f)*0.0f, (1.0f/255.0f)*0.0f, 1.0f));
 }
 
+void ParticleManager::removecLogo()
+{
+    for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
+    {
+        ParticleContainer& container = **i;
+
+        for(std::vector<Particle*>::iterator j = container._particleVec.begin(); j != container._particleVec.end(); ++j)
+        {
+            Particle& particle = **j;
+            float rng = ((float) rand() / (RAND_MAX+1.0f));
+            float R = 0;
+            float xPos = 0;
+            float yPos = 0;
+            if( container.timePosition == 1 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.1) + 68;
+                xPos = R * cosf(3.1415926 * 0.3 * rng + 3.1415926 * 0.47);
+                yPos = R * sinf(3.1415926 * 0.3 * rng + 3.1415926 * 0.47);
+            }
+            else if( container.timePosition == 2 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.3) + 44;
+                xPos = R * cosf(3.1415926 * 0.5 * rng + 3.1415926 * 0.25);
+                yPos = R * sinf(3.1415926 * 0.5 * rng + 3.1415926 * 0.25);
+            }
+            else if( container.timePosition == 3 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 2.2) - 3;
+                xPos = R * cosf(3.1415926 * 0.53 * rng + 3.1415926 * 0.25);
+                yPos = R * sinf(3.1415926 * 0.53 * rng + 3.1415926 * 0.25);
+            }
+            else if( container.timePosition == 4 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 2.2) + 9;
+                xPos = R * cosf(3.1415926 * 0.3 * rng + 3.1415926 * 0.47);
+                yPos = R * sinf(3.1415926 * 0.3 * rng + 3.1415926 * 0.47);
+            }
+            else if( container.timePosition == 5 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.01) + 50;
+                xPos = R * cosf(3.1415926 * 0.23 * rng + 3.1415926 * 0.77);
+                yPos = R * sinf(3.1415926 * 0.23 * rng + 3.1415926 * 0.77);
+            }
+            else if( container.timePosition == 6 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.7) + 57;
+                xPos = R * cosf(3.1415926 * 0.23 * rng + 3.1415926 * 0.77);
+                yPos = R * sinf(3.1415926 * 0.23 * rng + 3.1415926 * 0.77);
+            }
+            else if( container.timePosition == 7 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.08) + 68;
+                xPos = R * cosf(3.1415926 * 0.23 * rng + 3.1415926 * 1.003);
+                yPos = R * sinf(3.1415926 * 0.23 * rng + 3.1415926 * 1.003);
+            }
+            else if( container.timePosition == 8 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.2) + 36;
+                xPos = R * cosf(3.1415926 * 0.23 * rng + 3.1415926 * 1.003);
+                yPos = R * sinf(3.1415926 * 0.23 * rng + 3.1415926 * 1.003);
+            }
+            else if( container.timePosition == 9 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.01) + 52;
+                xPos = R * cosf(3.1415926 * 0.22 * rng + 3.1415926 * 1.23);
+                yPos = R * sinf(3.1415926 * 0.22 * rng + 3.1415926 * 1.23);
+            }
+            else if( container.timePosition == 10 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.7) + 58;
+                xPos = R * cosf(3.1415926 * 0.22 * rng + 3.1415926 * 1.23);
+                yPos = R * sinf(3.1415926 * 0.22 * rng + 3.1415926 * 1.23);
+            }
+            else if( container.timePosition == 11 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.15) + 68;
+                xPos = R * cosf(3.1415926 * 0.25 * rng + 3.1415926 * 1.45);
+                yPos = R * sinf(3.1415926 * 0.25 * rng + 3.1415926 * 1.45);
+            }
+            else if( container.timePosition == 12 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.9) + 28;
+                xPos = R * cosf(3.1415926 * 0.25 * rng + 3.1415926 * 1.45);
+                yPos = R * sinf(3.1415926 * 0.25 * rng + 3.1415926 * 1.45);
+            }
+            else if( container.timePosition == 13 )
+            {
+                R = 40 * sqrt(((float) rand() / (RAND_MAX+1.0f)) + 0.2) + 48;
+                xPos = R * cosf(3.1415926 * 0.19 * rng + 3.1415926 * 1.7);
+                yPos = R * sinf(3.1415926 * 0.19 * rng + 3.1415926 * 1.7);
+            }
+
+            particle._targetPosition.at(0) = glm::vec3(container._position.x + xPos
+                                                       , container._position.y + yPos + 150
+                                                       , 1000.0f);
+        }
+
+    }
+}
+

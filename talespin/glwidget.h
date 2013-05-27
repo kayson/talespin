@@ -42,6 +42,7 @@ protected:
     QBasicTimer timer;
     float scene_zoom, scene_zoom_dx, mouse_pan_dx, mouse_pan_dy, scene_pan_x, scene_pan_y;
     float camera_friction;
+    int logoTimer;
     int mouse_state;
     int mouse_x, mouse_y;
     bool _autoZoom;

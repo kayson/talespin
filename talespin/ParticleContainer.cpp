@@ -94,7 +94,12 @@ void ParticleContainer::logoUpdateParticles()
         particle._position +=  particle._velocity;
 
         float d = glm::distance( particle._targetPosition.at(0),  particle._position );
-        if( d > 10.0f)
+        if( d > 500.0f)
+        {
+             particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.9f) / d;
+             particle._velocity *= 0.78f;
+        }
+        else if( d > 10.0f)
         {
              particle._velocity += ( ( particle._targetPosition.at(0) -  particle._position) * 0.3f) / d;
              particle._velocity *= 0.78f;

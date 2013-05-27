@@ -27,6 +27,7 @@ glwidget::glwidget(QWidget *parent)
 
     ParticleMgr = new ParticleManager();
     ParticleMgr->visType = CLOGO;
+    logoTimer = 0;
     ParticleMgr->cLogo();
 
     _drawGrid = new drawGrid();
@@ -46,6 +47,17 @@ void glwidget::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
 
+    if(ParticleMgr->visType == CLOGO)
+    {
+        logoTimer++;
+        if(logoTimer > 350)
+            ParticleMgr->removecLogo();
+        if(logoTimer > 500)
+        {
+            ParticleMgr->clearContainers();
+            ParticleMgr->visType = BARCHART;
+        }
+    }
     ParticleMgr->timeUpdate();
     update();
 }
@@ -89,7 +101,9 @@ void glwidget::paintGL()
     zoomChanged(scene_zoom);
 
     if(ParticleMgr->visType == CLOGO)
-        ParticleMgr->radius = 1;
+    {
+        ParticleMgr->radius = (float)logoTimer/100;
+    }
     else
         ParticleMgr->radius = -300 / scene_zoom;
 
