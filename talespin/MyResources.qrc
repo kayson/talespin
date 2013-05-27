@@ -21,5 +21,10 @@
         <file>Roboto-Bold.ttf</file>
         <file>Roboto-Medium.ttf</file>
         <file>Roboto-Regular.ttf</file>
+        <file>pic/slidebar_button.png</file>
+        <file>pic/cross_hover.png</file>
+        <file>pic/cross_unchecked.png</file>
+        <file>pic/button_ready.png</file>
+        <file>pic/button_add.png</file>
     </qresource>
 </RCC>

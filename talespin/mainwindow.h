@@ -46,7 +46,7 @@ private slots:
     void on_periodRadioButton_clicked();
     void on_timeRadioButton_clicked();
     void on_clearBars_clicked();
-    void on_particleRadiusSlider_valueChanged(int value);
+//    void on_particleRadiusSlider_valueChanged(int value);
     void on_barSpacingSlider_valueChanged(int value);
     void on_barWidthSlider_valueChanged(int value);
     void on_timePositionSlider_valueChanged(int value);
@@ -74,6 +74,7 @@ private slots:
     void on_monthsRB_toggled(bool checked);
     void on_checkBox_toggled(bool checked);
     void on_advanceSettingsAction_toggled(bool arg1);
+    void on_panelGL_zoomChanged(int );
 };
 
 #endif // MAINWINDOW_H
