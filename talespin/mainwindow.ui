@@ -106,6 +106,19 @@
         <property name="horizontalSpacing">
          <number>0</number>
         </property>
+        <item row="3" column="7">
+         <spacer name="verticalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="0" column="7">
          <widget class="QWidget" name="myVisualisationWidget" native="true">
           <property name="maximumSize">
@@ -261,48 +274,6 @@ QPushButton:pressed {
            </item>
           </layout>
          </widget>
-        </item>
-        <item row="0" column="5">
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="7">
-         <spacer name="verticalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="0" column="0">
          <widget class="QWidget" name="marketingWidget" native="true">
@@ -1193,7 +1164,7 @@ QGroupBox::title {
                </spacer>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_6">
+               <widget class="QSpinBox" name="spinBox_1">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1208,6 +1179,10 @@ QGroupBox::title {
     border-radius: 4px;
     padding: 2px 4px;
 	background-color: rgb(225, 225, 225);
+}
+
+QSpinBox:disabled{
+	color: rgb(150, 150, 150);
 }
 
 QSpinBox::up-button { 
@@ -1230,7 +1205,7 @@ QSpinBox::down-button {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_5">
+               <widget class="QSpinBox" name="spinBox_2">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1245,6 +1220,10 @@ QSpinBox::down-button {
     border-radius: 4px;
     padding: 2px 4px;
 	background-color: rgb(225, 225, 225);
+}
+
+QSpinBox:disabled{
+	color: rgb(150, 150, 150);
 }
 
 QSpinBox::up-button { 
@@ -1267,7 +1246,7 @@ QSpinBox::down-button {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_4">
+               <widget class="QSpinBox" name="spinBox_3">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1282,6 +1261,10 @@ QSpinBox::down-button {
     border-radius: 4px;
     padding: 2px 4px;
 	background-color: rgb(225, 225, 225);
+}
+
+QSpinBox:disabled{
+	color: rgb(150, 150, 150);
 }
 
 QSpinBox::up-button { 
@@ -1497,13 +1480,7 @@ QGroupBox::title {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeYearLE">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
+               <widget class="QDateEdit" name="typeYearDE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1511,7 +1488,7 @@ QGroupBox::title {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QSpinBox {
+                 <string notr="true">QDateEdit {
     color: rgb(0, 0, 0);
     selection-color: white;   
     border: 2px groove gray;
@@ -1520,7 +1497,12 @@ QGroupBox::title {
 	background-color: rgb(225, 225, 225);
 }
 
-QSpinBox::up-button { 
+QDateEdit:disabled{
+	color: rgb(150, 150, 150);
+}
+
+
+QDateEdit::up-button { 
 
 	subcontrol-origin: border;
 	subcontrol-position: top right; /* position at the top right corner */
@@ -1528,25 +1510,44 @@ QSpinBox::up-button {
     border-width: 1px;
 
 }
-QSpinBox::down-button {
+QDateEdit::down-button {
 	 subcontrol-origin: border;
      subcontrol-position: bottom right; /* position at bottom right corner */
      width: 16px;
      border-width: 1px;
-
-
  }</string>
                 </property>
-                <property name="minimum">
-                 <number>2010</number>
+                <property name="dateTime">
+                 <datetime>
+                  <hour>0</hour>
+                  <minute>0</minute>
+                  <second>0</second>
+                  <year>2010</year>
+                  <month>9</month>
+                  <day>14</day>
+                 </datetime>
                 </property>
-                <property name="maximum">
-                 <number>2030</number>
+                <property name="maximumDate">
+                 <date>
+                  <year>2050</year>
+                  <month>12</month>
+                  <day>31</day>
+                 </date>
+                </property>
+                <property name="minimumDate">
+                 <date>
+                  <year>2010</year>
+                  <month>9</month>
+                  <day>14</day>
+                 </date>
+                </property>
+                <property name="displayFormat">
+                 <string>yyyy</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeMonthLE">
+               <widget class="QDateEdit" name="typeMonthDE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1554,7 +1555,7 @@ QSpinBox::down-button {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QSpinBox {
+                 <string notr="true">QDateEdit {
     color: rgb(0, 0, 0);
     selection-color: white;   
     border: 2px groove gray;
@@ -1563,7 +1564,12 @@ QSpinBox::down-button {
 	background-color: rgb(225, 225, 225);
 }
 
-QSpinBox::up-button { 
+QDateEdit:disabled{
+	color: rgb(150, 150, 150);
+}
+
+
+QDateEdit::up-button { 
 
 	subcontrol-origin: border;
 	subcontrol-position: top right; /* position at the top right corner */
@@ -1571,25 +1577,20 @@ QSpinBox::up-button {
     border-width: 1px;
 
 }
-QSpinBox::down-button {
+QDateEdit::down-button {
 	 subcontrol-origin: border;
      subcontrol-position: bottom right; /* position at bottom right corner */
      width: 16px;
      border-width: 1px;
-
-
  }</string>
                 </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>12</number>
+                <property name="displayFormat">
+                 <string>MM</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeDayLE">
+               <widget class="QDateEdit" name="typeDayDE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1597,7 +1598,7 @@ QSpinBox::down-button {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QSpinBox {
+                 <string notr="true">QDateEdit {
     color: rgb(0, 0, 0);
     selection-color: white;   
     border: 2px groove gray;
@@ -1606,7 +1607,12 @@ QSpinBox::down-button {
 	background-color: rgb(225, 225, 225);
 }
 
-QSpinBox::up-button { 
+QDateEdit:disabled{
+	color: rgb(150, 150, 150);
+}
+
+
+QDateEdit::up-button { 
 
 	subcontrol-origin: border;
 	subcontrol-position: top right; /* position at the top right corner */
@@ -1614,20 +1620,22 @@ QSpinBox::up-button {
     border-width: 1px;
 
 }
-QSpinBox::down-button {
+QDateEdit::down-button {
 	 subcontrol-origin: border;
      subcontrol-position: bottom right; /* position at bottom right corner */
      width: 16px;
      border-width: 1px;
-
-
  }</string>
                 </property>
-                <property name="minimum">
-                 <number>1</number>
+                <property name="displayFormat">
+                 <string>dd</string>
                 </property>
-                <property name="maximum">
-                 <number>31</number>
+                <property name="date">
+                 <date>
+                  <year>2000</year>
+                  <month>1</month>
+                  <day>3</day>
+                 </date>
                 </property>
                </widget>
               </item>
@@ -2312,6 +2320,35 @@ QPushButton:pressed {
           </layout>
          </widget>
         </item>
+        <item row="0" column="5">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="toolWidget" native="true">
@@ -2342,7 +2379,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="1">
+        <item row="1" column="2">
          <widget class="QGroupBox" name="groupBox_10">
           <property name="styleSheet">
            <string notr="true">QGroupBox#groupBox_10 { 
@@ -2501,7 +2538,7 @@ QRadioButton::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="3">
+        <item row="1" column="6">
          <widget class="QGroupBox" name="groupBox_8">
           <property name="minimumSize">
            <size>
@@ -3128,7 +3165,7 @@ QRadioButton::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="5">
+        <item row="1" column="8">
          <widget class="QWidget" name="settingsWidget" native="true">
           <property name="enabled">
            <bool>true</bool>
@@ -3273,7 +3310,7 @@ QRadioButton::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="2">
+        <item row="1" column="4">
          <widget class="QGroupBox" name="groupBox_9">
           <property name="styleSheet">
            <string notr="true">QGroupBox#groupBox_9 { 
@@ -3398,7 +3435,7 @@ QCheckBox::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="4">
+        <item row="1" column="7">
          <widget class="QGroupBox" name="groupBox_12">
           <property name="styleSheet">
            <string notr="true">QGroupBox#groupBox_12 { 
@@ -3489,6 +3526,67 @@ QCheckBox::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
+        <item row="1" column="9">
+         <spacer name="horizontalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="3">
+         <spacer name="horizontalSpacer_12">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <spacer name="horizontalSpacer_11">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="5">
+         <spacer name="horizontalSpacer_13">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -3573,24 +3671,21 @@ QCheckBox::indicator:checked:hover  {
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>searchAllArticles</tabstop>
-  <tabstop>shopComboBox</tabstop>
-  <tabstop>selectAllRestaurantCheckBox</tabstop>
-  <tabstop>restaurantComboBox</tabstop>
-  <tabstop>checkBox_4</tabstop>
-  <tabstop>showComboBox</tabstop>
-  <tabstop>quartersRB</tabstop>
-  <tabstop>monthsRB</tabstop>
-  <tabstop>daysRB</tabstop>
-  <tabstop>timeRadioButton</tabstop>
-  <tabstop>periodRadioButton</tabstop>
   <tabstop>selectAllTicketCheckBox</tabstop>
+  <tabstop>searchAllArticles</tabstop>
+  <tabstop>spinBox_1</tabstop>
+  <tabstop>spinBox_2</tabstop>
+  <tabstop>spinBox_3</tabstop>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>myVisualisationTW</tabstop>
+  <tabstop>periodRadioButton</tabstop>
+  <tabstop>monthsRB</tabstop>
   <tabstop>ticketComboBox</tabstop>
   <tabstop>removePushButton</tabstop>
   <tabstop>newGroupPushButton</tabstop>
   <tabstop>selectAllShopCheckBox</tabstop>
-  <tabstop>treeWidget</tabstop>
-  <tabstop>myVisualisationTW</tabstop>
+  <tabstop>timeRadioButton</tabstop>
+  <tabstop>daysRB</tabstop>
   <tabstop>removeVisualisation</tabstop>
   <tabstop>numbersCheckBox</tabstop>
   <tabstop>gridCheckBox</tabstop>
@@ -3609,6 +3704,15 @@ QCheckBox::indicator:checked:hover  {
   <tabstop>clearBars</tabstop>
   <tabstop>circleVisualisationRadioButton</tabstop>
   <tabstop>comboBox</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>showComboBox</tabstop>
+  <tabstop>quartersRB</tabstop>
+  <tabstop>shopComboBox</tabstop>
+  <tabstop>selectAllRestaurantCheckBox</tabstop>
+  <tabstop>restaurantComboBox</tabstop>
+  <tabstop>startVisualisationPushButton</tabstop>
+  <tabstop>addVisualisationPushButton</tabstop>
+  <tabstop>showMainWindowCheckBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
