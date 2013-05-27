@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
             }
         }
 
+    ui->marketingWidget->hide();
+    ui->addButtonWidget->hide();
+
     ui->menuBar->setStyleSheet("QMenuBar {background-color: rgb(111, 111, 110);} QMenuBar::item{background-color: rgb(111, 111, 110);} QMenuBar::item{color: rgb(245, 245, 249);}  QMenuBar::item:selected {background: #a8a8a8;} ");
     ui->visulatorMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);} ");
     ui->settingsMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);}");
