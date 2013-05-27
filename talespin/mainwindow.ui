@@ -1196,7 +1196,7 @@ QGroupBox::title {
                </spacer>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_6">
+               <widget class="QSpinBox" name="typeYear2LE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1233,7 +1233,7 @@ QSpinBox::down-button {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_5">
+               <widget class="QSpinBox" name="typeMonth2LE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1270,7 +1270,7 @@ QSpinBox::down-button {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBox_4">
+               <widget class="QSpinBox" name="typeDay2LE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>

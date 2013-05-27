@@ -74,7 +74,16 @@ private slots:
     void on_checkBox_toggled(bool checked);
     void on_advanceSettingsAction_toggled(bool arg1);
     void on_panelGL_zoomChanged(int );
+
     void on_zoomSlider_sliderMoved(int position);
+
+    void on_searchAllArticles_editingFinished();
+    void on_ticketComboBox_activated(int index);
+    void on_restaurantComboBox_activated(int index);
+    void on_shopComboBox_activated(int index);
+    void on_selectAllTicketCheckBox_clicked();
+    void on_selectAllTicketCheckBox_toggled(bool checked);
+
 };
 
 #endif // MAINWINDOW_H
