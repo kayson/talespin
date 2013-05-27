@@ -25,6 +25,8 @@ public:
     void timeUpdate();
     void changeEntity();
     void clearContainers();
+    void cLogo();
+    void removecLogo();
     int numContainers();
     int getMaxSize();
 

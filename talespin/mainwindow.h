@@ -59,7 +59,6 @@ private slots:
     void on_gridCheckBox_toggled(bool checked);
     void on_numbersCheckBox_toggled(bool checked);
     void on_createNewAction_triggered();
-    void on_zoomSlider_valueChanged(int value);
     void on_closeAction_triggered();
 
     void on_radioButton_toggled(bool checked);
@@ -73,12 +72,16 @@ private slots:
     void on_checkBox_toggled(bool checked);
     void on_advanceSettingsAction_toggled(bool arg1);
     void on_panelGL_zoomChanged(int );
+
+    void on_zoomSlider_sliderMoved(int position);
+
     void on_searchAllArticles_editingFinished();
     void on_ticketComboBox_activated(int index);
     void on_restaurantComboBox_activated(int index);
     void on_shopComboBox_activated(int index);
     void on_selectAllTicketCheckBox_clicked();
     void on_selectAllTicketCheckBox_toggled(bool checked);
+
     void on_periodRadioButton_toggled(bool checked);
     void on_timeRadioButton_toggled(bool checked);
     void on_daysRB_toggled(bool checked);

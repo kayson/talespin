@@ -6,13 +6,14 @@
 #include <iostream>
 #include <algorithm>
 
-enum VisualizationType { BARCHART, CIRCLES, LINES };
+enum VisualizationType { BARCHART, CIRCLES, LINES, CLOGO };
 enum EntityType { QUANTITY, EARNINGS, MEAN };
 
 class ParticleContainer
 {
 public:   
 	void timeUpdateParticles();
+    void logoUpdateParticles();
     void drawParticles(float radius);
 
     int timePosition;

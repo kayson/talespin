@@ -22,11 +22,21 @@
     <height>0</height>
    </size>
   </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="mouseTracking">
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>TALESPIN</string>
+   <string>Particulate</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="MyResources.qrc">
+    <normaloff>:/MyFiles/pic/lines.png</normaloff>:/MyFiles/pic/lines.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -39,6 +49,9 @@
   </property>
   <property name="documentMode">
    <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="mouseTracking">
@@ -277,6 +290,9 @@ QPushButton:pressed {
         </item>
         <item row="0" column="0">
          <widget class="QWidget" name="marketingWidget" native="true">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="maximumSize">
            <size>
             <width>320</width>
@@ -1100,6 +1116,9 @@ QComboBox QAbstractItemView{
            </item>
            <item row="11" column="1" colspan="4">
             <widget class="QGroupBox" name="groupBox_6">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1164,6 +1183,7 @@ QGroupBox::title {
                </spacer>
               </item>
               <item>
+
                <widget class="QSpinBox" name="spinBox_1">
                 <property name="minimumSize">
                  <size>
@@ -2790,6 +2810,9 @@ border-radius: 4px;
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
              <property name="styleSheet">
               <string notr="true">QSlider::groove:horizontal {
 border: 1px solid #bbb;
@@ -2838,7 +2861,7 @@ QSlider::handle:horizontal:disabled {
 }</string>
              </property>
              <property name="minimum">
-              <number>-800</number>
+              <number>-3000</number>
              </property>
              <property name="maximum">
               <number>-10</number>
@@ -3714,7 +3737,9 @@ QCheckBox::indicator:checked:hover  {
   <tabstop>addVisualisationPushButton</tabstop>
   <tabstop>showMainWindowCheckBox</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="MyResources.qrc"/>
+ </resources>
  <connections/>
  <slots>
   <slot>addBar()</slot>

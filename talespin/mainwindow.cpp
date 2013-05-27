@@ -464,6 +464,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
                     year = ui->treeWidget->topLevelItem(i)->child(j)->text(1);
                     month = ui->treeWidget->topLevelItem(i)->child(j)->text(2);
 
+
                 QSqlQuery query(db);
                 query.setForwardOnly(true);
 
@@ -758,11 +759,6 @@ void MainWindow::on_createNewAction_triggered()
 
 }
 
-void MainWindow::on_zoomSlider_valueChanged(int value)
-{
-    ui->panelGL->zoom(value);
-}
-
 void MainWindow::on_closeAction_triggered()
 {
     qApp->exit();
@@ -912,6 +908,11 @@ void MainWindow::on_advanceSettingsAction_toggled(bool arg1)
 void MainWindow::on_panelGL_zoomChanged(int value)
 {
     ui->zoomSlider->setValue(value);
+}
+
+void MainWindow::on_zoomSlider_sliderMoved(int position)
+{
+        ui->panelGL->zoom(position);
 }
 
 void MainWindow::on_searchAllArticles_editingFinished()
