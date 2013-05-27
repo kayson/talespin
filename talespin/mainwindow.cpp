@@ -43,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->settingsMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);}");
 
     ui->addVisualisationPushButton->setDisabled(true);
+    //ui->addButtonWidget->hide();
+    ui->startButtonWidget->hide();
 
     ui->settingsWidget->hide();
     ui->groupWidget->hide();
@@ -356,10 +358,10 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
         if(ui->selectAllTicketCheckBox->isChecked() && query.exec("SELECT ArticleName FROM View_utb_Articles WHERE ArticleGroup IN (1100, 1700, 1800, 2300)"))
         {
-
             while(query.next())
             {
-                //AddChild(getRoot(),query.value(0).toString());
+                AddChild(getRoot(),query.value(0).toString(), ui->typeYearLE->text());
+
             }
         }
 
@@ -368,7 +370,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                //AddChild(getRoot(),query.value(0).toString());
+                AddChild(getRoot(),query.value(0).toString(), ui->typeYearLE->text());
             }
         }
 
@@ -377,7 +379,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                //AddChild(getRoot(),query.value(0).toString());
+                AddChild(getRoot(),query.value(0).toString(), ui->typeYearLE->text());
             }
         }
 
@@ -808,18 +810,18 @@ bool MainWindow::comboBoxItemCanged()
 void MainWindow::on_typeYearLE_editingFinished()
 {
     //ui->ticketComboBox->editTextChanged();
-    if(!ui->typeYearLE->text().isEmpty() && !ui->searchAllArticles->text().isEmpty() || ui->selectAllTicketCheckBox->isChecked() || comboBoxItemCanged() )
-    {
-        ui->addVisualisationPushButton->setEnabled(true);
-        //ui->addVisualisationPushButton->setStyleSheet("QPushButton{background-color:red; } QPushButton:focus{background-color:blue;}");
-        QPixmap pixmap4(":/MyFiles/pic/button_add.png");
-        QIcon triangleButtonIcon;
+//    if(!ui->typeYearLE->text().isEmpty() && !ui->searchAllArticles->text().isEmpty() || ui->selectAllTicketCheckBox->isChecked() || comboBoxItemCanged() )
+//    {
+//        ui->addVisualisationPushButton->setEnabled(true);
+//        //ui->addVisualisationPushButton->setStyleSheet("QPushButton{background-color:red; } QPushButton:focus{background-color:blue;}");
+//        QPixmap pixmap4(":/MyFiles/pic/button_add.png");
+//        QIcon triangleButtonIcon;
 
-        triangleButtonIcon.addPixmap(pixmap4);
-        ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
-        ui->addVisualisationPushButton->setIconSize(QSize(100,145));
-        ui->addVisualisationPushButton->setMask(pixmap4.mask());
-     }
+//        triangleButtonIcon.addPixmap(pixmap4);
+//        ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
+//        ui->addVisualisationPushButton->setIconSize(QSize(100,145));
+//        ui->addVisualisationPushButton->setMask(pixmap4.mask());
+//     }
 }
 
 void MainWindow::setRoundedCorners(int radius_tl, int radius_tr, int radius_bl, int radius_br) {
@@ -906,4 +908,37 @@ void MainWindow::on_panelGL_zoomChanged(int value)
     ui->zoomSlider->setValue(value);
 }
 
+void MainWindow::on_searchAllArticles_editingFinished()
+{
+    ui->addVisualisationPushButton->setEnabled(true);
+}
 
+
+void MainWindow::on_ticketComboBox_activated(int index)
+{
+    if(index)
+        ui->addVisualisationPushButton->setEnabled(true);
+}
+
+void MainWindow::on_restaurantComboBox_activated(int index)
+{
+    if(index)
+        ui->addVisualisationPushButton->setEnabled(true);
+}
+
+void MainWindow::on_shopComboBox_activated(int index)
+{
+    if(index)
+        ui->addVisualisationPushButton->setEnabled(true);
+}
+
+void MainWindow::on_selectAllTicketCheckBox_clicked()
+{
+    ui->addVisualisationPushButton->setEnabled(true);
+}
+
+void MainWindow::on_selectAllTicketCheckBox_toggled(bool checked)
+{
+    if(checked)
+        ui->addVisualisationPushButton->setEnabled(true);
+}
