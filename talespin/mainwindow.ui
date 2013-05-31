@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1338</width>
+    <width>1372</width>
     <height>800</height>
    </rect>
   </property>
@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="MyResources.qrc">
-    <normaloff>:/MyFiles/pic/lines.png</normaloff>:/MyFiles/pic/lines.png</iconset>
+    <normaloff>:/MyFiles/pic/symbol_circle.png</normaloff>:/MyFiles/pic/symbol_circle.png</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -119,6 +119,19 @@
         <property name="horizontalSpacing">
          <number>0</number>
         </property>
+        <item row="3" column="7">
+         <spacer name="verticalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="0" column="7">
          <widget class="QWidget" name="myVisualisationWidget" native="true">
           <property name="maximumSize">
@@ -174,8 +187,8 @@ QTreeWidget#treeWidget::item:selected
              </property>
              <property name="minimumSize">
               <size>
-               <width>90</width>
-               <height>0</height>
+               <width>0</width>
+               <height>25</height>
               </size>
              </property>
              <property name="font">
@@ -185,19 +198,25 @@ QTreeWidget#treeWidget::item:selected
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-color: #333;
-border-radius: 8px;
-padding: 5px;
-background-color: rgb(255, 213, 44);
-min-width: 80px;
+
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_normal.png);
+/*background-color: rgb(255, 213, 44);*/
+
 }
 
 QPushButton:hover {
-	background-color: rgb(255, 226, 119);
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_hover.png);
+/*background-color: rgb(255, 213, 44);*/
+
 }
 
 QPushButton:pressed {
-	background-color: rgb(88, 88, 88);
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+
 }</string>
              </property>
              <property name="text">
@@ -274,48 +293,6 @@ QPushButton:pressed {
            </item>
           </layout>
          </widget>
-        </item>
-        <item row="0" column="5">
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="2">
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="7">
-         <spacer name="verticalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="0" column="0">
          <widget class="QWidget" name="marketingWidget" native="true">
@@ -788,14 +765,10 @@ QComboBox QAbstractItemView{
 	background-color: rgb(225, 225, 225);
 }
 
-/* QComboBox::down-arrow {
-     image: url(:/MyFiles/pic/iconLines.png);
+QComboBox::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
  }
-
- QComboBox::down-arrow:on {
-     top: 1px;
-     left: 1px;
- }*/
 </string>
                 </property>
                 <property name="text" stdset="0">
@@ -961,14 +934,11 @@ QComboBox QAbstractItemView{
 	background-color: rgb(225, 225, 225);
 }
 
-/* QComboBox::down-arrow {
-     image: url(:/MyFiles/pic/iconLines.png);
+QComboBox::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
  }
 
- QComboBox::down-arrow:on {
-     top: 1px;
-     left: 1px;
- }*/
 </string>
                 </property>
                </widget>
@@ -1128,14 +1098,10 @@ QComboBox QAbstractItemView{
 	background-color: rgb(225, 225, 225);
 }
 
-/* QComboBox::down-arrow {
-     image: url(:/MyFiles/pic/iconLines.png);
+QComboBox::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
  }
-
- QComboBox::down-arrow:on {
-     top: 1px;
-     left: 1px;
- }*/
 </string>
                 </property>
                </widget>
@@ -1212,7 +1178,7 @@ QGroupBox::title {
                </spacer>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeYear2LE">
+               <widget class="QSpinBox" name="spinBox_1">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1227,6 +1193,10 @@ QGroupBox::title {
     border-radius: 4px;
     padding: 2px 4px;
 	background-color: rgb(225, 225, 225);
+}
+
+QSpinBox:disabled{
+	color: rgb(150, 150, 150);
 }
 
 QSpinBox::up-button { 
@@ -1249,7 +1219,7 @@ QSpinBox::down-button {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeMonth2LE">
+               <widget class="QSpinBox" name="spinBox_2">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1264,6 +1234,10 @@ QSpinBox::down-button {
     border-radius: 4px;
     padding: 2px 4px;
 	background-color: rgb(225, 225, 225);
+}
+
+QSpinBox:disabled{
+	color: rgb(150, 150, 150);
 }
 
 QSpinBox::up-button { 
@@ -1286,7 +1260,7 @@ QSpinBox::down-button {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeDay2LE">
+               <widget class="QSpinBox" name="spinBox_3">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1301,6 +1275,10 @@ QSpinBox::down-button {
     border-radius: 4px;
     padding: 2px 4px;
 	background-color: rgb(225, 225, 225);
+}
+
+QSpinBox:disabled{
+	color: rgb(150, 150, 150);
 }
 
 QSpinBox::up-button { 
@@ -1516,13 +1494,7 @@ QGroupBox::title {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeYearLE">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
+               <widget class="QDateEdit" name="typeYearDE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1530,7 +1502,7 @@ QGroupBox::title {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QSpinBox {
+                 <string notr="true">QDateEdit {
     color: rgb(0, 0, 0);
     selection-color: white;   
     border: 2px groove gray;
@@ -1539,7 +1511,12 @@ QGroupBox::title {
 	background-color: rgb(225, 225, 225);
 }
 
-QSpinBox::up-button { 
+QDateEdit:disabled{
+	color: rgb(150, 150, 150);
+}
+
+
+QDateEdit::up-button { 
 
 	subcontrol-origin: border;
 	subcontrol-position: top right; /* position at the top right corner */
@@ -1547,25 +1524,57 @@ QSpinBox::up-button {
     border-width: 1px;
 
 }
-QSpinBox::down-button {
+QDateEdit::down-button {
 	 subcontrol-origin: border;
      subcontrol-position: bottom right; /* position at bottom right corner */
      width: 16px;
      border-width: 1px;
+ }
 
+QDateEdit::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
+	margin-bottom: 2px;
 
- }</string>
+ }
+QDateEdit::up-arrow {
+     image: url(:/MyFiles/pic/arrow_up.png);
+	height: 10px;
+	margin-top: 2px;
+ }
+</string>
                 </property>
-                <property name="minimum">
-                 <number>2010</number>
+                <property name="dateTime">
+                 <datetime>
+                  <hour>0</hour>
+                  <minute>0</minute>
+                  <second>0</second>
+                  <year>2010</year>
+                  <month>9</month>
+                  <day>14</day>
+                 </datetime>
                 </property>
-                <property name="maximum">
-                 <number>2030</number>
+                <property name="maximumDate">
+                 <date>
+                  <year>2050</year>
+                  <month>12</month>
+                  <day>31</day>
+                 </date>
+                </property>
+                <property name="minimumDate">
+                 <date>
+                  <year>2010</year>
+                  <month>9</month>
+                  <day>14</day>
+                 </date>
+                </property>
+                <property name="displayFormat">
+                 <string>yyyy</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeMonthLE">
+               <widget class="QDateEdit" name="typeMonthDE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1573,7 +1582,7 @@ QSpinBox::down-button {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QSpinBox {
+                 <string notr="true">QDateEdit {
     color: rgb(0, 0, 0);
     selection-color: white;   
     border: 2px groove gray;
@@ -1582,7 +1591,12 @@ QSpinBox::down-button {
 	background-color: rgb(225, 225, 225);
 }
 
-QSpinBox::up-button { 
+QDateEdit:disabled{
+	color: rgb(150, 150, 150);
+}
+
+
+QDateEdit::up-button { 
 
 	subcontrol-origin: border;
 	subcontrol-position: top right; /* position at the top right corner */
@@ -1590,25 +1604,32 @@ QSpinBox::up-button {
     border-width: 1px;
 
 }
-QSpinBox::down-button {
+QDateEdit::down-button {
 	 subcontrol-origin: border;
      subcontrol-position: bottom right; /* position at bottom right corner */
      width: 16px;
      border-width: 1px;
+ }
 
+QDateEdit::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
+	margin-bottom: 2px;
 
+ }
+QDateEdit::up-arrow {
+     image: url(:/MyFiles/pic/arrow_up.png);
+	height: 10px;
+	margin-top: 2px;
  }</string>
                 </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>12</number>
+                <property name="displayFormat">
+                 <string>MM</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="typeDayLE">
+               <widget class="QDateEdit" name="typeDayDE">
                 <property name="minimumSize">
                  <size>
                   <width>75</width>
@@ -1616,7 +1637,7 @@ QSpinBox::down-button {
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QSpinBox {
+                 <string notr="true">QDateEdit {
     color: rgb(0, 0, 0);
     selection-color: white;   
     border: 2px groove gray;
@@ -1625,7 +1646,12 @@ QSpinBox::down-button {
 	background-color: rgb(225, 225, 225);
 }
 
-QSpinBox::up-button { 
+QDateEdit:disabled{
+	color: rgb(150, 150, 150);
+}
+
+
+QDateEdit::up-button { 
 
 	subcontrol-origin: border;
 	subcontrol-position: top right; /* position at the top right corner */
@@ -1633,20 +1659,34 @@ QSpinBox::up-button {
     border-width: 1px;
 
 }
-QSpinBox::down-button {
+QDateEdit::down-button {
 	 subcontrol-origin: border;
      subcontrol-position: bottom right; /* position at bottom right corner */
      width: 16px;
      border-width: 1px;
+ }
 
+QDateEdit::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
+	margin-bottom: 2px;
 
+ }
+QDateEdit::up-arrow {
+     image: url(:/MyFiles/pic/arrow_up.png);
+	height: 10px;
+	margin-top: 2px;
  }</string>
                 </property>
-                <property name="minimum">
-                 <number>1</number>
+                <property name="displayFormat">
+                 <string>dd</string>
                 </property>
-                <property name="maximum">
-                 <number>31</number>
+                <property name="date">
+                 <date>
+                  <year>2000</year>
+                  <month>1</month>
+                  <day>3</day>
+                 </date>
                 </property>
                </widget>
               </item>
@@ -1815,14 +1855,10 @@ QComboBox QAbstractItemView{
 	background-color: rgb(225, 225, 225);
 }
 
-/* QComboBox::down-arrow {
-     image: url(:/MyFiles/pic/iconLines.png);
+QComboBox::down-arrow {
+     image: url(:/MyFiles/pic/arrow_down2.png);
+	height: 10px;
  }
-
- QComboBox::down-arrow:on {
-     top: 1px;
-     left: 1px;
- }*/
 </string>
                 </property>
                </widget>
@@ -1937,7 +1973,7 @@ QTreeWidget#treeWidget::item
 {
     height: 24px;    
     border: none;    
-    background-position: bottom left;   
+    background-position: bottom right;   
 }
 QTreeWidget#treeWidget::item:selected
 {
@@ -2007,10 +2043,10 @@ background-color: qlineargradient(spread:pad, x1:0.516591, y1:0, x2:0.512, y2:1,
 
 QProgressBar::chunk {
 background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,
-stop: 0 #FACC2E,
-stop: 0.4999 #FACC2E,
-stop: 0.5 #FACC2E,
-stop: 1 #FFBF00 );
+stop: 0 #E7B047,
+stop: 0.4999 #E5A133,
+stop: 0.5 #EAA028,
+stop: 1 #DF992B );
 border-radius: 4px;
 }
 </string>
@@ -2030,7 +2066,7 @@ border-radius: 4px;
              </property>
              <property name="minimumSize">
               <size>
-               <width>90</width>
+               <width>80</width>
                <height>35</height>
               </size>
              </property>
@@ -2041,22 +2077,26 @@ border-radius: 4px;
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-color: #333;
-border-radius: 8px;
-padding: 5px;
-background-color: rgb(255, 213, 44);
+
+border-radius: 1px;
+image: url(:/MyFiles/pic/button_normal.png);
+/*background-color: rgb(255, 213, 44);*/
 min-width: 80px;
 }
 
 QPushButton:hover {
-	background-color: rgb(255, 226, 119);
+border-radius: 1px;
+image: url(:/MyFiles/pic/button_hover.png);
+/*background-color: rgb(255, 213, 44);*/
+min-width: 80px;
 }
 
 QPushButton:pressed {
-	background-color: rgb(88, 88, 88);
+border-radius: 1px;
+image: url(:/MyFiles/pic/button_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+min-width: 80px;
 }
-
-
 </string>
              </property>
              <property name="text">
@@ -2098,7 +2138,7 @@ QPushButton:pressed {
              </property>
              <property name="minimumSize">
               <size>
-               <width>90</width>
+               <width>80</width>
                <height>35</height>
               </size>
              </property>
@@ -2109,19 +2149,25 @@ QPushButton:pressed {
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
-color: #333;
-border-radius: 8px;
-padding: 5px;
-background-color: rgb(255, 213, 44);
+
+border-radius: 1px;
+image: url(:/MyFiles/pic/button_normal.png);
+/*background-color: rgb(255, 213, 44);*/
 min-width: 80px;
 }
 
 QPushButton:hover {
-	background-color: rgb(255, 226, 119);
+border-radius: 1px;
+image: url(:/MyFiles/pic/button_hover.png);
+/*background-color: rgb(255, 213, 44);*/
+min-width: 80px;
 }
 
 QPushButton:pressed {
-	background-color: rgb(88, 88, 88);
+border-radius: 1px;
+image: url(:/MyFiles/pic/button_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+min-width: 80px;
 }
 
 
@@ -2255,7 +2301,31 @@ QPushButton:pressed {
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QPushButton{
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_normal);
+/*background-color: rgb(255, 213, 44);*/
+
+}
+
+QPushButton:hover {
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_hover);
+/*background-color: rgb(255, 213, 44);*/
+
+}
+
+QPushButton:pressed {
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+}
+
+QPushButton:disabled {
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+}</string>
              </property>
              <property name="text">
               <string/>
@@ -2321,7 +2391,31 @@ QPushButton:pressed {
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QPushButton{
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_normal);
+/*background-color: rgb(255, 213, 44);*/
+
+}
+
+QPushButton:hover {
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_hover);
+/*background-color: rgb(255, 213, 44);*/
+
+}
+
+QPushButton:pressed {
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+}
+
+QPushButton:disabled {
+border-radius: 1px;
+border-image: url(:/MyFiles/pic/button_add_pressed.png);
+/*background-color: rgb(255, 213, 44);*/
+}</string>
              </property>
              <property name="text">
               <string/>
@@ -2330,6 +2424,35 @@ QPushButton:pressed {
            </item>
           </layout>
          </widget>
+        </item>
+        <item row="0" column="5">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -2361,7 +2484,7 @@ QPushButton:pressed {
 }</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="1">
+        <item row="1" column="2">
          <widget class="QGroupBox" name="groupBox_10">
           <property name="styleSheet">
            <string notr="true">QGroupBox#groupBox_10 { 
@@ -2520,7 +2643,7 @@ QRadioButton::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="3">
+        <item row="1" column="6">
          <widget class="QGroupBox" name="groupBox_8">
           <property name="minimumSize">
            <size>
@@ -2899,7 +3022,7 @@ QSlider::handle:horizontal:disabled {
 }</string>
              </property>
              <property name="text">
-              <string>0%-100%</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -3150,7 +3273,7 @@ QRadioButton::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="5">
+        <item row="1" column="9">
          <widget class="QWidget" name="settingsWidget" native="true">
           <property name="enabled">
            <bool>true</bool>
@@ -3295,7 +3418,7 @@ QRadioButton::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="2">
+        <item row="1" column="4">
          <widget class="QGroupBox" name="groupBox_9">
           <property name="styleSheet">
            <string notr="true">QGroupBox#groupBox_9 { 
@@ -3420,7 +3543,7 @@ QCheckBox::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
-        <item row="1" column="4">
+        <item row="1" column="8">
          <widget class="QGroupBox" name="groupBox_12">
           <property name="styleSheet">
            <string notr="true">QGroupBox#groupBox_12 { 
@@ -3511,6 +3634,83 @@ QCheckBox::indicator:checked:hover  {
           </layout>
          </widget>
         </item>
+        <item row="1" column="10">
+         <spacer name="horizontalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="3">
+         <spacer name="horizontalSpacer_12">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <spacer name="horizontalSpacer_11">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="5">
+         <spacer name="horizontalSpacer_13">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="7">
+         <spacer name="horizontalSpacer_14">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -3522,7 +3722,7 @@ QCheckBox::indicator:checked:hover  {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1338</width>
+     <width>1372</width>
      <height>21</height>
     </rect>
    </property>
@@ -3595,24 +3795,21 @@ QCheckBox::indicator:checked:hover  {
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>searchAllArticles</tabstop>
-  <tabstop>shopComboBox</tabstop>
-  <tabstop>selectAllRestaurantCheckBox</tabstop>
-  <tabstop>restaurantComboBox</tabstop>
-  <tabstop>checkBox_4</tabstop>
-  <tabstop>showComboBox</tabstop>
-  <tabstop>quartersRB</tabstop>
-  <tabstop>monthsRB</tabstop>
-  <tabstop>daysRB</tabstop>
-  <tabstop>timeRadioButton</tabstop>
-  <tabstop>periodRadioButton</tabstop>
   <tabstop>selectAllTicketCheckBox</tabstop>
+  <tabstop>searchAllArticles</tabstop>
+  <tabstop>spinBox_1</tabstop>
+  <tabstop>spinBox_2</tabstop>
+  <tabstop>spinBox_3</tabstop>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>myVisualisationTW</tabstop>
+  <tabstop>periodRadioButton</tabstop>
+  <tabstop>monthsRB</tabstop>
   <tabstop>ticketComboBox</tabstop>
   <tabstop>removePushButton</tabstop>
   <tabstop>newGroupPushButton</tabstop>
   <tabstop>selectAllShopCheckBox</tabstop>
-  <tabstop>treeWidget</tabstop>
-  <tabstop>myVisualisationTW</tabstop>
+  <tabstop>timeRadioButton</tabstop>
+  <tabstop>daysRB</tabstop>
   <tabstop>removeVisualisation</tabstop>
   <tabstop>numbersCheckBox</tabstop>
   <tabstop>gridCheckBox</tabstop>
@@ -3631,6 +3828,15 @@ QCheckBox::indicator:checked:hover  {
   <tabstop>clearBars</tabstop>
   <tabstop>circleVisualisationRadioButton</tabstop>
   <tabstop>comboBox</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>showComboBox</tabstop>
+  <tabstop>quartersRB</tabstop>
+  <tabstop>shopComboBox</tabstop>
+  <tabstop>selectAllRestaurantCheckBox</tabstop>
+  <tabstop>restaurantComboBox</tabstop>
+  <tabstop>startVisualisationPushButton</tabstop>
+  <tabstop>addVisualisationPushButton</tabstop>
+  <tabstop>showMainWindowCheckBox</tabstop>
  </tabstops>
  <resources>
   <include location="MyResources.qrc"/>

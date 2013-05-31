@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     void AddRoot(QString name);
-    void AddChild(QTreeWidgetItem *parent, QString name, QString secondName);
+    void AddChild(QTreeWidgetItem *parent, QString name, QString year, QString month);
     QTreeWidgetItem* getRoot();
     
 public:
@@ -43,8 +43,6 @@ private slots:
     void on_addVisualisationPushButton_clicked();
     void on_startVisualisationPushButton_clicked();
     void on_removeVisualisation_clicked();
-    void on_periodRadioButton_clicked();
-    void on_timeRadioButton_clicked();
     void on_clearBars_clicked();
 //    void on_particleRadiusSlider_valueChanged(int value);
     void on_barSpacingSlider_valueChanged(int value);
@@ -67,7 +65,7 @@ private slots:
     void on_radioButton_2_toggled(bool checked);
     void on_radioButton_3_toggled(bool checked);
 
-    void on_typeYearLE_editingFinished();
+    void on_typeYearDE_editingFinished();
     void on_removePushButton_clicked();
     void on_quartersRB_toggled(bool checked);
     void on_monthsRB_toggled(bool checked);
@@ -84,6 +82,9 @@ private slots:
     void on_selectAllTicketCheckBox_clicked();
     void on_selectAllTicketCheckBox_toggled(bool checked);
 
+    void on_periodRadioButton_toggled(bool checked);
+    void on_timeRadioButton_toggled(bool checked);
+    void on_daysRB_toggled(bool checked);
 };
 
 #endif // MAINWINDOW_H

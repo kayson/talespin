@@ -183,7 +183,12 @@ void ParticleManager::update()
                         else if(entType == EARNINGS)
                             numP2 = container2.getProfit()/1000;
                         else if(entType == MEAN)
-                            numP2 = container2.getProfit()/container2.getNumParticles();
+                        {
+                            if( container2.getNumParticles() == 0 )
+                                numP2 = 0;
+                            else
+                                numP2 = container2.getProfit()/container2.getNumParticles();
+                        }
                     }
                     int c = 1;
                     int numP = 0;
@@ -192,8 +197,13 @@ void ParticleManager::update()
                         numP = container.getNumParticles();
                     else if(entType == EARNINGS)
                         numP = container.getProfit()/1000;
-                    else if(entType == MEAN)                      
-                        numP = container.getProfit()/container.getNumParticles();
+                    else if(entType == MEAN)
+                    {
+                        if( container.getNumParticles() == 0 )
+                            numP = 1;   // DivbyZero
+                        else
+                            numP = container.getProfit()/container.getNumParticles();
+                    }
 
                     if(numP2 == 0) numP2 = numP;
 

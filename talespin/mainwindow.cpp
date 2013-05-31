@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent) :
             }
         }
 
+    ui->marketingWidget->hide();
+    ui->addButtonWidget->hide();
+
     ui->menuBar->setStyleSheet("QMenuBar {background-color: rgb(111, 111, 110);} QMenuBar::item{background-color: rgb(111, 111, 110);} QMenuBar::item{color: rgb(245, 245, 249);}  QMenuBar::item:selected {background: #a8a8a8;} ");
     ui->visulatorMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);} ");
     ui->settingsMenu->setStyleSheet("QMenu {background-color: rgb(111, 111, 110);}");
@@ -59,10 +62,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->progressBar->reset();
     ui->progressBar->setTextVisible(false);
 
-    ui->myVisualisationTW->setColumnCount(2);
+    ui->myVisualisationTW->setColumnCount(3);
     ui->myVisualisationTW->header()->close();
 
-    ui->treeWidget->setColumnCount(2);
+    ui->treeWidget->setColumnCount(3);
     ui->treeWidget->header()->close();
     ui->treeWidget->setSelectionMode(QAbstractItemView::MultiSelection);
 
@@ -157,29 +160,30 @@ MainWindow::MainWindow(QWidget *parent) :
     triangleButtonIcon.addPixmap(pixmapAdd);
     triangleButtonIcon2.addPixmap(pixmapReady);
 
-    ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
-    ui->addVisualisationPushButton->setIconSize(QSize(100,145));
+    //ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
+    //ui->addVisualisationPushButton->setIconSize(QSize(100,145));
     ui->addVisualisationPushButton->setMask(pixmapAdd.mask());
 
-    ui->startVisualisationPushButton->setIcon(triangleButtonIcon2);
-    ui->startVisualisationPushButton->setIconSize(QSize(100,145));
+    //ui->startVisualisationPushButton->setIcon(triangleButtonIcon2);
+    //ui->startVisualisationPushButton->setIconSize(QSize(100,145));
     ui->startVisualisationPushButton->setMask(pixmapReady.mask());
 
 
-    QPixmap pixmap(":/MyFiles/pic/iconLines.png");
+    QPixmap pixmap(":/MyFiles/pic/line_dark.png");
     ui->lineLabel->setPixmap(pixmap);
     ui->lineLabel->setScaledContents(true);
 
-    QPixmap pixmap2(":/MyFiles/pic/iconBars.png");
+    QPixmap pixmap2(":/MyFiles/pic/bar_dark.png");
+    QPixmap pixSpace(":/MyFiles/pic/icon_between.png");
     ui->barLabel->setPixmap(pixmap2);
     ui->barLabel->setScaledContents(true);
 
-    ui->barspacingLabel->setPixmap(pixmap2);
-    ui->barspacingLabel->setScaledContents(true);
-
-    QPixmap barWidthPixmap(":/MyFiles/pic/iconBarWidth.png");
-    ui->barwidthLabel->setPixmap(barWidthPixmap);
+    QPixmap barWidthPixmap(":/MyFiles/pic/bar_width.png");
+    ui->barwidthLabel->setPixmap(pixSpace);
     ui->barwidthLabel->setScaledContents(true);
+
+    ui->barspacingLabel->setPixmap(barWidthPixmap);
+    ui->barspacingLabel->setScaledContents(true);
 
     ui->zoomLabel->setText("0-100%");
     ui->zoomLabel->setFont(QFont("Roboto", 7));
@@ -352,7 +356,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
         {
             QString item;
             item = ui->searchAllArticles->text();
-            AddChild(getRoot(),item, ui->typeYearLE->text());
+            AddChild(getRoot(),item, ui->typeYearDE->text(), ui->typeMonthDE->text());
             ui->searchAllArticles->clear();
         }
 
@@ -360,8 +364,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
         {
             while(query.next())
             {
-                AddChild(getRoot(),query.value(0).toString(), ui->typeYearLE->text());
-
+                AddChild(getRoot(),query.value(0).toString(), ui->typeYearDE->text(),ui->typeMonthDE->text());
             }
         }
 
@@ -370,7 +373,7 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                AddChild(getRoot(),query.value(0).toString(), ui->typeYearLE->text());
+                AddChild(getRoot(),query.value(0).toString(), ui->typeYearDE->text(),ui->typeMonthDE->text());
             }
         }
 
@@ -379,55 +382,67 @@ void MainWindow::on_addVisualisationPushButton_clicked()
 
             while(query.next())
             {
-                AddChild(getRoot(),query.value(0).toString(), ui->typeYearLE->text());
+                AddChild(getRoot(),query.value(0).toString(), ui->typeYearDE->text(),ui->typeMonthDE->text());
             }
         }
 
         if(ui->ticketComboBox->currentIndex())
         {
             QString selectedItem = ui->ticketComboBox->currentText();
-            AddChild(getRoot(),selectedItem, ui->typeYearLE->text());
+            AddChild(getRoot(),selectedItem, ui->typeYearDE->text(),ui->typeMonthDE->text());
             ui->ticketComboBox->setCurrentIndex(0);
         }
 
         if(ui->restaurantComboBox->currentIndex())
         {
             QString selectedItem = ui->restaurantComboBox->currentText();
-            AddChild(getRoot(),selectedItem, ui->typeYearLE->text());
+            AddChild(getRoot(),selectedItem, ui->typeYearDE->text(),ui->typeMonthDE->text());
             ui->restaurantComboBox->setCurrentIndex(0);
         }
 
         if(ui->shopComboBox->currentIndex())
         {
             QString selectedItem = ui->shopComboBox->currentText();
-            AddChild(getRoot(),selectedItem, ui->typeYearLE->text());
+            AddChild(getRoot(),selectedItem, ui->typeYearDE->text(),ui->typeMonthDE->text());
             ui->shopComboBox->setCurrentIndex(0);
         }
 
-        ui->groupWidget->show();
-        ui->startVisualisationPushButton->show();
-        ui->startButtonWidget->show();
-
+        if(ui->daysRB->isChecked())
+        {
+            ui->myVisualisationTW->setColumnCount(3);
+            ui->treeWidget->setColumnCount(3);
+        }
+        else if (ui->monthsRB->isChecked()||ui->quartersRB->isChecked())
+        {
+            ui->myVisualisationTW->setColumnCount(2);
+            ui->treeWidget->setColumnCount(2);
+        }
+            ui->groupWidget->show();
+            ui->startVisualisationPushButton->show();
+            ui->startButtonWidget->show();
     }
 }
 
 
-
-
 void MainWindow::on_startVisualisationPushButton_clicked()
 {
-    QString month = ui->typeMonthLE->text();
-
     if(!db.open()) return;
 
     if(ui->panelGL->ParticleMgr->IDcounter == 0)
     {
         if(ui->monthsRB->isChecked())
+        {
             ui->panelGL->ParticleMgr->numOftimeInterval = 12;
+        }
+
         if(ui->quartersRB->isChecked())
+        {
             ui->panelGL->ParticleMgr->numOftimeInterval = 4;
+        }
         if(ui->daysRB->isChecked())
+        {
             ui->panelGL->ParticleMgr->numOftimeInterval = 31;
+        }
     }
 
     for (int i = 0; i <= ui->treeWidget->topLevelItemCount()-1; i++)
@@ -436,6 +451,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
         QString groupName = ui->treeWidget->topLevelItem(i)->text(0);
         QString article;
         QString year;
+        QString month;
 
 //        QTreeWidgetItem *topItem = new QTreeWidgetItem(ui->myVisualisationTW);
 //        topItem->setText(0,groupName + " " + ui->typeYear->text());
@@ -449,17 +465,18 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
                 article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
-                year = ui->treeWidget->topLevelItem(i)->child(j)->text(1);
+                    year = ui->treeWidget->topLevelItem(i)->child(j)->text(1);
+                    month = ui->treeWidget->topLevelItem(i)->child(j)->text(2);
 
-               //AddChild(topItem,article);
 
                 QSqlQuery query(db);
                 query.setForwardOnly(true);
 
                 if(ui->panelGL->ParticleMgr->numOftimeInterval == 31)
                 {
-                    query.prepare(" SELECT sum(Amount), sum(RowTotal) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(month, Date) = :month AND DATEPART(day, Date) = :timeInterval ");
+                    query.prepare(" SELECT sum(Amount), sum(RowTotal) FROM View_utb_transactions WHERE ArticleName = :article AND DATEPART(year, Date) = :year AND DATEPART(month, Date) = :month AND DATEPART(day, Date) = :timeInterval ");
                     query.bindValue(":article", article);
+                    query.bindValue(":year", year);
                     query.bindValue(":month", month);
                     query.bindValue(":timeInterval", timeInterval);
                 }
@@ -524,13 +541,15 @@ void MainWindow::on_startVisualisationPushButton_clicked()
             ui->myVisualisationTW->addTopLevelItem(topItem);
             ui->myVisualisationTW->setItemWidget(topItem,1,indicatorColor);
             ui->myVisualisationTW->header()->resizeSection(0,130);
-            ui->myVisualisationTW->header()->resizeSection(1,20);
+            ui->myVisualisationTW->header()->resizeSection(1,30);
+            ui->myVisualisationTW->header()->resizeSection(2,20);
 
             for (int j = 0; j <= ui->treeWidget->topLevelItem(i)->childCount()-1; j++)
             {
                 article = ui->treeWidget->topLevelItem(i)->child(j)->text(0);
                 year = ui->treeWidget->topLevelItem(i)->child(j)->text(1);
-                AddChild(topItem,article, year);
+                month = ui->treeWidget->topLevelItem(i)->child(j)->text(2);
+                AddChild(topItem,article, year, month);
             }
 
             ui->daysRB->setDisabled(true);
@@ -605,24 +624,6 @@ void MainWindow::on_circleVisualisationRadioButton_toggled(bool checked)
 }
 
 
-void MainWindow::on_timeRadioButton_clicked()
-{
-    ui->horizontalSpacer->changeSize(0,0);
-    ui->label_11->hide();
-    ui->label_12->hide();
-    ui->groupBox_6->setDisabled(true);
-}
-
-void MainWindow::on_periodRadioButton_clicked()
-{
-    ui->horizontalSpacer->changeSize(10,0);
-    ui->label_11->show();
-    ui->label_12->show();
-    ui->groupBox_6->setEnabled(true);
-
-
-}
-
 void MainWindow::on_clearBars_clicked()
 {
     ui->panelGL->ParticleMgr->clearContainers();
@@ -681,9 +682,9 @@ void MainWindow::AddRoot(QString name)
     QTreeWidgetItem *itm = new QTreeWidgetItem(ui->treeWidget);
     itm->setText(0,name);    
     itm->setExpanded(true);
-    itm->setFlags(itm->flags()| (Qt::ItemIsEditable));
+    itm->setFlags(itm->flags()|(Qt::ItemIsEditable));
 
-    QPixmap pixmap(":/MyFiles/pic/cross_unchecked.png");
+    QPixmap pixmap(":/MyFiles/pic/cross_white.png");
     QIcon removeIcon;
     removeIcon.addPixmap(pixmap);
     QToolButton *rButton = new QToolButton();
@@ -693,12 +694,14 @@ void MainWindow::AddRoot(QString name)
     //rButton->setMask(pixmap.mask());
     rButton->setMinimumSize(20,20);
     rButton->setMaximumSize(20,20);
+    rButton->setStyleSheet("QToolButton{margin-top:3px; margin-left:3px;}");
 
 
     //ui->treeWidget->resizeColumnToContents(0);
     ui->treeWidget->setItemWidget(itm,1,rButton);
-    ui->treeWidget->header()->resizeSection(0,210);
-    ui->treeWidget->header()->resizeSection(1,20);
+    ui->treeWidget->header()->resizeSection(0,200);
+    ui->treeWidget->header()->resizeSection(1,30);
+    ui->treeWidget->header()->resizeSection(2,20);
 
 //    ui->addVisualisationPushButton->setMask(pixmap4.mask());
 
@@ -711,11 +714,12 @@ void MainWindow::AddRoot(QString name)
 
 }
 
-void MainWindow::AddChild(QTreeWidgetItem *parent, QString name, QString secondName)
+void MainWindow::AddChild(QTreeWidgetItem *parent, QString name, QString year, QString month)
 {
     QTreeWidgetItem *itm = new QTreeWidgetItem();
     itm->setText(0,name);
-    itm->setText(1,secondName);
+    itm->setText(1,year);
+    itm->setText(2,month);
     parent->addChild(itm);
 }
 
@@ -794,7 +798,7 @@ bool MainWindow::comboBoxItemCanged()
   int currentTicketIndex = ui->ticketComboBox->currentIndex();
   int currentRestaurantIndex = ui->restaurantComboBox->currentIndex();
   int currentShopIndex = ui->shopComboBox->currentIndex();
-  qDebug() << initialIndex << currentTicketIndex << currentRestaurantIndex << currentShopIndex;
+ //qDebug() << initialIndex << currentTicketIndex << currentRestaurantIndex << currentShopIndex;
   if(initialIndex == currentTicketIndex && initialIndex == currentRestaurantIndex && initialIndex == currentShopIndex)
       return false;
   else
@@ -802,7 +806,7 @@ bool MainWindow::comboBoxItemCanged()
 
 }
 
-void MainWindow::on_typeYearLE_editingFinished()
+void MainWindow::on_typeYearDE_editingFinished()
 {
     //ui->ticketComboBox->editTextChanged();
 //    if(!ui->typeYearLE->text().isEmpty() && !ui->searchAllArticles->text().isEmpty() || ui->selectAllTicketCheckBox->isChecked() || comboBoxItemCanged() )
@@ -856,8 +860,8 @@ void MainWindow::on_quartersRB_toggled(bool checked)
 {
     if(checked)
     {
-        ui->typeMonthLE->setDisabled(true);
-        ui->typeDayLE->setDisabled(true);
+        ui->typeMonthDE->setDisabled(true);
+        ui->typeDayDE->setDisabled(true);
     }
 
 }
@@ -866,8 +870,17 @@ void MainWindow::on_monthsRB_toggled(bool checked)
 {
     if(checked)
     {
-        ui->typeMonthLE->setEnabled(true);
-        ui->typeDayLE->setDisabled(true);
+        ui->typeMonthDE->setDisabled(true);
+        ui->typeDayDE->setDisabled(true);
+    }
+
+}
+
+void MainWindow::on_daysRB_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->typeMonthDE->setEnabled(true);
     }
 
 }
@@ -941,4 +954,38 @@ void MainWindow::on_selectAllTicketCheckBox_toggled(bool checked)
 {
     if(checked)
         ui->addVisualisationPushButton->setEnabled(true);
+}
+
+void MainWindow::on_periodRadioButton_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->horizontalSpacer->changeSize(10,0);
+        ui->label_11->show();
+        ui->label_12->show();
+        ui->groupBox_6->setEnabled(true);
+        ui->spinBox_1->setDisabled(true);
+        ui->spinBox_2->setDisabled(true);
+        ui->spinBox_3->setDisabled(true);
+    }
+    else
+    {
+
+    }
+
+}
+
+void MainWindow::on_timeRadioButton_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->horizontalSpacer->changeSize(0,0);
+        ui->label_11->hide();
+        ui->label_12->hide();
+        ui->groupBox_6->setDisabled(true);
+    }
+    else
+    {
+
+    }
 }
