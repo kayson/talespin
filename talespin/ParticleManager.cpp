@@ -148,7 +148,7 @@ void ParticleManager::update()
             for(std::vector<ParticleContainer*>::iterator i = _containerVec.begin(); i != _containerVec.end(); ++i)
             {
                 ParticleContainer& container = **i;
-                if( container.getNumParticles() == 0 ) continue;
+                //if( container.getNumParticles() == 0 ) continue;
                 if( container.timePosition != timeInterval ) continue;
 
                 if(visType == BARCHART)
