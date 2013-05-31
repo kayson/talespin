@@ -160,29 +160,30 @@ MainWindow::MainWindow(QWidget *parent) :
     triangleButtonIcon.addPixmap(pixmapAdd);
     triangleButtonIcon2.addPixmap(pixmapReady);
 
-    ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
-    ui->addVisualisationPushButton->setIconSize(QSize(100,145));
+    //ui->addVisualisationPushButton->setIcon(triangleButtonIcon);
+    //ui->addVisualisationPushButton->setIconSize(QSize(100,145));
     ui->addVisualisationPushButton->setMask(pixmapAdd.mask());
 
-    ui->startVisualisationPushButton->setIcon(triangleButtonIcon2);
-    ui->startVisualisationPushButton->setIconSize(QSize(100,145));
+    //ui->startVisualisationPushButton->setIcon(triangleButtonIcon2);
+    //ui->startVisualisationPushButton->setIconSize(QSize(100,145));
     ui->startVisualisationPushButton->setMask(pixmapReady.mask());
 
 
-    QPixmap pixmap(":/MyFiles/pic/iconLines.png");
+    QPixmap pixmap(":/MyFiles/pic/line_dark.png");
     ui->lineLabel->setPixmap(pixmap);
     ui->lineLabel->setScaledContents(true);
 
-    QPixmap pixmap2(":/MyFiles/pic/iconBars.png");
+    QPixmap pixmap2(":/MyFiles/pic/bar_dark.png");
+    QPixmap pixSpace(":/MyFiles/pic/icon_between.png");
     ui->barLabel->setPixmap(pixmap2);
     ui->barLabel->setScaledContents(true);
 
-    ui->barspacingLabel->setPixmap(pixmap2);
-    ui->barspacingLabel->setScaledContents(true);
-
-    QPixmap barWidthPixmap(":/MyFiles/pic/iconBarWidth.png");
-    ui->barwidthLabel->setPixmap(barWidthPixmap);
+    QPixmap barWidthPixmap(":/MyFiles/pic/bar_width.png");
+    ui->barwidthLabel->setPixmap(pixSpace);
     ui->barwidthLabel->setScaledContents(true);
+
+    ui->barspacingLabel->setPixmap(barWidthPixmap);
+    ui->barspacingLabel->setScaledContents(true);
 
     ui->zoomLabel->setText("0-100%");
     ui->zoomLabel->setFont(QFont("Roboto", 7));
@@ -682,7 +683,7 @@ void MainWindow::AddRoot(QString name)
     itm->setExpanded(true);
     itm->setFlags(itm->flags()|(Qt::ItemIsEditable));
 
-    QPixmap pixmap(":/MyFiles/pic/cross_unchecked.png");
+    QPixmap pixmap(":/MyFiles/pic/cross_white.png");
     QIcon removeIcon;
     removeIcon.addPixmap(pixmap);
     QToolButton *rButton = new QToolButton();
@@ -692,6 +693,7 @@ void MainWindow::AddRoot(QString name)
     //rButton->setMask(pixmap.mask());
     rButton->setMinimumSize(20,20);
     rButton->setMaximumSize(20,20);
+    rButton->setStyleSheet("QToolButton{margin-top:3px; margin-left:3px;}");
 
 
     //ui->treeWidget->resizeColumnToContents(0);

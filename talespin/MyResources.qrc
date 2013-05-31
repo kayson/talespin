@@ -26,5 +26,41 @@
         <file>pic/cross_unchecked.png</file>
         <file>pic/button_ready.png</file>
         <file>pic/button_add.png</file>
+        <file>pic/button.png</file>
+        <file>pic/button_hover.png</file>
+        <file>pic/button_normal.png</file>
+        <file>pic/button_pressed.png</file>
+        <file>pic/button_add_hover.png</file>
+        <file>pic/button_add_normal.png</file>
+        <file>pic/button_add_pressed.png</file>
+        <file>pic/button_ready_hover.png</file>
+        <file>pic/button_ready_normal.png</file>
+        <file>pic/button_ready_pressed.png</file>
+        <file>pic/particulate_logo.png</file>
+        <file>pic/logo_square.png</file>
+        <file>pic/logo_squared.png</file>
+        <file>pic/symbol_circle.png</file>
+        <file>pic/symbol_circle2.png</file>
+        <file>pic/line_ljus.png</file>
+        <file>pic/line_dark.png</file>
+        <file>pic/bar_bright.png</file>
+        <file>pic/bar_dark.png</file>
+        <file>pic/bar_width.png</file>
+        <file>pic/arrow_down.png</file>
+        <file>pic/arrow_uppdown.png</file>
+        <file>pic/arrow_down2.png</file>
+        <file>pic/arrow_uppdown2.png</file>
+        <file>pic/arrow_up.png</file>
+        <file>pic/cross_normal.png</file>
+        <file>pic/cross-hover.png</file>
+        <file>pic/cross_14px_hover.png</file>
+        <file>pic/cross_14px_normal.png</file>
+        <file>pic/cross-normail_20px.png</file>
+        <file>pic/cross_24px.png</file>
+        <file>pic/cross_white.png</file>
+        <file>pic/space_between.png</file>
+        <file>pic/icon_space.png</file>
+        <file>pic/icon_between3.png</file>
+        <file>pic/icon_between.png</file>
     </qresource>
 </RCC>
