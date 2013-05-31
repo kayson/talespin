@@ -439,6 +439,7 @@ void MainWindow::on_startVisualisationPushButton_clicked()
         {
             ui->panelGL->ParticleMgr->numOftimeInterval = 4;
         }
+
         if(ui->daysRB->isChecked())
         {
             ui->panelGL->ParticleMgr->numOftimeInterval = 31;

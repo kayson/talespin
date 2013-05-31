@@ -21,7 +21,7 @@ void drawGrid::drawBarText(ParticleManager *pMgr)
 {
     if(hideNumbers)
     {
-        FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
+        FTGLPixmapFont font("C:/WINDOWS/Fonts/Roboto-Regular.ttf");
         if(!font.Error())
         {
             for(int i=0; i != pMgr->numContainers(); i++)
@@ -64,7 +64,7 @@ void drawGrid::drawBarGrid(ParticleManager *pMgr)
 {
     if(hideGrid && (pMgr->visType==BARCHART || pMgr->visType==LINES))
     {
-        FTGLPixmapFont font("C:/WINDOWS/Fonts/Arial.ttf");
+        FTGLPixmapFont font("C:/WINDOWS/Fonts/Roboto-Regular.ttf");
 
         maxsize = pMgr->getMaxSize();
         if(maxsize >= 2000)
